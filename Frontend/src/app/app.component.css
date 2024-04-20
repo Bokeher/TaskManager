@@ -1,15 +1,10 @@
-ng-container {
-  width: 100vw;
-  height: 100vh;
-}
-
-.main-menu {
+#main-menu {
   width: 100vw;
   height: 5rem;
 }
 
 .buttons {
-  background-color: rgba(255, 255, 255, 0.069);
+  background-color: #292929;
   width: 4.5rem;
   height: 3.5rem;
   border: none;
@@ -21,21 +16,19 @@ ng-container {
   transition: 0.3s;
 }
 
-.buttons:hover {
-  background-color: rgba(255, 255, 255, 0.131);
-  color: white;
+.btn-icon span {
+  scale: 130%;
 }
 
-.buttons span {
-  scale: 120%;
+.btn-icon {
+  width: 4.5rem;
+  height: 3.5rem;
+  margin-top: 0.7rem;
+  margin-left: 0.7rem;
+  background-color: #292929;
 }
 
-.buttons p {
-  position: absolute;
-  visibility: hidden;
-}
-
-#openUserSettings {
+#btn-openUserSettings {
   float: right;
   margin-right: 0.7rem;
 }

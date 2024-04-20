@@ -2,13 +2,8 @@
   box-sizing: border-box; 
 }
 
-#main {
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0);
-}
-
 #projectHeader {
-  background-color: rgba(255, 255, 255, 0.069);
+  background-color: #292929;
   width: 30rem;
   height: 3rem;
   color: rgb(200, 200, 200);
@@ -41,14 +36,6 @@
   cursor: pointer;
 }
 
-#openProjectSettings {
-  margin-left: 0rem;
-}
-
-#openFilter {
-  margin-left: 0rem;
-}
-
 #fakeButton {
   cursor: default;
 }
@@ -57,7 +44,6 @@
   margin-left: auto;
   margin-right: 0;
 }
-
 
 #main-container {
   display: flex;
@@ -87,9 +73,9 @@ h2 {
 
 .cat-header {
   display: flex;
-  background-color: rgba(255, 255, 255, 0.069);
+  background-color: #292929;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.069);
+  border: 1px solid #292929;
   align-items: center;
   position: relative;
   height: 3.2rem;
@@ -102,7 +88,7 @@ h2 {
   height: 32px;
   border-radius: 12px;
   border: none;
-  background-color: rgba(67, 51, 51, 0);
+  background-color: #292929;
   cursor: pointer;
   color: rgb(200, 200, 200);
   transition: 0.3s;
@@ -117,14 +103,13 @@ h2 {
   height: 75vh;
   margin-bottom: 1%;
   float: left;
-  background-color: rgba(196, 205, 32, 0);
   overflow-y: auto;
 }
 
 .task {
   color: rgb(200, 200, 200);
-  background-color: rgba(255, 255, 255, 0.069);
-  border: 1px solid rgba(255, 255, 255, 0.069);
+  background-color: #292929;
+  border: 1px solid #292929;
   width: 95%;
   border-radius: 10px;
   font-size: 18px;

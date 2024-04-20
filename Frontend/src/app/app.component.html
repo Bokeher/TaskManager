@@ -1,19 +1,17 @@
 <ng-container>
-  <div class="main-menu" *ngIf="isLoggedIn()">
-    <button class="buttons" id="home" (click)="goToMainSite()" routerLink="">
+  <div id="main-menu" *ngIf="isLoggedIn()">
+    <button class="btn-icon" id="btn-home" (click)="goToMainSite()">
       <span class="material-symbols-outlined">home</span>
     </button>
-    <button class="buttons" id="projectList" (click)="displayUserProjects()">
+    <button class="btn-icon" id="btn-projectList" (click)="displayUserProjects()">
       <span class="material-symbols-outlined">apps</span>
     </button>
-    <button class="buttons" id="createProject" (click)="openCreateProjectDialog()">
+    <button class="btn-icon" id="btn-createProject" (click)="openCreateProjectDialog()">
       <span class="material-symbols-outlined">add</span>
     </button>
-
-    <button class="buttons" id="openUserSettings" (click)="openUserSettingsDialog()">
+    <button class="btn-icon" id="btn-openUserSettings" (click)="openUserSettingsDialog()">
       <span class="material-symbols-outlined">person</span>
     </button>
-
     <app-projects *ngIf="displayProjects"></app-projects>
   </div>
   <router-outlet></router-outlet>
