@@ -1,0 +1,94 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+  rel="stylesheet"
+/>
+
+<div id="main">
+  <div id="projectHeader">
+    <button (click)="openProjectSettingsDialog()" id="openProjectSettings" class="headerButtons">
+      <span class="material-symbols-outlined">settings</span>
+    </button>
+    <button (click)="openFilterDialog()" id="openFilter" class="headerButtons">
+      <span class="material-symbols-outlined"> filter_alt </span>
+    </button>
+    <p id="projectName">{{ project?.name }}</p>
+    <span class="headerButtons" id="fakeButton">
+    </span>
+    <button (click)="openAddCategoryDialog()" id="openAddCategory" class="headerButtons">
+      <span class="material-symbols-outlined">add</span>
+    </button>
+  </div>
+  <div
+    id="main-container"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="dropList($event)"
+    cdkDropListGroup
+  >
+    <div
+      *ngFor="let category of tasksByCategories$ | async | keyvalue : originalOrder"
+      class="categories"
+      cdkDrag
+      [cdkDragDisabled]="showOnlyAssigned"
+    >
+      <div class="cat-header">
+        <div>
+          <button (click)="openAddTaskDialog(category.key)" class="addtask">
+            <span class="material-symbols-outlined">add</span>
+          </button>
+        </div>
+
+        <h2>{{ category.key }}</h2>
+
+        <div *ngIf="!category.value.length" class="no-tasks">
+          <button (click)="deleteCategory(category.key)" class="del-cat">
+            <span style="color: red" class="material-symbols-outlined">delete</span>
+          </button>
+        </div>
+      </div>
+      <br />
+
+      <div
+        class="cat-body"
+        cdkDropList
+        [cdkDropListData]="category.value"
+        (cdkDropListDropped)="drop($event, category.key)"
+      >
+        <div *ngIf="category.value.length">
+          <div *ngFor="let task of category.value">
+            <div *ngIf="!showOnlyAssigned || isUserMemberOfTask(task)">
+              <div class="task" cdkDrag [cdkDragDisabled]="showOnlyAssigned" (click)="openEditTaskDialog(task)">
+                <button (click)="deleteTask(task)">
+                  <span class="material-symbols-outlined">
+                    delete
+                  </span>
+                </button>
+                <div class="taskHeader">{{ task.name }}</div>
+                <div class="taskDescription">{{ task.description }}</div>
+
+                <ng-container *ngFor="let member of members$ | async">
+                  <div class="avatars" *ngIf="checkMember(member, task)">
+                    <img
+                      *ngIf="member.avatarUrl"
+                      src="{{ member.avatarUrl }}"
+                      alt="{{ member.login }}"
+                      [title]="member.login"
+                      style="width: 3vw; border-radius: 50%"
+                    />
+                    <img
+                      *ngIf="!member.avatarUrl"
+                      src="https://cdn-icons-png.freepik.com/256/1077/1077114.png"
+                      alt="{{ member.login }}"
+                      [title]="member.login"
+                      style="width: 3vw; border-radius: 50%"
+                    />
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

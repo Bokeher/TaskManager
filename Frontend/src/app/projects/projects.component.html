@@ -1,0 +1,11 @@
+<div *ngFor="let project of projectData; index as i; first as isFirst">
+  <div (click)="openProject(i)" class="project-window" routerLink="project">
+    <div class="project-name">
+      <p>
+        <li>{{ project.name }}</li>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="projectNumber > projectData.length"></div>

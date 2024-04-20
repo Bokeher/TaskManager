@@ -1,0 +1,16 @@
+// -=-=- Projects Commands -=-=-
+
+// get all projects
+curl -X POST -H "Content-Type: application/json" http://localhost:3000/api/getAllProjects
+
+// get project by id
+curl -X POST -H "Content-Type: application/json" -d @curlData/projectCommands/id.json http://localhost:3000/api/getProject
+
+// create project
+curl -X PUT -H "Content-Type: application/json" -d @curlData/projectCommands/projectNameAndCreatorId.json http://localhost:3000/api/createProject
+
+// delete project by id
+curl -X DELETE -H "Content-Type: application/json" -d @curlData/projectCommands/id.json http://localhost:3000/api/deleteProject
+
+// update project
+curl -X PUT -H "Content-Type: application/json" -d @curlData/projectCommands/idAndProject.json http://localhost:3000/api/updateProject

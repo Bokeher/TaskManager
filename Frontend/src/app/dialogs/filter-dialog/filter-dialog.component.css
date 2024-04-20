@@ -1,0 +1,34 @@
+.container {
+  width: 20vw;
+  height: 20vh;
+}
+
+h1 {
+  width: 100%;
+  text-align: center;
+}
+
+.main {
+  width: 80%;
+  height: 50%;
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  border: 1px black solid;
+  border-radius: 10px;
+}
+
+label {
+  margin-top: 10%;
+}
+
+.close {
+  background-color: rgba(240, 248, 255, 0);
+  color: black;
+  float: right;
+  margin-right: 1%;
+}
+
+.close:hover {
+  scale: 110%;
+}

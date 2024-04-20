@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="logout">
+    <button class="close" (click)="closeDialogs()">
+      <span class="material-symbols-outlined"> close </span>
+    </button>
+  </div>
+  <h1 i18n="@@filter">Filter</h1>
+
+  <div class="main">
+    <label for="onlyAssigned" i18n="@@showOnlyAssignedTasks">
+      Show only assigned tasks (Cannot edit while selected)
+    </label>
+    <input
+      #autoSelect
+      type="checkbox"
+      name="onlyAssigned"
+      id="onlyAssigned"
+      [checked]="onlyAssigned"
+      (change)="onCheckedChange($event)"
+    />
+  </div>
+</div>

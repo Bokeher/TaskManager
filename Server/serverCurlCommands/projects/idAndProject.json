@@ -1,0 +1,22 @@
+{
+  "id": "65268ea791d279dfbae54291",
+  "newProject": {
+    "name": "testProjectNameZmieniony",
+    "projectMembers": [{
+        "userId": {
+          "$oid": "6523d8344b7661d2bf9d04fd"
+        },
+        "isAdmin": true
+      }
+    ],
+    "tasks": [{
+        "name": "",
+        "description": "",
+        "imageUrl": "",
+        "memberIds": [
+          ""
+        ]
+      }
+    ]
+  }
+}

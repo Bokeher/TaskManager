@@ -1,0 +1,25 @@
+<table>
+  <tr>
+    <th i18n="@@login">Login</th>
+    <th i18n="@@admin">Admin</th>
+  </tr>
+  <tr *ngFor="let user of mergedData">
+    <td>{{ user.login }}</td>
+    <td>
+      <input
+        type="checkbox"
+        [checked]="user.isAdmin"
+        (change)="onCheckedChange(user.login, $event)"
+        [disabled]="!adminPrivileges || user.id === userId"
+      />
+    </td>
+    <td *ngIf="adminPrivileges && !(user.id === userId)">
+      <button (click)="removeUser(user)" i18n="@@removeThisUser">Remove this user</button>
+    </td>
+  </tr>
+</table>
+<div class="center" *ngIf="userNumber > mergedData.length">
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+</div>

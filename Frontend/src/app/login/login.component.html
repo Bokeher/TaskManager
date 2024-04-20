@@ -1,0 +1,58 @@
+<router-outlet></router-outlet>
+<body>
+  <div class="body">
+    <form #userlogin="ngForm" (ngSubmit)="onSubmit()" novalidate>
+      <p>TaskManager</p>
+
+      <div id="input-login">
+        <i class="material-symbols-outlined" id="logico">mail</i>
+        <input
+          #autoSelect
+          class="input"
+          type="text"
+          name="login"
+          placeholder="login.."
+          i18n-placeholder="login"
+          [(ngModel)]="formData.name"
+        />
+      </div>
+
+      <div id="input-login">
+        <i class="material-symbols-outlined" id="passico"
+          >password</i
+        >
+        <input
+          class="input"
+          type="password"
+          name="password"
+          placeholder="password.."
+          i18n-placeholder="password"
+          [(ngModel)]="formData.password"
+          id="textin"
+        />
+      </div>
+
+      <button type="submit" id="highlight" i18n="@@login">Login</button>
+      <br /><br /><br />
+      <br />
+      <a
+        routerLink="/register"
+        i18n="@@dontHaveAccount"
+        >Don't have account? Create one!</a
+      >
+
+      <!-- Goku TODO: -->
+      <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+        rel="stylesheet"
+      />
+
+      <div *ngIf="showError" class="error">
+        <span class="material-symbols-outlined"> dangerous </span>
+        <p>Wrong password or/and login!</p>
+      </div>
+    </form>
+    
+  </div>
+</body>
+

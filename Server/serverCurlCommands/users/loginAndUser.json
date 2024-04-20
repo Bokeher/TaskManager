@@ -1,0 +1,11 @@
+{
+    "login": "Bochenek",
+    "newUser": {
+        "avatarUrl": "",
+        "login": "Bochenek",
+        "password": "123456",
+        "projectIds": [
+          ""
+        ]
+    }
+}

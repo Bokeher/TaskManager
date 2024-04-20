@@ -1,0 +1,54 @@
+<div id="main">
+  <div class="container">
+    <button id="closeDialog" (click)="closeDialog()">
+      <span class="material-symbols-outlined"> arrow_back </span>
+    </button>
+    <button id="deleteProject" (click)="deleteProject()" *ngIf="adminPrivileges">
+      <span class="material-symbols-outlined redColorIcon"> delete </span>
+    </button>
+    <button id="leaveProject" (click)="leaveProject()" *ngIf="!adminPrivileges">
+      <span class="material-symbols-outlined redColorIcon" title="Leave project" i18n-title="leaveProject"> logout </span>
+    </button>
+
+    <h1>{{ projectName }}</h1>
+
+    <hr />
+
+    <h1 i18n="@@addUserToWorkspace">Add user to workspace</h1>
+    <form (ngSubmit)="addUser()">
+      <input
+        name="userLogin"
+        #autoSelect
+        type="text"
+        placeholder="Insert username..."
+        i18n-placeholder="insertUsername" 
+        [(ngModel)]="userLogin"
+      />
+      <button type="submit">
+        <span class="material-symbols-outlined">done</span>
+      </button>
+    </form>
+
+    <hr *ngIf="adminPrivileges" />
+
+    <h1 *ngIf="adminPrivileges" i18n="@@changeProjectName">Change project name</h1>
+    <form *ngIf="adminPrivileges" (ngSubmit)="changeProjectName()">
+      <input
+        type="text"
+        name="projectName"
+        placeholder="Insert new project name..."
+        i18n-placeholder="insertNewProjectName" 
+        [(ngModel)]="projectNameForChange"
+      />
+      <button type="submit">
+        <span class="material-symbols-outlined">done</span>
+      </button>
+    </form>
+
+    <hr />
+
+    <h1 i18n="@@ManageUsers">Users</h1>
+
+    <div app-manage-users></div>
+  </div>
+</div>

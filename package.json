@@ -1,0 +1,26 @@
+{
+  "name": "taskmanager",
+  "version": "0.9",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:server\"",
+    "start:frontend": "cd frontend && ng serve",
+    "start:frontend-pl": "cd frontend && ng serve --configuration=pl-PL --open --port 4201",
+    "start:frontend-cs": "cd frontend && ng serve --configuration=cs-CS --open --port 4202",
+    "start:server": "cd server && node server.js",
+    "start-pl": "concurrently \"npm run start:frontend-pl\" \"npm run start:server\"",
+    "start-cs": "concurrently \"npm run start:frontend-cs\" \"npm run start:server\"",
+    "install-all": "npm install && cd Frontend && npm install && cd ../Server && npm install && cd ..",
+    "extract-translation": "cd Frontend && ng extract-i18n --output-path src/locale"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "all": "^0.0.0"
+  }
+}

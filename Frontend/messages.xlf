@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="insertCategoryName" datatype="html">
+        <source>Insert category name:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/add-category-dialog/add-category-dialog.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4123479083300581757" datatype="html">
+        <source>Add category name..</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/add-category-dialog/add-category-dialog.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <note priority="1" from="description">addCategoryNamePlaceholder</note>
+      </trans-unit>
+      <trans-unit id="insertTaskAndDescription" datatype="html">
+        <source>Insert task name and description:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/add-task-dialog/add-task-dialog.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="815651230526218793" datatype="html">
+        <source>Add task name..</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/add-task-dialog/add-task-dialog.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <note priority="1" from="description">addTaskName</note>
+      </trans-unit>
+      <trans-unit id="insertProjectName" datatype="html">
+        <source>Insert project name:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/create-project/create-project.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7731404612596175828" datatype="html">
+        <source>Add project name..</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/create-project/create-project.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <note priority="1" from="description">addProjectName</note>
+      </trans-unit>
+      <trans-unit id="areYouSure" datatype="html">
+        <source>Are you sure?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/delete-project/delete-project.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="yes" datatype="html">
+        <source>YES</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/delete-project/delete-project.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="no" datatype="html">
+        <source>NO</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/delete-project/delete-project.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5585641197505316955" datatype="html">
+        <source>New task name..</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/edit-task-dialog/edit-task-dialog.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <note priority="1" from="description">newTaskName</note>
+      </trans-unit>
+      <trans-unit id="136010268036348828" datatype="html">
+        <source>New description..</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/edit-task-dialog/edit-task-dialog.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <note priority="1" from="description">newTaskDescription</note>
+      </trans-unit>
+      <trans-unit id="8137062291781039902" datatype="html">
+        <source>New user&apos;s login..</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/edit-task-dialog/edit-task-dialog.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <note priority="1" from="description">newUserLogin</note>
+      </trans-unit>
+      <trans-unit id="8143956349718706577" datatype="html">
+        <source>login..</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <note priority="1" from="description">login</note>
+      </trans-unit>
+      <trans-unit id="password" datatype="html">
+        <source>password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5001812175331833576" datatype="html">
+        <source>password..</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <note priority="1" from="description">password</note>
+      </trans-unit>
+      <trans-unit id="login" datatype="html">
+        <source>Login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/manage-users/manage-users.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dontHaveAccount" datatype="html">
+        <source>Don&apos;t have account? Create one!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="admin" datatype="html">
+        <source>Admin</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/manage-users/manage-users.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="removeThisUser" datatype="html">
+        <source>Remove this user</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/manage-users/manage-users.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="addUserToWorkspace" datatype="html">
+        <source>Add user to workspace</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project-settings/project-settings.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2218753956613030198" datatype="html">
+        <source>Insert username...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project-settings/project-settings.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <note priority="1" from="description">insertUsername</note>
+      </trans-unit>
+      <trans-unit id="changeProjectName" datatype="html">
+        <source>Change project name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project-settings/project-settings.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7462659257996932034" datatype="html">
+        <source>Insert new project name...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project-settings/project-settings.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <note priority="1" from="description">insertNewProjectName</note>
+      </trans-unit>
+      <trans-unit id="ManageUsers" datatype="html">
+        <source>Users</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project-settings/project-settings.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6542676228301148432" datatype="html">
+        <source>login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <note priority="1" from="description">login</note>
+      </trans-unit>
+      <trans-unit id="4809196861118879526" datatype="html">
+        <source>password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <note priority="1" from="description">password</note>
+      </trans-unit>
+      <trans-unit id="passwordRules" datatype="html">
+        <source>password need to be at least 8 characters long and include letters numbers and symbols</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3330329515985411103" datatype="html">
+        <source>confirm password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+        <note priority="1" from="description">confirmPassword</note>
+      </trans-unit>
+      <trans-unit id="passwordMatch" datatype="html">
+        <source>passwords doesn&apos;t match</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="register" datatype="html">
+        <source>Register</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="alreadyHaveAccount" datatype="html">
+        <source>Already have an account? Log in!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="AccountCreated" datatype="html">
+        <source> Account created! </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/register/register.component.html</context>
+          <context context-type="linenumber">86,88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="logout" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;material-symbols-outlined&quot;&gt;"/>logout<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/user-settings/user-settings.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="profileSettings" datatype="html">
+        <source>Profile settings</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/user-settings/user-settings.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="changePassword" datatype="html">
+        <source>Change password:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/user-settings/user-settings.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="change" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;material-symbols-outlined&quot;&gt;"/>done<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/user-settings/user-settings.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/user-settings/user-settings.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="changeAvatar" datatype="html">
+        <source>Change avatar:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/user-settings/user-settings.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

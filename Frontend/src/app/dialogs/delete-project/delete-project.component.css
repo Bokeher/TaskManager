@@ -1,0 +1,32 @@
+#main {
+    height: 120px;
+    width: 450px;
+    text-align: center;
+}
+
+button {
+    width: 200px;
+    height: 50px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+#yes {
+    background-color: green;
+    float: left;
+    margin-left: 10px;
+}
+
+#no {
+    background-color: red;
+    float: right;
+    margin-right: 10px;
+}

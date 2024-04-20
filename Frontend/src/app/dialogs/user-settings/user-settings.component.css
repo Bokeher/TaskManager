@@ -1,0 +1,72 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+button {
+  color: black;
+  width: 2.5vw;
+  height: 4vh;
+  margin-left: 0.5vw;
+  margin-top: 0.7vh;
+  font-size: 20%;
+  border: none;
+  transition: 0.5s;
+  background-color: rgba(41, 230, 79, 0);
+  cursor: pointer;
+}
+
+input {
+  background-color: rgb(227, 227, 227);
+  margin-top: 0.5rem;
+  height: 5vh;
+  width: 7vw;
+  text-align: center;
+  border-radius: 0.8rem;
+  outline: none;
+  border: none;
+}
+
+h1 {
+  text-align: center;
+}
+
+.pass {
+  border: solid 1px rgb(44, 44, 44);
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 20px;
+  border-radius: 0.8rem;
+}
+
+.pass h3,
+.pass input {
+  margin-left: 30px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.controls {
+  margin-top: 5px;
+  margin-left: 30px;
+}
+
+.container {
+  background-color: rgb(227, 227, 227);
+  height: 54vh;
+  width: 25vw;
+  border-radius: 10px;
+}
+
+.close {
+  background-color: rgba(240, 248, 255, 0);
+  color: black;
+  float: right;
+  margin-right: 1%;
+}
+
+.close:hover {
+  scale: 110%;
+}

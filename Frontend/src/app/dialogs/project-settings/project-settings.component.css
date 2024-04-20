@@ -1,0 +1,45 @@
+#main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+button {
+  color: black;
+  width: 2.5vw;
+  height: 4vh;
+  margin-left: 0.5vw;
+  margin-top: 0.7vh;
+  font-size: 20%;
+  border: none;
+  transition: 0.5s;
+  background-color: rgba(41, 230, 79, 0);
+  cursor: pointer;
+}
+
+input {
+  background-color: rgb(227, 227, 227);
+  margin-top: 0.5rem;
+  height: 5vh;
+  width: 21rem;
+  text-align: center;
+  border-radius: 0.8rem;
+  outline: none;
+  border: none;
+}
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  background-color: rgb(227, 227, 227);
+  height: auto;
+  width: 28rem;
+  border-radius: 10px;
+}
+
+.redColorIcon {
+  color: red;
+}

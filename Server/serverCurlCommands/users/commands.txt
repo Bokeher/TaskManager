@@ -1,0 +1,16 @@
+// -=-=- User Commands -=-=-
+
+// get all user data
+curl -X GET -H "Content-Type: application/json" http://localhost:3000/api/getAllUserData
+
+// get user by login and password (login)
+curl -X POST -H "Content-Type: application/json" -d @curlData/userCommands/loginAndPassword.json http://localhost:3000/api/getUser
+
+// create user
+curl -X PUT -H "Content-Type: application/json" -d @curlData/userCommands/loginAndPassword.json http://localhost:3000/api/createUser
+
+// delete user
+curl -X DELETE -H "Content-Type: application/json" -d @curlData/userCommands/login.json http://localhost:3000/api/deleteUser
+
+// update user
+curl -X PUT -H "Content-Type: application/json" -d @curlData/userCommands/loginAndUser.json http://localhost:3000/api/updateUser

@@ -1,0 +1,66 @@
+<div id="main">
+  <div id="container">
+    <header>
+      <button class="closeDialog" (click)="closeDialog()">
+        <span class="material-symbols-outlined"> arrow_back </span>
+      </button>
+    </header>
+    <div id="items">
+      <form class="item" (ngSubmit)="editTaskName()">
+        <h1 i18n="@@editTaskName">Edit task name</h1>
+        <input 
+          type="text"
+          name="taskName"
+          #autoSelect
+          placeholder="New task name.."
+          i18n-placeholder="newTaskName"
+          [(ngModel)]="newTaskName"
+        >
+        <button type="submit"> 
+          <span class="material-symbols-outlined">done</span>
+        </button>
+      </form>
+      <form class="item" (ngSubmit)="editTaskDescription()">
+        <h1 i18n="@@editTaskDescription">Edit task description</h1>
+        <input
+          type="text"
+          name="taskDescription"
+          placeholder="New description.."
+          i18n-placeholder="newTaskDescription"
+          [(ngModel)]="newTaskDescription"
+        >
+        <button type="submit">
+          <span class="material-symbols-outlined">done</span>
+        </button>
+      </form>
+      <form class="item" (ngSubmit)="addUserToTask()">
+        <h1 i18n="@@addNewUserLogin">Add new users login</h1>
+        <input 
+          type="text" 
+          name="newUserLogin"
+          placeholder="New user's login.." 
+          i18n-placeholder="newUserLogin" 
+          [(ngModel)]="userToAdd"
+        >
+        <button type="submit"> 
+          <span class="material-symbols-outlined">done</span>
+        </button>
+      </form>
+      <div id="users">
+        <table>
+          <tr>
+            <th i18n="@@user">User</th>
+          </tr>
+          <tr *ngFor="let user of members$ | async">
+            <td>
+              {{user.login}}
+            </td>
+            <td>
+              <button (click)="removeUserFromTask(user)" i18n="@@removeUserFromTask" id="removeUser">Remove this user</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
