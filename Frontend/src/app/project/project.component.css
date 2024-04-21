@@ -5,15 +5,15 @@
 #projectHeader {
   background-color: #292929;
   width: 30rem;
-  height: 3rem;
+  height: 3.2rem;
   color: rgb(200, 200, 200);
-  border: none;
   border-radius: 10px;
   margin-left: auto;
   margin-right: auto;
-  text-align: center;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0.75rem;
 }
 
 #projectName {
@@ -24,20 +24,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.5rem;
 }
 
 .headerButtons {
   width: 3rem;
-  border: none;
-  border-radius: 10px;
-  color: rgb(200, 200, 200);
-  background-color: rgba(255, 255, 255, 0);
-  transition: 0.3s;
-  cursor: pointer;
+  height: 2.2rem;
 }
 
-#fakeButton {
-  cursor: default;
+#openFilter, #openAddCategory {
+  margin-left: 0.5rem;
 }
 
 #openAddCategory {
@@ -65,7 +61,6 @@
 h2 {
   text-align: center;
   color: rgb(200, 200, 200);
-  width: 20rem;
   font-size: 1.3rem;
   font-weight: 500;
   z-index: 0;
@@ -81,21 +76,24 @@ h2 {
   height: 3.2rem;
   width: 20rem;
   padding: 1rem;
+  justify-content: center;
 }
 
 .addtask {
-  width: 32px;
-  height: 32px;
-  border-radius: 12px;
-  border: none;
-  background-color: #292929;
-  cursor: pointer;
-  color: rgb(200, 200, 200);
-  transition: 0.3s;
   position: absolute;
-  top: 0.6rem;
-  left: 0.2rem;
+  transform: translateY(-50%);
+  left: 0.5rem;
   z-index: 1;
+}
+
+.addtask:hover, .del-cat:hover {
+  transform: translateY(-50%) scale(1.2)
+}
+
+.del-cat {
+  position: absolute;
+  right: 0.5rem;
+  transform: translateY(-50%)
 }
 
 .cat-body {
@@ -124,17 +122,13 @@ h2 {
   border: 1px solid rgba(128, 128, 128, 0.5);
 }
 
-.task > button > span {
-  color: red;
-}
-
 .task > button {
   position: absolute;
-  top: 0.5rem;
+  top: 0.4rem;
   right: 0;
 }
 
-/* done this way, because cdkDrag delete styles inside it */
+/* done this way, because cdkDrag deletes styles inside it */
 /* #taskHeader */
 .task > div:nth-child(2) {
   font-weight: bold;
@@ -147,61 +141,14 @@ h2 {
   word-wrap: break-word;
 }
 
-.addtask:hover {
-  transform: scale(1.2);
-}
-
-.addtask span {
-  scale: 1;
-  margin-left: -1.9px;
-}
-
 .task button {
-  width: 40px;
-  height: 40px;
-  border: none;
-  margin-left: 15px;
-  background-color: rgba(255, 255, 255, 0);
-  box-shadow: 20px black;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.task button:hover {
-  transform: scale(1.2);
-}
-
-.del-cat {
-  width: 32px;
-  height: 32px;
-  border-radius: 12px;
-  border: none;
-  text-transform: uppercase;
-  cursor: pointer;
-  float: left;
-  box-shadow: 20px black;
-  background-color: rgba(0, 0, 0, 0);
-  cursor: pointer;
-  color: white;
-  transition: 0.3s;
-  position: relative;
-  font-weight: 600;
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  margin-left: 260px;
-  margin-top: 14px;
-}
-
-.del-cat:hover {
-  transform: scale(1.2);
+  right: 0.4rem;
 }
 
 .cdk-drag-preview {
-  /* box-sizing: border-box; */
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
 .cdk-drag-placeholder {

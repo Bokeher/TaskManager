@@ -1,21 +1,33 @@
 body {
   margin: 0;
-  padding: 0;
   background-color: rgb(23, 23, 23);
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .btn-icon {
+  width: 2rem;
+  height: 2rem;
   background-color: transparent;
   border: none;
   border-radius: 0.7rem;
   color: rgb(200, 200, 200);
-  transition: 0.3s;
+  transition: 0.15s;
   cursor: pointer;
+}
+
+.btn-icon span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn-icon:hover {
   background-color: #3a3a3a;
   color: rgb(255, 255, 255);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: scale(1.2);
+}
+
+.redIcon {
+  color: red;
 }
