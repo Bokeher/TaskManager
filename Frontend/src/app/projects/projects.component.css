@@ -1,27 +1,27 @@
-* {
-  padding: 0;
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.project-window {
-  background-color: rgba(255, 255, 255, 0);
-  width: 20%;
-  height: 7vh;
-  border: none;
+.project {
+  box-sizing: border-box;
+  background-color: #292929;
+  width: 9.7rem;
+  height: 3.5rem;
   color: rgb(197, 197, 197);
   cursor: pointer;
-  margin-top: 1.2vh;
-  margin-left: 1vw;
-  transition: 0.2s;
-
+  margin-top: 0.7rem;
+  margin-left: 0.7rem;
   display: flex;
   align-items: center;
   text-align: center;
+  z-index: 10;
+  border-radius: 0.7rem;
+  position: relative;
+  word-break: break-all;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: 1px solid #545454;
 }
 
-.project-window:hover {
-  scale: 105%;
+.project:hover {
+  border: 1px solid #545454;
+  scale: 110%;
   color: white;
-  margin-left: 1.2vw;
+  margin-left: 0.7rem;
 }
