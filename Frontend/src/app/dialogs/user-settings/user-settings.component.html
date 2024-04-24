@@ -1,39 +1,43 @@
-<link
-  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-  rel="stylesheet"
-/>
-
-<body>
-  <div class="container">
-    <div class="logout">
-      <button
-        (click)="clearAllSessionData()"
-        class="logout-btn"
-      >
-        <span class="material-symbols-outlined">logout</span>
-      </button>
-      <button (click)="closeDialog()" class="close">
-        <span class="material-symbols-outlined"> close </span>
-      </button>
-    </div>
-    <h1 i18n="@@profileSettings">Profile settings</h1>
-    <div class="pass">
-      <h3 i18n="@@changePassword">Change password:</h3>
-      <input type="text" [(ngModel)]="password" i18n-placeholder="newPassword" placeholder="new password.." />
-      <button (click)="changePassword()">
-        <span class="material-symbols-outlined">done</span>
-      </button>
-    </div>
-    <div class="pass">
-      <h3 i18n="@@changeAvatar">Change avatar:</h3>
-      <input type="text" [(ngModel)]="avatarUrl" i18n-placeholder="link" placeholder="link.." />
-      <button (click)="changeAvatar()">
-        <span class="material-symbols-outlined">done</span>
-      </button>
-    </div>
-
-    <div class="controls">
-      {{ output }}
-    </div>
+<div class="container">
+  <div class="logout">
+    <button (click)="clearAllSessionData()" class="logout-btn">
+      <span class="material-symbols-outlined">logout</span>
+    </button>
+    <button (click)="closeDialog()" class="btn-icon btn-closeDialog">
+      <span class="material-symbols-outlined"> close </span>
+    </button>
   </div>
-</body>
+  <h1 i18n="@@profileSettings">Profile settings</h1>
+  <form (ngSubmit)="changePassword()">
+    <h3 i18n="@@changePassword">Change password:</h3>
+    <input
+      type="text" 
+      name="changePassword"
+      id="changePassword"
+      placeholder="new password.." 
+      i18n-placeholder="newPassword" 
+      [(ngModel)]="password" 
+    />
+    <button type="submit">
+      <span class="material-symbols-outlined">done</span>
+    </button>
+  </form>
+  <form (ngSubmit)="changeAvatar()">
+    <h3 i18n="@@changeAvatar">Change avatar:</h3>
+    <input 
+      type="text" 
+      name="changeAvatar"
+      id="changeAvatar"
+      placeholder="link.." 
+      i18n-placeholder="link" 
+      [(ngModel)]="avatarUrl" 
+    />
+    <button type="submit">
+      <span class="material-symbols-outlined">done</span>
+    </button>
+  </form>
+
+  <div class="controls">
+    {{ output }}
+  </div>
+</div>
