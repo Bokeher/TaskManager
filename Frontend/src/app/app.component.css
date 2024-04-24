@@ -32,3 +32,8 @@
   float: right;
   margin-right: 0.7rem;
 }
+
+::ng-deep .mat-mdc-dialog-container {
+  --mdc-dialog-container-color: #292929;
+  color: white;
+}
