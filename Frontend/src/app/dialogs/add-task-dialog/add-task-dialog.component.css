@@ -1,29 +1,28 @@
-#main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-}
-
-#container {
+#content {
   width: 20rem;
   height: 12rem;
   border-radius: 10px;
+  border: 2px solid #3a3a3a;
 }
 
 form {
-  border-radius: 0.8rem;
-  margin-top: 3vh;
+  margin-top: 1.5rem;
 }
 
 input {
   margin-top: 0.5rem;
+  margin-left: 1rem;
   height: 2.2rem;
   width: 14rem;
   text-align: center;
   border-radius: 0.8rem;
   outline: none;
   border: none;
+}
+
+#submitButton {
+  margin-left: 1.3rem;
+  margin-right: 1.3rem;
 }
 
 h2 {

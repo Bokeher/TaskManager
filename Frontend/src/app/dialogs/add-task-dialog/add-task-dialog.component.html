@@ -1,31 +1,29 @@
 
-<div id="main">
-  <div id="container">
-    <button (click)="closeDialog()" id="closeDialog" class="btn-icon btn-closeDialog">
-      <span class="material-symbols-outlined"> close </span>
+<div id="content">
+  <button (click)="closeDialog()" id="closeDialog" class="btn-icon btn-closeDialog">
+    <span class="material-symbols-outlined"> close </span>
+  </button>
+  <h2 i18n="@@insertTaskAndDescription">Insert task info</h2>
+  <form (ngSubmit)="createTask()">
+    <input
+      #autoSelect 
+      type="text" 
+      name="taskName"
+      id="taskName" 
+      placeholder="Add task name.." 
+      i18n-placeholder="addTaskName" 
+      [(ngModel)]="formData.name"
+    />
+    <input
+      type="text" 
+      name="taskDescription"
+      id="taskDescription" 
+      placeholder="Add task description.." 
+      i18n-placeholder="addTaskDescription" 
+      [(ngModel)]="formData.description"
+    />
+    <button id="createTask" type="submit" class="btn-icon" id="submitButton">
+      <span class="material-symbols-outlined">done</span>
     </button>
-    <h2 i18n="@@insertTaskAndDescription">Insert task info</h2>
-    <form (ngSubmit)="createTask()">
-      <input
-        #autoSelect 
-        type="text" 
-        name="taskName"
-        id="taskName" 
-        placeholder="Add task name.." 
-        i18n-placeholder="addTaskName" 
-        [(ngModel)]="formData.name"
-      /> <br>
-      <input
-        type="text" 
-        name="taskDescription"
-        id="taskDescription" 
-        placeholder="Add task description.." 
-        i18n-placeholder="addTaskDescription" 
-        [(ngModel)]="formData.description"
-      />
-      <button id="createTask" type="submit">
-        <span class="material-symbols-outlined">done</span>
-      </button>
-    </form>
-  </div>
+  </form>
 </div>
