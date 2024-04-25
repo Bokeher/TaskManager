@@ -2,15 +2,15 @@
   <button (click)="closeDialog()" id="closeDialog" class="btn-icon btn-closeDialog">
     <span class="material-symbols-outlined"> close </span>
   </button>
-  <h2 i18n="@@insertCategoryName">Insert category name</h2>
+  <h2 i18n="@@createNewCategoryHeader">Create a New Category</h2>
   <form (ngSubmit)="createCategory()">
     <input
       #autoSelect
       type="text"
       name="categoryName"
       id="categoryName"
-      placeholder="Category name..."
-      i18n-placeholder="addCategoryNamePlaceholder"
+      placeholder="Enter category name"
+      i18n-placeholder="enterCategoryName"
       [(ngModel)]="categoryName"
     />
     <button id="btn-createCategory" type="submit" class="btn-icon">

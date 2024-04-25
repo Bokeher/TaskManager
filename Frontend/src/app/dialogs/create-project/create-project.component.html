@@ -2,15 +2,15 @@
   <button (click)="closeDialog()" id="closeDialog" class="btn-icon btn-closeDialog">
     <span class="material-symbols-outlined"> close </span>
   </button>
-  <h2 i18n="@@insertProjectName">Insert project name</h2>
+  <h2 i18n="@@createNewProjectHeader">Create a New Project</h2>
   <form (ngSubmit)="createProject()">
     <input
       #autoSelect
       type="text"
       id="projectName"
       name="projectName"
-      placeholder="Add project name.."
-      i18n-placeholder="addProjectName"
+      placeholder="Enter project name"
+      i18n-placeholder="enterProjectName"
       [(ngModel)]="formData.projectName"
     />
     <button id="btn-createProject" type="submit" class="btn-icon">
