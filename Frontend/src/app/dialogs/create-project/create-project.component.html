@@ -1,21 +1,20 @@
-<div id="main">
-  <div id="container">
-    <button (click)="closeDialog()" id="closeDialog">
-      <span class="material-symbols-outlined"> close </span>
+<div id="content">
+  <button (click)="closeDialog()" id="closeDialog" class="btn-icon btn-closeDialog">
+    <span class="material-symbols-outlined"> close </span>
+  </button>
+  <h2 i18n="@@insertProjectName">Insert project name</h2>
+  <form (ngSubmit)="createProject()">
+    <input
+      #autoSelect
+      type="text"
+      id="projectName"
+      name="projectName"
+      placeholder="Add project name.."
+      i18n-placeholder="addProjectName"
+      [(ngModel)]="formData.projectName"
+    />
+    <button id="btn-createProject" type="submit" class="btn-icon">
+      <span class="material-symbols-outlined">done</span>
     </button>
-    <h2 i18n="@@insertProjectName">Insert project name:</h2>
-    <form (ngSubmit)="createProject()">
-      <input
-        #autoSelect
-        id="projectName"
-        name="projectName"
-        placeholder="Add project name.."
-        i18n-placeholder="addProjectName"
-        [(ngModel)]="formData.projectName"
-      />
-      <button id="createProject" type="submit">
-        <span class="material-symbols-outlined">done</span>
-      </button>
-    </form>
-  </div>
+  </form>
 </div>
