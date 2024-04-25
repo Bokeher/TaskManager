@@ -1,22 +1,20 @@
-<div id="main">
-  <div id="container">
-    <button (click)="closeDialog()" id="closeDialog">
-      <span class="material-symbols-outlined"> close </span>
+<div id="content">
+  <button (click)="closeDialog()" id="closeDialog" class="btn-icon btn-closeDialog">
+    <span class="material-symbols-outlined"> close </span>
+  </button>
+  <h2 i18n="@@insertCategoryName">Insert category name</h2>
+  <form (ngSubmit)="createCategory()">
+    <input
+      #autoSelect
+      type="text"
+      name="categoryName"
+      id="categoryName"
+      placeholder="Category name..."
+      i18n-placeholder="addCategoryNamePlaceholder"
+      [(ngModel)]="categoryName"
+    />
+    <button id="btn-createCategory" type="submit" class="btn-icon">
+      <span class="material-symbols-outlined">done</span>
     </button>
-    <h2 i18n="@@insertCategoryName">Insert category name</h2>
-    <form (ngSubmit)="createCategory()">
-      <input
-        #autoSelect
-        type="text"
-        name="categoryName"
-        id="categoryName"
-        placeholder="Category name..."
-        i18n-placeholder="addCategoryNamePlaceholder"
-        [(ngModel)]="categoryName"
-      />
-      <button id="createCategory" type="submit">
-        <span class="material-symbols-outlined">done</span>
-      </button>
-    </form>
-  </div>
+  </form>
 </div>
