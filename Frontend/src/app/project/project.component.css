@@ -45,9 +45,8 @@
   display: flex;
   width: auto;
   height: auto;
-  margin-left: 8%;
-  margin-right: 8%;
-  background-color: rgba(188, 83, 83, 0);
+  margin-left: 2rem;
+  margin-right: 2rem;
   overflow-x: auto;
 }
 
