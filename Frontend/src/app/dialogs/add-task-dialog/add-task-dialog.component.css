@@ -16,11 +16,10 @@ input {
   width: 14rem;
   text-align: center;
   border-radius: 0.8rem;
-  outline: none;
   border: none;
 }
 
-#submitButton {
+#btn-createTask {
   margin-left: 1.3rem;
   margin-right: 1.3rem;
 }
