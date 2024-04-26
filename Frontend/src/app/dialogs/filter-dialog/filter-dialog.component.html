@@ -1,14 +1,11 @@
-<div class="container">
-  <div class="logout">
-    <button class="close" (click)="closeDialogs()">
-      <span class="material-symbols-outlined"> close </span>
-    </button>
-  </div>
+<div id="content">
+  <button (click)="closeDialogs()" class="btn-icon btn-closeDialog">
+    <span class="material-symbols-outlined"> close </span>
+  </button>
   <h1 i18n="@@filter">Filter</h1>
-
-  <div class="main">
+  <form>
     <label for="onlyAssigned" i18n="@@showOnlyAssignedTasks">
-      Show only assigned tasks (Cannot edit while selected)
+      Show only assigned tasks
     </label>
     <input
       #autoSelect
@@ -18,5 +15,8 @@
       [checked]="onlyAssigned"
       (change)="onCheckedChange($event)"
     />
-  </div>
+    <div id="bottomExtraInfo">
+      You cannot move tasks while the filter is enabled
+    </div>
+  </form>
 </div>

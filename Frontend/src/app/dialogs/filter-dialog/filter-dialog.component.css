@@ -1,34 +1,18 @@
-.container {
-  width: 20vw;
-  height: 20vh;
+#content {
+  width: 20rem;
+  height: 10rem;
 }
 
 h1 {
-  width: 100%;
   text-align: center;
 }
 
-.main {
-  width: 80%;
-  height: 50%;
-  text-align: center;
-  margin-left: 10%;
-  margin-right: 10%;
-  border: 1px black solid;
-  border-radius: 10px;
+form {
+  margin: 0 2rem;
 }
 
-label {
-  margin-top: 10%;
-}
-
-.close {
-  background-color: rgba(240, 248, 255, 0);
-  color: black;
-  float: right;
-  margin-right: 1%;
-}
-
-.close:hover {
-  scale: 110%;
+#bottomExtraInfo {
+  font-size: 14px;
+  color: gray;
+  margin-top: 1.5rem;
 }
