@@ -1,6 +1,8 @@
 #content {
   width: 20rem;
   height: 10rem;
+  border-radius: 10px;
+  border: 2px solid #3a3a3a;
 }
 
 h1 {
@@ -14,5 +16,5 @@ form {
 #bottomExtraInfo {
   font-size: 14px;
   color: gray;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
