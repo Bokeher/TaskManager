@@ -66,8 +66,8 @@
                 <div class="taskHeader">{{ task.name }}</div>
                 <div class="taskDescription">{{ task.description }}</div>
 
-                <ng-container *ngFor="let member of members$ | async">
-                  <div class="avatars" *ngIf="checkMember(member, task)">
+                <ng-container *ngFor="let member of members$ | async" class="avatars">
+                  <div class="avatar" *ngIf="checkMember(member, task)">
                     <img
                       *ngIf="member.avatarUrl"
                       src="{{ member.avatarUrl }}"
