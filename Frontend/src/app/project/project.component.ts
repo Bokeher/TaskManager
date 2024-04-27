@@ -235,8 +235,6 @@ export class ProjectComponent implements OnInit {
 
     this.tasksByCategories.next(map);
 
-    const categoires = this.project.categories;
-
     const tasks: Task[] = []
     this.project.categories.forEach((category) => {
       const tasksInCategory = map.get(category)
