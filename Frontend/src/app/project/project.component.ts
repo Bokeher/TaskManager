@@ -1,7 +1,4 @@
-import {
-  Component,
-  OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../session.service';
 import { Project } from '../dataModels/project';
 import { Task } from '../dataModels/task';
@@ -10,20 +7,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddTaskDialogComponent } from '../dialogs/add-task-dialog/add-task-dialog.component';
 import { CreateCategoryComponent } from '../dialogs/create-category/create-category.component';
 import { ProjectSettingsComponent } from '../dialogs/project-settings/project-settings.component';
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { EditTaskDialogComponent } from '../dialogs/edit-task-dialog/edit-task-dialog.component';
 import { User } from '../dataModels/user';
-import {
-  Observable,
-  forkJoin,
-  map,
-  BehaviorSubject,
-  share, Subscription,
-} from 'rxjs';
+import { Observable, forkJoin, map, BehaviorSubject, share, Subscription } from 'rxjs';
 import { FilterDialogComponent } from '../dialogs/filter-dialog/filter-dialog.component';
 import { Router } from '@angular/router';
 
@@ -35,15 +22,11 @@ import { Router } from '@angular/router';
 export class ProjectComponent implements OnInit {
   project?: Project;
   user?: User;
-  categories: string[] = [];
 
-  tasksByCategories: BehaviorSubject<Map<string, Task[]>> = new BehaviorSubject<
-    Map<string, Task[]>
-  >(new Map<string, Task[]>());
-  tasksByCategories$: Observable<Map<string, Task[]>> =
-    this.tasksByCategories.asObservable();
+  tasksByCategories: BehaviorSubject<Map<string, Task[]>> = new BehaviorSubject(new Map<string, Task[]>());
+  tasksByCategories$: Observable<Map<string, Task[]>> = this.tasksByCategories.asObservable();
 
-  members: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  members: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
   members$ = this.members.asObservable();
   private subscriptionMember!: Subscription;
 
@@ -65,44 +48,39 @@ export class ProjectComponent implements OnInit {
       .getSelectedProjectObservable()
       .pipe(share())
       .subscribe((selectedProject) => {
-        this.project = selectedProject!;
-
+        
         if(!selectedProject) {
           this.router.navigate(["/"]);
+          return;
         }
 
-        if (selectedProject) {
-          const tasksByCategories = new Map();
-          this.categories = selectedProject.categories;
+        this.project = selectedProject;
 
-          selectedProject.tasks.forEach((task) => {
-            if (tasksByCategories.has(task.category)) {
-              tasksByCategories.get(task.category)?.push(task);
-            } else {
-              tasksByCategories.set(task.category, [task]);
-            }
-          });
+        const taskMap = new Map<string, Task[]>(); // <category, task[]>
 
-          this.categories.forEach((category) => {
-            if (!tasksByCategories.has(category)) {
-              tasksByCategories.set(category, []);
-            }
-          });
+        // add tasks to corresponding categories
+        this.project.tasks.forEach((task) => {
+          taskMap.set(task.category, (taskMap.get(task.category) || []).concat(task));
+        });
 
-          // sort to keep order of 'categories'
-          this.sortTasksByCategoryOrder(tasksByCategories);
-        }
+        // add empty categories for rendering view
+        this.project.categories.forEach((category) => {
+          if (!taskMap.has(category)) {
+            taskMap.set(category, []);
+          }
+        });
 
-        if(this.project) {
-          // get all members of any task in project, then delete duplicates
-          const usersIds = [...new Set(this.project!.tasks.map(e => e.memberIds).flat())];
-          
-          this.subscriptionMember = forkJoin(
-            usersIds.map((id) => this.dataService.getUserById(id))
-          ).pipe(
-            map(member => this.members.next(member))
-          ).subscribe();
-        }
+        // sort to keep order of 'categories'
+        this.sortTasksByCategoryOrderAndUpdateBehaviourSubject(taskMap);
+
+        // get all members of any task in project, then delete duplicates
+        const usersIds = [...new Set(this.project.tasks.map(e => e.memberIds).flat())];
+        
+        this.subscriptionMember = forkJoin(
+          usersIds.map((id) => this.dataService.getUserById(id))
+        ).pipe(
+          map(member => this.members.next(member))
+        ).subscribe();
       });
 
     this.sessionService.getShowOnlyAssignedTasksObservable().subscribe((showOnlyAssigned) => {
@@ -125,19 +103,19 @@ export class ProjectComponent implements OnInit {
   isUserMemberOfTask(task: Task): boolean {
     if (!this.user || !this.user._id) return false;
 
-    const memberIdsSet = new Set(task.memberIds);
-
-    return memberIdsSet.has(this.user._id);
+    return task.memberIds.includes(this.user._id); 
   }
 
   originalOrder(a: any, b: any): number {
     return 0;
   }
 
-  sortTasksByCategoryOrder(taskMap: Map<string, Task[]>): void {
+  sortTasksByCategoryOrderAndUpdateBehaviourSubject(taskMap: Map<string, Task[]>): void {
+    if(!this.project) return;
+
     const sortedTasksByCategories = new Map<string, Task[]>();
 
-    this.categories.forEach((category) => {
+    this.project.categories.forEach((category) => {
       if (taskMap.has(category)) {
         sortedTasksByCategories.set(category, taskMap.get(category)!);
       }
@@ -146,7 +124,7 @@ export class ProjectComponent implements OnInit {
     this.tasksByCategories.next(sortedTasksByCategories);
   }
 
-  checkMember(member: User, task: Task) {
+  isUserTaskMember(member: User, task: Task): boolean {
     return task.memberIds.includes(member._id!);
   }
 
@@ -202,10 +180,7 @@ export class ProjectComponent implements OnInit {
       (task) => task !== deletingTask
     );
 
-    const { _id, ...project } = this.project;
-
-    this.updateProject(_id, project);
-    this.sessionService.setSelectedProject(this.project);
+    this.updateSessionAndDbOfProject();
   }
 
   deleteCategory(deletingCategory: string) {
@@ -215,32 +190,7 @@ export class ProjectComponent implements OnInit {
       (category) => category !== deletingCategory
     );
 
-    const { _id, ...project } = this.project;
-
-    this.updateProject(_id, project);
-    this.sessionService.setSelectedProject(this.project);
-  }
-
-  // dataService
-  getProject(id: string): void {
-    this.dataService.getProject(id).subscribe(
-      (response: Project) => {
-        this.project = response;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
-  updateProject(id: string, newProject: Project): void {
-    this.dataService.updateProject(id, newProject).subscribe(
-      (response: Project) => {
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    this.updateSessionAndDbOfProject();
   }
 
   trackCategory(index: number, category: string): string {
@@ -288,7 +238,7 @@ export class ProjectComponent implements OnInit {
     const categoires = this.project.categories;
 
     const tasks: Task[] = []
-    this.categories.forEach((category) => {
+    this.project.categories.forEach((category) => {
       const tasksInCategory = map.get(category)
       if(tasksInCategory) {
         tasksInCategory.forEach(task => {
@@ -299,20 +249,23 @@ export class ProjectComponent implements OnInit {
 
     this.project.tasks = tasks;
     
-    // // update session
-    this.sessionService.setSelectedProject(this.project);
-
-    // // update database
-    const { _id, ...newProject } = this.project;
-    if (_id) this.updateProject(_id, newProject);
+    this.updateSessionAndDbOfProject();
   }
 
   dropList(event: CdkDragDrop<string[]>) {
     if (this.project) {
       moveItemInArray(this.project.categories, event.previousIndex, event.currentIndex);
-      this.sessionService.setSelectedProject(this.project);
-      const { _id, ...newProject } = this.project;
-      if (_id) this.updateProject(_id, newProject);
+
+      this.updateSessionAndDbOfProject();
     }
+  }
+
+  updateSessionAndDbOfProject() {
+    if(!this.project) return;
+
+    this.sessionService.setSelectedProject(this.project);
+
+    const { _id, ...project } = this.project;
+    if (_id) this.dataService.updateProject(_id, project).subscribe();
   }
 }
