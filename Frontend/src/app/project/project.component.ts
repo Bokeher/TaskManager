@@ -96,7 +96,6 @@ export class ProjectComponent implements OnInit {
         if(this.project) {
           // get all members of any task in project, then delete duplicates
           const usersIds = [...new Set(this.project!.tasks.map(e => e.memberIds).flat())];
-          console.log(usersIds);
           
           this.subscriptionMember = forkJoin(
             usersIds.map((id) => this.dataService.getUserById(id))
@@ -113,6 +112,14 @@ export class ProjectComponent implements OnInit {
     this.sessionService.getUserObservable().subscribe((user) => {
       if (user) this.user = user;
     })
+  }
+
+  getAvatarUrl(member: User): string {
+    if(member.avatarUrl.length == 0) {
+      return "https://cdn-icons-png.freepik.com/256/1077/1077114.png";
+    }
+
+    return member.avatarUrl;
   }
 
   isUserMemberOfTask(task: Task): boolean {

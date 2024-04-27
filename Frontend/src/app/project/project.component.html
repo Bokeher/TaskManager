@@ -69,14 +69,7 @@
                 <ng-container *ngFor="let member of members$ | async" class="avatars">
                   <div class="avatar" *ngIf="checkMember(member, task)">
                     <img
-                      *ngIf="member.avatarUrl"
-                      src="{{ member.avatarUrl }}"
-                      alt="{{ member.login }}"
-                      [title]="member.login"
-                    />
-                    <img
-                      *ngIf="!member.avatarUrl"
-                      src="https://cdn-icons-png.freepik.com/256/1077/1077114.png"
+                      src="{{ getAvatarUrl(member) }}"
                       alt="{{ member.login }}"
                       [title]="member.login"
                     />
