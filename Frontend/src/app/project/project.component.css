@@ -164,5 +164,6 @@ h2 {
 }
 
 .avatar img {
-  width: 3rem;
+  width: 2.5rem;
+  border-radius: 50%
 }
