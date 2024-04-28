@@ -1,40 +1,44 @@
-<div class="container">
+<div id="content">
   <div class="logout">
-    <button (click)="clearAllSessionData()" class="logout-btn">
-      <span class="material-symbols-outlined">logout</span>
+    <button (click)="clearAllSessionData()" class="btn-icon" id="logout">
+      <span class="material-symbols-outlined"> logout </span>
     </button>
-    <button (click)="closeDialog()" class="btn-icon btn-closeDialog">
+    <button (click)="closeDialog()" class="btn-icon btn-closeDialog" id="closeDialog">
       <span class="material-symbols-outlined"> close </span>
     </button>
   </div>
   <h1 i18n="@@profileSettings">Profile settings</h1>
   <form (ngSubmit)="changePassword()">
     <h3 i18n="@@changePassword">Change password:</h3>
-    <input
-      type="text" 
-      name="changePassword"
-      id="changePassword"
-      placeholder="new password.." 
-      i18n-placeholder="newPassword" 
-      [(ngModel)]="password" 
-    />
-    <button type="submit">
-      <span class="material-symbols-outlined">done</span>
-    </button>
+    <div class="inputRow">
+      <input
+        type="text"
+        name="changePassword"
+        id="changePassword"
+        placeholder="Enter new password"
+        i18n-placeholder="enterNewPassword"
+        [(ngModel)]="password"
+      />
+      <button type="submit" class="btn-icon">
+        <span class="material-symbols-outlined">done</span>
+      </button>
+    </div>
   </form>
   <form (ngSubmit)="changeAvatar()">
     <h3 i18n="@@changeAvatar">Change avatar:</h3>
-    <input 
-      type="text" 
-      name="changeAvatar"
-      id="changeAvatar"
-      placeholder="link.." 
-      i18n-placeholder="link" 
-      [(ngModel)]="avatarUrl" 
-    />
-    <button type="submit">
-      <span class="material-symbols-outlined">done</span>
-    </button>
+    <div class="inputRow">
+      <input
+        type="text"
+        name="changeAvatar"
+        id="changeAvatar"
+        placeholder="Enter new image url"
+        i18n-placeholder="link"
+        [(ngModel)]="avatarUrl"
+      />
+      <button type="submit" class="btn-icon">
+        <span class="material-symbols-outlined">done</span>
+      </button>
+    </div>
   </form>
 
   <div class="controls">
