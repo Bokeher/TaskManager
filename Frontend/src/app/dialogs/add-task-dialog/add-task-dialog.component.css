@@ -5,6 +5,10 @@
   border: 2px solid #3a3a3a;
 }
 
+h2 {
+  text-align: center;
+}
+
 form {
   margin-top: 1.5rem;
 }
@@ -19,11 +23,6 @@ input {
   border: none;
 }
 
-#btn-createTask {
-  margin-left: 1.3rem;
-  margin-right: 1.3rem;
-}
-
-h2 {
-  text-align: center;
+#confirmButton {
+  margin: 0 1.3rem;
 }
