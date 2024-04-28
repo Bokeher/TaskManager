@@ -1,34 +1,8 @@
-#content {
+/* for other styles check global styling at Frontend\src\styles.css */
+
+.dialogContent {
   width: 25rem;
   height: 30rem;
-  border-radius: 10px;
-  border: 2px solid #3a3a3a;
-}
-
-h1 {
-  text-align: center;
-}
-
-form {
-  margin: 2rem;
-}
-
-input {
-  height: 2.2rem;
-  width: 80%;
-  text-align: center;
-  border-radius: 0.8rem;
-  border: none;
-}
-
-.inputRow {
-  display: flex;
-  align-items: center;
-}
-
-.inputRow button {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 #logout {

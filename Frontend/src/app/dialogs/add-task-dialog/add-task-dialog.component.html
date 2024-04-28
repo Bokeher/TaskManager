@@ -1,28 +1,32 @@
-<div id="content">
+<div class="dialogContent">
   <button (click)="closeDialog()" id="closeDialog" class="btn-icon btn-closeDialog">
     <span class="material-symbols-outlined"> close </span>
   </button>
-  <h2 i18n="@@createNewTaskHeader">Create a New Task</h2>
-  <form (ngSubmit)="createTask()">
-    <input
-      #autoSelect
-      type="text"
-      name="taskName"
-      id="taskName"
-      placeholder="Enter task name"
-      i18n-placeholder="@@enterTaskName"
-      [(ngModel)]="formData.name"
-    />
-    <input
-      type="text"
-      name="taskDescription"
-      id="taskDescription"
-      placeholder="Enter task description"
-      i18n-placeholder="@@enterTaskDescription"
-      [(ngModel)]="formData.description"
-    />
-    <button id="confirmButton" type="submit" class="btn-icon">
-      <span class="material-symbols-outlined">done</span>
-    </button>
+  <h2 i18n="@@createNewTaskHeader" class="center">Create a New Task</h2>
+  <form (ngSubmit)="createTask()" class="dialogForm">
+    <div class="inputRow">
+      <input
+        #autoSelect
+        type="text"
+        name="taskName"
+        id="taskName"
+        placeholder="Enter task name"
+        i18n-placeholder="@@enterTaskName"
+        [(ngModel)]="formData.name"
+      />
+    </div>
+    <div class="inputRow" id="secondRow">
+      <input
+        type="text"
+        name="taskDescription"
+        id="taskDescription"
+        placeholder="Enter task description"
+        i18n-placeholder="@@enterTaskDescription"
+        [(ngModel)]="formData.description"
+      />
+      <button id="confirmButton" type="submit" class="btn-icon">
+        <span class="material-symbols-outlined">done</span>
+      </button>
+    </div>
   </form>
 </div>

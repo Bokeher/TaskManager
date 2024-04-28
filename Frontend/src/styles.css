@@ -40,3 +40,36 @@ body {
   top: 0.7rem;
   right: 0.7rem;
 }
+
+.dialogContent {
+  width: 20rem;
+  height: 10rem;
+  border-radius: 10px;
+  border: 2px solid #3a3a3a;
+}
+
+.center {
+  text-align: center;
+}
+
+.dialogForm {
+  margin: 2rem;
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+}
+
+.inputRow input {
+  height: 2.2rem;
+  width: 80%;
+  text-align: center;
+  border-radius: 0.8rem;
+  border: none;
+}
+
+.inputRow button {
+  margin-left: auto;
+  margin-right: auto;
+}

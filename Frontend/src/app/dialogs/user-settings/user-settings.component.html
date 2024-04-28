@@ -1,14 +1,12 @@
-<div id="content">
-  <div class="logout">
-    <button (click)="clearAllSessionData()" class="btn-icon" id="logout">
-      <span class="material-symbols-outlined"> logout </span>
-    </button>
-    <button (click)="closeDialog()" class="btn-icon btn-closeDialog" id="closeDialog">
-      <span class="material-symbols-outlined"> close </span>
-    </button>
-  </div>
-  <h1 i18n="@@profileSettings">Profile settings</h1>
-  <form (ngSubmit)="changePassword()">
+<div class="dialogContent">
+  <button (click)="clearAllSessionData()" class="btn-icon" id="logout">
+    <span class="material-symbols-outlined"> logout </span>
+  </button>
+  <h1 i18n="@@profileSettings" class="center">Profile settings</h1>
+  <button (click)="closeDialog()" class="btn-icon btn-closeDialog" id="closeDialog">
+    <span class="material-symbols-outlined"> close </span>
+  </button>
+  <form (ngSubmit)="changePassword()" class="dialogForm">
     <h3 i18n="@@changePassword">Change password:</h3>
     <div class="inputRow">
       <input
@@ -24,7 +22,7 @@
       </button>
     </div>
   </form>
-  <form (ngSubmit)="changeAvatar()">
+  <form (ngSubmit)="changeAvatar()" class="dialogForm">
     <h3 i18n="@@changeAvatar">Change avatar:</h3>
     <div class="inputRow">
       <input
