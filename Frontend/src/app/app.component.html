@@ -1,15 +1,15 @@
 <ng-container>
   <div id="main-menu" *ngIf="isLoggedIn()">
-    <button class="btn-icon" id="btn-home" (click)="goToMainSite()">
+    <button class="btn-icon" id="btn-home" (click)="goToMainSite()" title="Home" i18n-title="title-home">
       <span class="material-symbols-outlined">home</span>
     </button>
-    <button class="btn-icon" id="btn-projectList" (click)="displayUserProjects()">
+    <button class="btn-icon" id="btn-projectList" (click)="displayUserProjects()" title="Project list" i18n-title="title-projectList">
       <span class="material-symbols-outlined">apps</span>
     </button>
-    <button class="btn-icon" id="btn-createProject" (click)="openCreateProjectDialog()">
+    <button class="btn-icon" id="btn-createProject" (click)="openCreateProjectDialog()" title="Create project" i18n-title="title-createProject">
       <span class="material-symbols-outlined">add</span>
     </button>
-    <button class="btn-icon" id="btn-openUserSettings" (click)="openUserSettingsDialog()">
+    <button class="btn-icon" id="btn-openUserSettings" (click)="openUserSettingsDialog()" title="User settings" i18n-title="title-userSettings">
       <span class="material-symbols-outlined">person</span>
     </button>
     <app-projects *ngIf="displayProjects"></app-projects>
