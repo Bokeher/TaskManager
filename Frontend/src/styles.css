@@ -1,10 +1,7 @@
 body {
   margin: 0;
-  background: linear-gradient(to bottom, rgb(27, 27, 27) 11.4%, rgb(23, 23, 23) 70.2%);
-  /* background-color: rgb(23, 23, 23); */
+  background-color: rgb(23, 23, 23);
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  width: 100vw;
-  height: 100vh;
 }
 
 .btn-icon {
