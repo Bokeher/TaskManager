@@ -1,21 +1,19 @@
-<div id="main">
-  <div class="container">
-    <button id="closeDialog" (click)="closeDialog()">
-      <span class="material-symbols-outlined"> close </span>
-    </button>
-    <button id="deleteProject" (click)="deleteProject()" *ngIf="adminPrivileges">
-      <span class="material-symbols-outlined redColorIcon"> delete </span>
-    </button>
-    <button id="leaveProject" (click)="leaveProject()" *ngIf="!adminPrivileges">
-      <span class="material-symbols-outlined redColorIcon" title="Leave project" i18n-title="leaveProject"> logout </span>
-    </button>
+<div class="dialogContent">
+  <button id="closeDialog" (click)="closeDialog()" class="btn-icon btn-closeDialog">
+    <span class="material-symbols-outlined"> close </span>
+  </button>
+  <button id="deleteProject" (click)="deleteProject()" *ngIf="adminPrivileges" class="btn-icon redIcon">
+    <span class="material-symbols-outlined redColorIcon"> delete </span>
+  </button>
+  <button id="leaveProject" (click)="leaveProject()" *ngIf="!adminPrivileges" class="btn-icon">
+    <span class="material-symbols-outlined redColorIcon" title="Leave project" i18n-title="leaveProject"> logout </span>
+  </button>
 
-    <h1>{{ projectName }}</h1>
+  <h1 class="center">{{ projectName }}</h1>
 
-    <hr />
-
-    <h1 i18n="@@addUserToWorkspace">Add user to workspace</h1>
-    <form (ngSubmit)="addUser()">
+  <form (ngSubmit)="addUser()" class="dialogForm">
+    <h3 i18n="@@addUserToWorkspace">Add user to workspace</h3>
+    <div class="inputRow">
       <input
         name="userLogin"
         #autoSelect
@@ -24,15 +22,15 @@
         i18n-placeholder="insertUsername" 
         [(ngModel)]="userLogin"
       />
-      <button type="submit">
+      <button type="submit" class="btn-icon">
         <span class="material-symbols-outlined">done</span>
       </button>
-    </form>
+    </div>
+  </form>
 
-    <hr *ngIf="adminPrivileges" />
-
-    <h1 *ngIf="adminPrivileges" i18n="@@changeProjectName">Change project name</h1>
-    <form *ngIf="adminPrivileges" (ngSubmit)="changeProjectName()">
+  <form *ngIf="adminPrivileges" (ngSubmit)="changeProjectName()" class="dialogForm">
+    <h3 i18n="@@changeProjectName">Change project name</h3>
+    <div class="inputRow">
       <input
         type="text"
         name="projectName"
@@ -40,15 +38,11 @@
         i18n-placeholder="insertNewProjectName" 
         [(ngModel)]="projectNameForChange"
       />
-      <button type="submit">
+      <button type="submit" class="btn-icon">
         <span class="material-symbols-outlined">done</span>
       </button>
-    </form>
+    </div>
+  </form>
 
-    <hr />
-
-    <h1 i18n="@@ManageUsers">Users</h1>
-
-    <div app-manage-users></div>
-  </div>
+  <div app-manage-users class="dialogForm" id="manageUsers"></div>
 </div>

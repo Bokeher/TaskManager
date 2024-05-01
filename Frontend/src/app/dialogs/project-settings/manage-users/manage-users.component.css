@@ -3,42 +3,8 @@ table, tr, td, th {
   border-collapse: collapse;
   padding: 5px;
 }
+
 table {
-  width: 27rem;
+  width: 100%;
   margin: 0.5rem;
-}
-  
-.center {
-  margin-left: 214px;
-}
-
-.dot {
-  border: 1px solid black;
-  margin: 2px;
-  border-radius: 50%;
-  width: 4px;
-  height: 4px;
-  margin-top: 17px;
-  position: absolute;
-}
-
-.dot:nth-child(1) {
-  animation: preloader .3s ease-in-out alternate infinite;
-  margin-left: 0px;
-}
-
-.dot:nth-child(2) {
-  animation: preloader .3s ease-in-out .2s alternate infinite;
-  margin-left: 10px;
-}
-
-.dot:nth-child(3) {
-  animation: preloader .3s ease-in-out .4s alternate infinite;
-  margin-left: 20px;
-}
-
-@keyframes preloader {
-  100% {
-    transform: scale(0);
-  }
 }
