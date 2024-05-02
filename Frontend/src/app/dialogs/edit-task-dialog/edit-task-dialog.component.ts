@@ -23,7 +23,7 @@ export class EditTaskDialogComponent implements OnInit {
   private subscriptionMember!: Subscription;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: Task,
+    @Inject(MAT_DIALOG_DATA) public task: Task,
     public dialog: MatDialog,
     private sessionService: SessionService,
     private dataService: DataService
@@ -34,7 +34,7 @@ export class EditTaskDialogComponent implements OnInit {
       if(project) this.project = project;
     });
 
-    const usersIds = [...new Set(this.data.memberIds)];
+    const usersIds = [...new Set(this.task.memberIds)];
     console.log(usersIds);
     
     this.subscriptionMember = forkJoin(
@@ -50,7 +50,10 @@ export class EditTaskDialogComponent implements OnInit {
   }
 
   closeDialog(): void {
-    console.log(this.data);
+    // save changes
+    this.editTaskName();
+    this.editTaskDescription();
+
     this.dialog.closeAll();
   }
 
@@ -58,10 +61,10 @@ export class EditTaskDialogComponent implements OnInit {
     if (!this.project) return;
 
     this.project.tasks.forEach((task) => {
-      if (JSON.stringify(task) === JSON.stringify(this.data)) {
+      if (JSON.stringify(task) === JSON.stringify(this.task)) {
         if (!this.project) return;
 
-        task.name = this.newTaskName;
+        task.name = this.task.name;
 
         this.sessionService.setSelectedProject(this.project);
 
@@ -75,10 +78,10 @@ export class EditTaskDialogComponent implements OnInit {
     if (!this.project) return;
 
     this.project.tasks.forEach((task) => {
-      if (JSON.stringify(task) === JSON.stringify(this.data)) {
+      if (JSON.stringify(task) === JSON.stringify(this.task)) {
         if (!this.project) return;
 
-        task.description = this.newTaskDescription;
+        task.description = this.task.description;
 
         this.sessionService.setSelectedProject(this.project);
 
@@ -116,7 +119,7 @@ export class EditTaskDialogComponent implements OnInit {
         if(!containsUser) return;
 
         this.project.tasks.forEach((task) => {
-          if (JSON.stringify(task) === JSON.stringify(this.data)) {
+          if (JSON.stringify(task) === JSON.stringify(this.task)) {
             if(!response._id) return;
             if (!this.project) return;
 
@@ -138,10 +141,10 @@ export class EditTaskDialogComponent implements OnInit {
     if(!this.project) return;
     
     this.project.tasks.forEach((task) => {
-      if (JSON.stringify(task) === JSON.stringify(this.data)) {
+      if (JSON.stringify(task) === JSON.stringify(this.task)) {
         if(!this.project) return;
 
-        task.memberIds = this.data.memberIds.filter((id) => {
+        task.memberIds = this.task.memberIds.filter((id) => {
           return id !== user._id
         })
 

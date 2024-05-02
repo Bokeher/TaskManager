@@ -3,8 +3,8 @@
   <button class="closeDialog" (click)="closeDialog()" class="btn-icon btn-closeDialog">
     <span class="material-symbols-outlined"> close </span>
   </button>
-  <form (ngSubmit)="editTaskName()" class="dialogForm">
-    <h3 i18n="@@editTaskName">Change task name</h3>
+  <form class="dialogForm">
+    <h3 i18n="@@taskName">Task name</h3>
     <div class="inputRow">
       <input
         type="text"
@@ -12,26 +12,20 @@
         #autoSelect
         placeholder="Enter task name"
         i18n-placeholder="enterTaskName"
-        [(ngModel)]="newTaskName"
+        [(ngModel)]="task.name"
       >
-      <button type="submit" class="btn-icon"> 
-        <span class="material-symbols-outlined">done</span>
-      </button>
     </div>
   </form>
-  <form (ngSubmit)="editTaskDescription()" class="dialogForm">
-    <h3 i18n="@@editTaskDescription">Change task description</h3>
+  <form class="dialogForm">
+    <h3 i18n="@@taskDescription">Task description</h3>
     <div class="inputRow">
       <input
         type="text"
         name="taskDescription"
         placeholder="Enter task description"
         i18n-placeholder="enterTaskDescription"
-        [(ngModel)]="newTaskDescription"
+        [(ngModel)]="task.description"
       >
-      <button type="submit" class="btn-icon">
-        <span class="material-symbols-outlined">done</span>
-      </button>
     </div>
   </form>
   <form (ngSubmit)="addUserToTask()" class="dialogForm">
