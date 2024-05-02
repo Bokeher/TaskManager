@@ -49,6 +49,8 @@ export class UserSettingsComponent extends Validate implements OnInit {
       this.updateUser(this.user._id, newUserWithoutId);
       this.output = 'Pomyślnie zmieniono hasło.';
     }
+
+    this.password = "";
   }
 
   changeAvatar(): void {
@@ -61,6 +63,8 @@ export class UserSettingsComponent extends Validate implements OnInit {
       this.updateUser(this.user._id, newUserWithoutId);
       this.output = 'Pomyślnie zmieniono awatar.';
     }
+
+    this.avatarUrl = "";
   }
 
   closeDialog(): void {

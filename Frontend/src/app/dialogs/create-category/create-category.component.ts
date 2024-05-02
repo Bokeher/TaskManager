@@ -53,6 +53,8 @@ export class CreateCategoryComponent implements OnInit {
     const { _id, ...project } = this.project;
 
     this.updateProject(_id, project);
+
+    this.categoryName = "";
   }
 
   updateProject(id: string, newProject: Project): void {

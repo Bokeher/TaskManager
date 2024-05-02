@@ -56,6 +56,9 @@ export class AddTaskDialogComponent implements OnInit {
     const { _id, ...project } = this.project;
 
     this.updateProject(_id, project);
+
+    this.formData.name = "";
+    this.formData.description = "";
   }
 
   updateProject(id: string, newProject: Project): void {
