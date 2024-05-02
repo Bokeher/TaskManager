@@ -2,11 +2,11 @@
   <button id="closeDialog" (click)="closeDialog()" class="btn-icon btn-closeDialog">
     <span class="material-symbols-outlined"> close </span>
   </button>
-  <button id="deleteProject" (click)="deleteProject()" *ngIf="adminPrivileges" class="btn-icon redIcon">
-    <span class="material-symbols-outlined redColorIcon"> delete </span>
+  <button id="deleteProject" (click)="deleteProject()" *ngIf="adminPrivileges" class="btn-icon">
+    <span class="material-symbols-outlined redIcon"> delete </span>
   </button>
   <button id="leaveProject" (click)="leaveProject()" *ngIf="!adminPrivileges" class="btn-icon">
-    <span class="material-symbols-outlined redColorIcon" title="Leave project" i18n-title="leaveProject"> logout </span>
+    <span class="material-symbols-outlined redIcon" title="Leave project" i18n-title="leaveProject"> logout </span>
   </button>
 
   <h1 class="center">{{ projectName }}</h1>
