@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateCategoryComponent } from './create-category.component';
+import { CreateCategoryComponent } from './create-category-dialog.component';
 
 describe('AddCategoryDialogComponent', () => {
   let component: CreateCategoryComponent;

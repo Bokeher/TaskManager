@@ -7,11 +7,11 @@ import { Project } from '../../dataModels/project';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-delete-project',
-  templateUrl: './delete-project.component.html',
-  styleUrls: ['./delete-project.component.css'],
+  selector: 'app-delete-project-dialog',
+  templateUrl: './delete-project-dialog.component.html',
+  styleUrls: ['./delete-project-dialog.component.css'],
 })
-export class DeleteProjectComponent implements OnInit {
+export class DeleteProjectDialogComponent implements OnInit {
   project?: Project;
   user?: User;
 

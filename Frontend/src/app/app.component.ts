@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './dataModels/user';
 import { SessionService } from './session.service';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateProjectComponent } from './dialogs/create-project/create-project.component';
-import { UserSettingsComponent } from './dialogs/user-settings/user-settings.component';
+import { CreateProjectDialogComponent } from './dialogs/create-project/create-project-dialog.component';
+import { UserSettingsDialogComponent } from './dialogs/user-settings/user-settings-dialog.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
   }
   
   openCreateProjectDialog(): void {
-    this.dialog.open(CreateProjectComponent, {
+    this.dialog.open(CreateProjectDialogComponent, {
       backdropClass: 'blur',
       autoFocus: false,
     });
@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
 
   openUserSettingsDialog(): void {
     this.closeDialog();
-    this.dialog.open(UserSettingsComponent, {
+    this.dialog.open(UserSettingsDialogComponent, {
       backdropClass: 'blur',
       disableClose: false,
       autoFocus: false,

@@ -1,23 +1,28 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { SessionService } from '../../session.service';
 import { Project } from '../../dataModels/project';
 import { DataService } from '../../data.service';
+import { SessionService } from '../../session.service';
+import { Task } from '../../dataModels/task';
 
 @Component({
-  selector: 'app-create-category',
-  templateUrl: './create-category.component.html',
-  styleUrls: ['./create-category.component.css'],
+  selector: 'app-create-task-dialog',
+  templateUrl: './create-task-dialog.component.html',
+  styleUrls: ['./create-task-dialog.component.css'],
 })
-export class CreateCategoryComponent implements OnInit {
-  categoryName = '';
+export class CreateTaskDialogComponent implements OnInit {
   project?: Project;
+  task?: Task;
+  formData = {
+    name: '',
+    description: '',
+  };
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: string,
+    @Inject(MAT_DIALOG_DATA) public dataFromComponent: string,
     public dialog: MatDialog,
-    private sessionService: SessionService,
-    private dataService: DataService
+    private dataService: DataService,
+    private sessionService: SessionService
   ) {}
 
   ngOnInit(): void {
@@ -35,26 +40,25 @@ export class CreateCategoryComponent implements OnInit {
     this.dialog.closeAll();
   }
 
-  createCategory() {
-    console.log(this.categoryName);
+  createTask(): void {
+    if (!this.project?._id) return;
 
-    if (
-      !this.project ||
-      !this.project._id ||
-      (this.project.categories &&
-        this.project.categories.includes(this.categoryName))
-    ) {
-      return;
-    }
+    this.task = new Task(
+      this.formData.name,
+      this.formData.description,
+      '',
+      [],
+      this.dataFromComponent
+    );
+    this.project.tasks.push(this.task);
 
-    this.project.categories.push(this.categoryName);
     this.sessionService.setSelectedProject(this.project);
-
     const { _id, ...project } = this.project;
 
     this.updateProject(_id, project);
 
-    this.categoryName = "";
+    this.formData.name = "";
+    this.formData.description = "";
   }
 
   updateProject(id: string, newProject: Project): void {

@@ -3,16 +3,16 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { SessionService } from '../../session.service';
 import { DataService } from '../../data.service';
 import { Project } from '../../dataModels/project';
-import { DeleteProjectComponent } from '../delete-project/delete-project.component';
+import { DeleteProjectDialogComponent } from '../delete-project/delete-project-dialog.component';
 import { Validate } from '../../validate';
 import { User } from '../../dataModels/user';
 
 @Component({
-  selector: 'app-project-settings',
-  templateUrl: './project-settings.component.html',
-  styleUrls: ['./project-settings.component.css'],
+  selector: 'app-project-settings-dialog',
+  templateUrl: './project-settings-dialog.component.html',
+  styleUrls: ['./project-settings-dialog.component.css'],
 })
-export class ProjectSettingsComponent implements OnInit {
+export class ProjectSettingsDialogComponent implements OnInit {
   projectName?: string;
   projectNameForChange?: string;
   project?: Project;
@@ -91,7 +91,7 @@ export class ProjectSettingsComponent implements OnInit {
 
   deleteProject(): void {
     this.closeDialog();
-    this.dialog.open(DeleteProjectComponent, {
+    this.dialog.open(DeleteProjectDialogComponent, {
       backdropClass: 'blur',
       autoFocus: false,
     });

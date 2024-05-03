@@ -1,28 +1,23 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { SessionService } from '../../session.service';
 import { Project } from '../../dataModels/project';
 import { DataService } from '../../data.service';
-import { SessionService } from '../../session.service';
-import { Task } from '../../dataModels/task';
 
 @Component({
-  selector: 'app-add-task-dialog',
-  templateUrl: './add-task-dialog.component.html',
-  styleUrls: ['./add-task-dialog.component.css'],
+  selector: 'app-create-category-dialog',
+  templateUrl: './create-category-dialog.component.html',
+  styleUrls: ['./create-category-dialog.component.css'],
 })
-export class AddTaskDialogComponent implements OnInit {
+export class CreateCategoryDialogComponent implements OnInit {
+  categoryName = '';
   project?: Project;
-  task?: Task;
-  formData = {
-    name: '',
-    description: '',
-  };
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public dataFromComponent: string,
+    @Inject(MAT_DIALOG_DATA) public data: string,
     public dialog: MatDialog,
-    private dataService: DataService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private dataService: DataService
   ) {}
 
   ngOnInit(): void {
@@ -40,25 +35,26 @@ export class AddTaskDialogComponent implements OnInit {
     this.dialog.closeAll();
   }
 
-  createTask(): void {
-    if (!this.project?._id) return;
+  createCategory() {
+    console.log(this.categoryName);
 
-    this.task = new Task(
-      this.formData.name,
-      this.formData.description,
-      '',
-      [],
-      this.dataFromComponent
-    );
-    this.project.tasks.push(this.task);
+    if (
+      !this.project ||
+      !this.project._id ||
+      (this.project.categories &&
+        this.project.categories.includes(this.categoryName))
+    ) {
+      return;
+    }
 
+    this.project.categories.push(this.categoryName);
     this.sessionService.setSelectedProject(this.project);
+
     const { _id, ...project } = this.project;
 
     this.updateProject(_id, project);
 
-    this.formData.name = "";
-    this.formData.description = "";
+    this.categoryName = "";
   }
 
   updateProject(id: string, newProject: Project): void {

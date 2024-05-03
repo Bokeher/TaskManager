@@ -8,11 +8,11 @@ import { Validate } from '../../validate';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-create-project',
-  templateUrl: './create-project.component.html',
-  styleUrls: ['./create-project.component.css'],
+  selector: 'app-create-project-dialog',
+  templateUrl: './create-project-dialog.component.html',
+  styleUrls: ['./create-project-dialog.component.css'],
 })
-export class CreateProjectComponent extends Validate implements OnInit {
+export class CreateProjectDialogComponent extends Validate implements OnInit {
   user?: User;
   formData = {
     projectName: '',

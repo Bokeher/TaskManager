@@ -7,11 +7,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-user-settings',
-  templateUrl: './user-settings.component.html',
-  styleUrls: ['./user-settings.component.css'],
+  selector: 'app-user-settings-dialog',
+  templateUrl: './user-settings-dialog.component.html',
+  styleUrls: ['./user-settings-dialog.component.css'],
 })
-export class UserSettingsComponent extends Validate implements OnInit {
+export class UserSettingsDialogComponent extends Validate implements OnInit {
   password: string = '';
   avatarUrl: string = '';
   user?: User;

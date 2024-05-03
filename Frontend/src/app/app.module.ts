@@ -7,24 +7,20 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { UserSettingsComponent } from './dialogs/user-settings/user-settings.component';
-import { ProjectSettingsComponent } from './dialogs/project-settings/project-settings.component';
+import { UserSettingsDialogComponent } from './dialogs/user-settings/user-settings-dialog.component';
+import { ProjectSettingsDialogComponent } from './dialogs/project-settings/project-settings-dialog.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './project/project.component';
-import { CreateProjectComponent } from './dialogs/create-project/create-project.component';
+import { CreateProjectDialogComponent } from './dialogs/create-project/create-project-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AddTaskDialogComponent } from './dialogs/add-task-dialog/add-task-dialog.component';
-import {
-  MAT_DIALOG_DEFAULT_OPTIONS,
-  MatDialogModule,
-  MatDialogRef,
-} from '@angular/material/dialog';
-import { CreateCategoryComponent } from './dialogs/create-category/create-category.component';
-import { DeleteProjectComponent } from './dialogs/delete-project/delete-project.component';
+import { CreateTaskDialogComponent } from './dialogs/create-task/create-task-dialog.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { CreateCategoryDialogComponent } from './dialogs/create-category/create-category-dialog.component';
+import { DeleteProjectDialogComponent } from './dialogs/delete-project/delete-project-dialog.component';
 import { Validate } from './validate';
 import { ManageUsersComponent } from './dialogs/project-settings/manage-users/manage-users.component';
 import { CdkDrag, CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
-import { EditTaskDialogComponent } from './dialogs/edit-task-dialog/edit-task-dialog.component';
+import { EditTaskDialogComponent } from './dialogs/edit-task/edit-task-dialog.component';
 import { FilterDialogComponent } from './dialogs/filter-dialog/filter-dialog.component';
 
 @NgModule({
@@ -32,14 +28,14 @@ import { FilterDialogComponent } from './dialogs/filter-dialog/filter-dialog.com
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    UserSettingsComponent,
-    ProjectSettingsComponent,
+    UserSettingsDialogComponent,
+    ProjectSettingsDialogComponent,
     ProjectsComponent,
     ProjectComponent,
-    CreateProjectComponent,
-    AddTaskDialogComponent,
-    CreateCategoryComponent,
-    DeleteProjectComponent,
+    CreateProjectDialogComponent,
+    CreateTaskDialogComponent,
+    CreateCategoryDialogComponent,
+    DeleteProjectDialogComponent,
     ManageUsersComponent,
     EditTaskDialogComponent,
     FilterDialogComponent,

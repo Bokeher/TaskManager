@@ -4,11 +4,11 @@ import { Project } from '../dataModels/project';
 import { Task } from '../dataModels/task';
 import { DataService } from '../data.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AddTaskDialogComponent } from '../dialogs/add-task-dialog/add-task-dialog.component';
-import { CreateCategoryComponent } from '../dialogs/create-category/create-category.component';
-import { ProjectSettingsComponent } from '../dialogs/project-settings/project-settings.component';
+import { CreateTaskDialogComponent } from '../dialogs/create-task/create-task-dialog.component';
+import { CreateCategoryDialogComponent } from '../dialogs/create-category/create-category-dialog.component';
+import { ProjectSettingsDialogComponent } from '../dialogs/project-settings/project-settings-dialog.component';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { EditTaskDialogComponent } from '../dialogs/edit-task-dialog/edit-task-dialog.component';
+import { EditTaskDialogComponent } from '../dialogs/edit-task/edit-task-dialog.component';
 import { User } from '../dataModels/user';
 import { Observable, forkJoin, map, BehaviorSubject, share, Subscription } from 'rxjs';
 import { FilterDialogComponent } from '../dialogs/filter-dialog/filter-dialog.component';
@@ -131,7 +131,7 @@ export class ProjectComponent implements OnInit {
   // Dialogs
   openProjectSettingsDialog(): void {
     this.closeDialog();
-    this.dialog.open(ProjectSettingsComponent, {
+    this.dialog.open(ProjectSettingsDialogComponent, {
       backdropClass: 'blur',
       disableClose: false,
       autoFocus: false,
@@ -149,7 +149,7 @@ export class ProjectComponent implements OnInit {
 
   openAddCategoryDialog(): void {
     this.closeDialog();
-    this.dialog.open(CreateCategoryComponent, {
+    this.dialog.open(CreateCategoryDialogComponent, {
       backdropClass: 'blur',
       autoFocus: false,
     });
@@ -164,9 +164,9 @@ export class ProjectComponent implements OnInit {
     });
   }
 
-  openAddTaskDialog(category: string): void {
+  openCreateTaskDialog(category: string): void {
     this.closeDialog();
-    this.dialog.open(AddTaskDialogComponent, {
+    this.dialog.open(CreateTaskDialogComponent, {
       backdropClass: 'blur',
       autoFocus: false,
       data: category,
