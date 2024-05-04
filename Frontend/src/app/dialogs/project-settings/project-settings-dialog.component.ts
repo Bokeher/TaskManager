@@ -93,7 +93,7 @@ export class ProjectSettingsDialogComponent implements OnInit {
     this.closeDialog();
     this.dialog.open(DeleteProjectDialogComponent, {
       backdropClass: 'blur',
-      autoFocus: false,
+      hasBackdrop: true,
     });
   }
 

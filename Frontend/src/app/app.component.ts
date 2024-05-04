@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
   openCreateProjectDialog(): void {
     this.dialog.open(CreateProjectDialogComponent, {
       backdropClass: 'blur',
-      autoFocus: false,
+      hasBackdrop: true,
     });
   }
 
@@ -61,8 +61,7 @@ export class AppComponent implements OnInit {
     this.closeDialog();
     this.dialog.open(UserSettingsDialogComponent, {
       backdropClass: 'blur',
-      disableClose: false,
-      autoFocus: false,
+      hasBackdrop: true,
     });
   }
 

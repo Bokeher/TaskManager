@@ -133,8 +133,7 @@ export class ProjectComponent implements OnInit {
     this.closeDialog();
     this.dialog.open(ProjectSettingsDialogComponent, {
       backdropClass: 'blur',
-      disableClose: false,
-      autoFocus: false,
+      hasBackdrop: true,
     });
   }
 
@@ -142,8 +141,7 @@ export class ProjectComponent implements OnInit {
     this.closeDialog();
     this.dialog.open(FilterDialogComponent, {
       backdropClass: 'blur',
-      disableClose: false,
-      autoFocus: false,
+      hasBackdrop: true,
     })
   }
 
@@ -151,7 +149,7 @@ export class ProjectComponent implements OnInit {
     this.closeDialog();
     this.dialog.open(CreateCategoryDialogComponent, {
       backdropClass: 'blur',
-      autoFocus: false,
+      hasBackdrop: true,
     });
   }
 
@@ -159,7 +157,7 @@ export class ProjectComponent implements OnInit {
     this.closeDialog();
     this.dialog.open(EditTaskDialogComponent, {
       backdropClass: 'blur',
-      autoFocus: false,
+      hasBackdrop: true,
       data: task,
     });
   }
@@ -168,7 +166,7 @@ export class ProjectComponent implements OnInit {
     this.closeDialog();
     this.dialog.open(CreateTaskDialogComponent, {
       backdropClass: 'blur',
-      autoFocus: false,
+      hasBackdrop: true,
       data: category,
     });
   }
