@@ -32,6 +32,8 @@ export class ProjectComponent implements OnInit {
 
   showOnlyAssigned?: boolean;
 
+  taskHoverStates: Map<Task, boolean> = new Map<Task, boolean>();
+
   constructor(
     private sessionService: SessionService,
     private dataService: DataService,
@@ -263,5 +265,13 @@ export class ProjectComponent implements OnInit {
 
     const { _id, ...project } = this.project;
     if (_id) this.dataService.updateProject(_id, project).subscribe();
+  }
+
+  onMouseEnter(task: Task) {
+    this.taskHoverStates.set(task, true);
+  }
+
+  onMouseLeave(task: Task) {
+    this.taskHoverStates.set(task, false);
   }
 }

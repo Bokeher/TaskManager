@@ -75,8 +75,16 @@
         <div *ngIf="category.value.length">
           <div *ngFor="let task of category.value">
             <div *ngIf="!showOnlyAssigned || isUserMemberOfTask(task)">
-              <div class="task" cdkDrag [cdkDragDisabled]="showOnlyAssigned" (click)="openEditTaskDialog(task)">
-                <button (click)="deleteTask(task)" class="btn-icon" title="Delete this task" i18n-title="title-deleteTask">
+              <div 
+                class="task" (click)="openEditTaskDialog(task)" 
+                cdkDrag [cdkDragDisabled]="showOnlyAssigned" 
+                (mouseenter)="onMouseEnter(task)" (mouseleave)="onMouseLeave(task)"
+              >
+                <button 
+                  class="btn-icon deleteTask" 
+                  *ngIf="taskHoverStates.get(task)" (click)="deleteTask(task)" 
+                  title="Delete this task" i18n-title="title-deleteTask"
+                >
                   <span class="material-symbols-outlined redIcon">
                     delete
                   </span>
