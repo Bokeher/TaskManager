@@ -121,27 +121,26 @@ h2 {
   border: 1px solid #545454;
 }
 
-.task > button {
+/* done this way, because cdkDrag deletes styles inside it */
+.task > .deleteTask {
+  background-color: #292929;
   position: absolute;
   top: 0.4rem;
-  right: 0;
+  right: 0.4rem;
 }
 
-/* done this way, because cdkDrag deletes styles inside it */
-/* #taskHeader */
-.task > div:nth-child(2) {
+.task > .deleteTask:hover {
+  background-color: #3a3a3a;
+}
+
+.task > .taskHeader {
   font-weight: bold;
   font-size: large;
   margin-bottom: 0.4rem;
 }
 
-/* #taskDescription */
-.task > div:nth-child(3) {
+.task > .taskDescription {
   word-wrap: break-word;
-}
-
-.task button {
-  right: 0.4rem;
 }
 
 .cdk-drag-preview {
