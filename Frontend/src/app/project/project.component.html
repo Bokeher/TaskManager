@@ -5,16 +5,28 @@
 
 <div id="main">
   <div id="projectHeader">
-    <button (click)="openProjectSettingsDialog()" id="openProjectSettings" class="btn-icon headerButtons" title="Open project settings" i18n-title="title-openProjectSettings">
+    <button 
+      (click)="openProjectSettingsDialog()" 
+      id="openProjectSettings" class="btn-icon headerButtons" 
+      title="Open project settings" i18n-title="title-openProjectSettings"
+    >
       <span class="material-symbols-outlined">settings</span>
     </button>
-    <button (click)="openFilterDialog()" id="openFilter" class="btn-icon headerButtons" title="Open filter" i18n-title="title-openFilter">
+    <button 
+      (click)="openFilterDialog()" 
+      id="openFilter" class="btn-icon headerButtons" 
+      title="Open filter" i18n-title="title-openFilter"
+    >
       <span class="material-symbols-outlined"> filter_alt </span>
     </button>
     <p id="projectName">{{ project?.name }}</p>
     <span id="fakeButton" class="headerButtons">
     </span>
-    <button (click)="openAddCategoryDialog()" id="openAddCategory" class="btn-icon headerButtons" title="Create new category" i18n-title="title-createCategory">
+    <button 
+      (click)="openAddCategoryDialog()" 
+      id="openAddCategory" class="btn-icon headerButtons" 
+      title="Create new category" i18n-title="title-createCategory"
+    >
       <span class="material-symbols-outlined">add</span>
     </button>
   </div>
@@ -33,7 +45,10 @@
     >
       <div class="cat-header">
         <div>
-          <button (click)="openCreateTaskDialog(category.key)" class="btn-icon addtask" title="Create new task" i18n-title="title-createNewTask">
+          <button 
+            (click)="openCreateTaskDialog(category.key)" class="btn-icon addtask"
+            title="Create new task" i18n-title="title-createNewTask"
+          >
             <span class="material-symbols-outlined">add</span>
           </button>
         </div>
@@ -41,7 +56,10 @@
         <h2>{{ category.key }}</h2>
 
         <div *ngIf="!category.value.length" class="no-tasks">
-          <button (click)="deleteCategory(category.key)" class="btn-icon del-cat" title="Delete this category" i18n-title="title-deleteCategory">
+          <button 
+            (click)="deleteCategory(category.key)" class="btn-icon del-cat" 
+            title="Delete this category" i18n-title="title-deleteCategory"
+          >
             <span class="material-symbols-outlined redIcon">delete</span>
           </button>
         </div>
