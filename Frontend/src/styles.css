@@ -41,8 +41,6 @@ body {
 .dialogContent {
   width: 20rem;
   height: 10rem;
-  border-radius: 10px;
-  border: 2px solid #3a3a3a;
 }
 
 .center {

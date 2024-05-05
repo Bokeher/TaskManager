@@ -37,3 +37,8 @@
   --mdc-dialog-container-color: #292929;
   color: white;
 }
+
+::ng-deep .mat-mdc-dialog-surface {
+  --mdc-dialog-container-shape: 10px;
+  border: 2px solid #3a3a3a;
+}
