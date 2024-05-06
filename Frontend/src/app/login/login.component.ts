@@ -33,22 +33,19 @@ export class LoginComponent {
     this.dataService.getUser(email, name, password).subscribe(
       (response: User) => {
         this.user = response;
-        console.log(this.user);
-        this.logInUser();
+
+        if(!this.user) {
+          this.showError = true;
+          return;
+        }
+
+        this.sessionService.setUser(this.user);
+        this.router.navigate(["/"]);
       },
       (error) => {
         console.error(error);
       }
     );
-  }
-
-  logInUser() {
-    if (this.user) {
-      this.sessionService.setUser(this.user);
-      this.router.navigate(["/"]);
-    } else {
-      this.showError = true;
-    }
   }
 
   onSubmit() {

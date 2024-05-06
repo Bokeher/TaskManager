@@ -1,6 +1,5 @@
-<router-outlet></router-outlet>
-<body>
-  <div class="body">
+<div id="content">
+  <div id="dialog">
     <form #userlogin="ngForm" (ngSubmit)="onSubmit()" novalidate>
       <p>TaskManager</p>
 
@@ -41,18 +40,11 @@
         >Don't have account? Create one!</a
       >
 
-      <!-- Goku TODO: -->
-      <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-        rel="stylesheet"
-      />
-
       <div *ngIf="showError" class="error">
         <span class="material-symbols-outlined"> dangerous </span>
         <p>Wrong password or/and login!</p>
       </div>
     </form>
-    
   </div>
-</body>
+</div>
 
