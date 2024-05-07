@@ -3,7 +3,6 @@
   background-color: #292929;
   width: 9.7rem;
   height: 3.5rem;
-  color: rgb(197, 197, 197);
   cursor: pointer;
   margin-top: 0.7rem;
   margin-left: 0.7rem;
@@ -22,6 +21,5 @@
 .project:hover {
   border: 1px solid #545454;
   scale: 110%;
-  color: white;
   margin-left: 0.7rem;
 }

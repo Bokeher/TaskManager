@@ -34,7 +34,6 @@ p {
   font-weight: 600;
   text-align: center;
   padding-bottom: 0.5rem;
-  color: white;
 }
 
 #input-login {
@@ -51,10 +50,10 @@ p {
 i {
   margin-top: 1.2rem;
   margin-left: 0.6rem;
-  color: white;
 }
 
-.input {
+input {
+  color: white;
   border: none;
   margin-top: 0.5rem;
   margin-left: 0.4rem;
@@ -63,7 +62,6 @@ i {
   text-align: center;
   border-radius: 0.8rem;
   outline: none;
-  color: white;
   background-color: rgba(227, 227, 227, 0);
 }
 
@@ -80,7 +78,6 @@ button {
   box-shadow: 20px black;
   background-color: #292929;
   cursor: pointer;
-  color: white;
   transition: 0.5s;
 }
 
@@ -99,7 +96,6 @@ a {
   display: block;
   margin: 0;
   text-align: center;
-  color: rgb(255, 255, 255);
 }
 
 a:hover {
