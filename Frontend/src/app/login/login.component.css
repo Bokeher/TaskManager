@@ -7,24 +7,22 @@
   border-radius: 0.4rem;
   width: 25rem;
   height: 32rem;
-  align-items: center;
   justify-content: center;
   display: flex;
-  margin-top: calc(100vh - 80vh);
+  margin-top: 20vh;
   -webkit-box-shadow: 3px 3px 39px 0px rgba(78, 78, 78, 1);
   -moz-box-shadow: 3px 3px 39px 0px rgba(78, 78, 78, 1);
   box-shadow: 3px 3px 39px 0px rgba(78, 78, 78, 1);
 }
 
-p {
-  margin-top: 0.8rem;
+#header {
+  margin: 3rem 0;
   font-size: 2.2rem;
   font-weight: 600;
   text-align: center;
-  padding-bottom: 0.5rem;
 }
 
-#input-login {
+.inputBox {
   margin-top: 1.5rem;
   width: 17rem;
   height: 4rem;
@@ -52,7 +50,7 @@ input {
   background-color: rgba(227, 227, 227, 0);
 }
 
-button {
+#loginButton {
   width: 16rem;
   height: 3.5rem;
   border-radius: 1rem;
@@ -73,15 +71,10 @@ button:hover {
   transform: scale(1.05);
 }
 
-hr {
-  width: 16.8rem;
-  color: rgb(43, 43, 43);
-}
-
 a {
   text-decoration: none;
   display: block;
-  margin: 0;
+  margin-top: 3.5rem;
   text-align: center;
 }
 
