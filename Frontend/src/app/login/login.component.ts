@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
 import { User } from '../dataModels/user';
 import { SessionService } from '../session.service';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   showError: boolean = false;
   user?: User;
   formData = {
@@ -23,6 +23,12 @@ export class LoginComponent {
     private sessionService: SessionService,
     private router: Router
   ) {}
+
+  ngOnInit(): void {
+    this.sessionService.getUserObservable().subscribe((user) => {
+      if(user) this.router.navigate(["/"]);
+    })
+  }
 
   @ViewChild('autoSelect') autoSelect!: ElementRef;
   ngAfterViewInit(): void {

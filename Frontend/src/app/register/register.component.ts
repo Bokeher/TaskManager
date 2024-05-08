@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
 import { User } from '../dataModels/user';
 import { SessionService } from '../session.service';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent extends Validate {
+export class RegisterComponent extends Validate implements OnInit {
   user?: User;
   submitted: boolean = false;
 
@@ -30,6 +30,12 @@ export class RegisterComponent extends Validate {
     private router: Router
   ) {
     super();
+  }
+
+  ngOnInit(): void {
+    this.sessionService.getUserObservable().subscribe((user) => {
+      if(user) this.router.navigate(["/"]);
+    })
   }
 
   @ViewChild('autoSelect') autoSelect!: ElementRef;
