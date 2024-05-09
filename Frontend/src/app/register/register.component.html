@@ -1,84 +1,69 @@
-<router-outlet></router-outlet>
-<body>
-  <div class="body">
+<div id="content">
+  <div id="dialog">
     <form #userRegister="ngForm" (ngSubmit)="onSubmit()" novalidate>
-      <p>TaskManager</p>
+      <div id="header">TaskManager</div>
 
-      <div id="input-login">
-        <i class="material-symbols-outlined" id="logico"
-          >person</i
-        >
+      <div class="inputBox">
+        <i class="material-symbols-outlined"> person </i>
         <input
           #autoSelect
-          class="input"
           type="text"
           name="email"
           placeholder="email"
+          i18n-placeholder="email"
           [(ngModel)]="formData.email"
         />
       </div>
 
-      <div id="input-login">
-        <i class="material-symbols-outlined" id="logico"
-          >person</i
-        >
+      <div class="inputBox">
+        <i class="material-symbols-outlined"> person </i>
         <input
-          class="input"
           type="text"
           name="login"
           placeholder="login"
-          [(ngModel)]="formData.name"
           i18n-placeholder="login"
+          [(ngModel)]="formData.name"
         />
       </div>
 
-      <div id="input-login">
-        <i class="material-symbols-outlined" id="passico"
-          >password</i
-        >
+      <div class="inputBox">
+        <i class="material-symbols-outlined"> password </i>
         <input
-          class="input"
           type="password"
           name="password"
           placeholder="password"
-          [(ngModel)]="formData.password"
-          id="textin1"
           i18n-placeholder="password"
           (focusout) ="checkPassword()"
+          [(ngModel)]="formData.password"
         />
       </div>
+<!--       
       <div *ngIf="showPasswordRules" class="haslodupa">
         <p i18n="@@passwordRules">password need to be at least 8 characters long and include letters numbers and symbols</p>
-      </div>
-      <div id="input-login">
-        <i class="material-symbols-outlined" id="passico"
-          >password</i  
-        >
+      </div> -->
+
+      <div class="inputBox">
+        <i class="material-symbols-outlined"> password </i>
         <input
-          class="input"
           type="password"
           name="password_confirm"
           placeholder="confirm password"
-          [(ngModel)]="formData.password_confirmation"
-          id="textin"
           i18n-placeholder="confirmPassword"
           (focusout) ="checkPasswords()"
+          [(ngModel)]="formData.password_confirmation"
         />
       </div>
+
       <div *ngIf="passwordMatch" class="hasloconfirmdupa">
         <p i18n="@@passwordMatch">passwords doesn't match</p>
       </div>
 
-      <button type="submit" id="highlight" i18n="@@register">Register</button>
-      <br /><br /><br />
-      <hr />
-      <br />
-      <a
-        routerLink="/login"
-        i18n="@@alreadyHaveAccount"
-        >Already have an account? Log in!</a
-      >
-      <br />
+      <button type="submit" id="registerButton" i18n="@@register">Register</button>
+
+      <a routerLink="/login" i18n="@@alreadyHaveAccount">
+        Already have an account? Log in!
+      </a>
+
       <div [ngClass]="{ error: error, none: !error }">{{ error }}</div>
     </form>
 
@@ -87,10 +72,6 @@
         Account created!
       </div>
     </div>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet"
-    />
   </div>
-</body>
+</div>
 
