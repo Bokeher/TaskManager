@@ -11,7 +11,7 @@ export class Validate {
     password: string,
     password_confirmation: string
   ) {
-    let data = {
+    const data = {
       email,
       name,
       password,
@@ -19,66 +19,64 @@ export class Validate {
       error: '',
     };
 
-    let rules = {
+    const rules = {
       email: 'required|email',
       name: 'required',
-      password:
-        'min:8|string|confirmed|regex:"(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[#?!@$%^&*-])"',
+      password: 'min:8|string|confirmed|regex:"(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[#?!@$%^&*-])"',
       password_confirmation: 'required',
     };
 
-    let validation = new Validator(data, rules);
+    const validation = new Validator(data, rules);
+    
     if (validation.fails()) {
       this.error = 'Podano zły adres email użytkownika lub hasło!';
     }
+    
     return validation;
   }
 
   validatePassword(password: string) {
-    let data = {
+    const data = {
       password,
       error: '',
     };
 
-    let rules = {
+    const rules = {
       password:
         'min:8|required|string|regex:"(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[#?!@$%^&*-])"',
     };
 
-    let validation = new Validator(data, rules);
-    return validation;
+    return new Validator(data, rules);
   }
 
   validatePasswordConfirmation(
     password: string,
     password_confirmation: string
   ) {
-    let data = {
+    const data = {
       password,
       password_confirmation,
       error: '',
     };
 
-    let rules = {
+    const rules = {
       password: 'required|confirmed',
       password_confirmation: 'required',
     };
 
-    let validation = new Validator(data, rules);
-    return validation;
+    return new Validator(data, rules);
   }
 
   validateProjectName(projectName: string) {
-    let data = {
+    const data = {
       projectName,
       error: '',
     };
 
-    let rules = {
+    const rules = {
       projectName: 'min:6|max:24|required|string',
     };
 
-    let validation = new Validator(data, rules);
-    return validation;
+    return new Validator(data, rules);
   }
 }
