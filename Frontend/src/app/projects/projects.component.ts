@@ -14,7 +14,8 @@ import { Router } from '@angular/router';
 export class ProjectsComponent implements OnInit {
   user?: User;
   projectData: Project[] = [];
-  projectNumber = 0;
+  projectNumber: number = 0;
+  selectedProjectId?: number;
 
   constructor(
     private dataService: DataService,
@@ -25,10 +26,18 @@ export class ProjectsComponent implements OnInit {
   ngOnInit() {
     this.sessionService.getUserObservable().subscribe((user) => {
       if(!user) return;
-      this.user = user!;
-      this.projectNumber = user?.projectIds.length;
+
+      this.user = user;
+      this.projectNumber = user.projectIds.length;
+
       this.getAllProjects();
     });
+
+    this.sessionService.getSelectedProjectObservable().subscribe((project) => {
+      if(!project || !this.selectedProjectId) return;
+      
+      this.projectData[this.selectedProjectId] = project;
+    })
   }
 
   getAllProjects() {
@@ -58,6 +67,8 @@ export class ProjectsComponent implements OnInit {
 
   openProject(id: number) {
     this.sessionService.setSelectedProject(this.projectData[id]);
+
+    this.selectedProjectId = id;
     
     this.router.navigate(["/project"]);
   }
