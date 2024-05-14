@@ -103,7 +103,7 @@ export class EditTaskDialogComponent implements OnInit {
   }
 
   addUserToTask(): void{
-    this.dataService.getUserByLoginWithoutPassword(this.userToAdd).subscribe(
+    this.dataService.getUserByLogin(this.userToAdd).subscribe(
       (response: User) => {
         if (!this.project) return;
         if (!response._id) return;

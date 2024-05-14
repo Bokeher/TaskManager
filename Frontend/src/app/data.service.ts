@@ -44,10 +44,6 @@ export class DataService {
     return this.http.post<User>(`${this.apiUrl}getUserByLogin`, { login });
   }
 
-  getUserByLoginWithoutPassword(login: string) {
-    return this.http.post<User>(`${this.apiUrl}getUserByLoginWithoutPassword`, { login });
-  }
-
   /**
    * Creates new user data on the server with the provided login and password.
    * @param login The user's login.

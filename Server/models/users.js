@@ -4,26 +4,6 @@ const bcrypt = require('bcrypt');
 class Users {
   uri = process.env.MONGODB_URI;
 
-  // users
-  async getAllUserData() {
-    let result;
-    const client = new MongoClient(this.uri);
- 
-    try {
-      await client.connect();
-
-      const db = client.db("TaskManager");
-      const coll = db.collection("Users");
-
-      result = await coll.find({}).toArray();
-    } catch (e) {
-      console.error(e);
-    } finally {
-      await client.close();
-      return result;
-    }
-  }
-
   async getUserByLogin(login) {
     let result;
     const client = new MongoClient(this.uri);
@@ -35,27 +15,8 @@ class Users {
       const coll = db.collection("Users");
 
       result = await coll.findOne({"login": login});
-    } catch (e) {
-      console.error(e);
-    } finally {
-      await client.close();
-      return result;
-    }
-  }
-
-  async getUserByLoginWithoutPassword(login) {
-    let result;
-    const client = new MongoClient(this.uri);
- 
-    try {
-      await client.connect();
-
-      const db = client.db("TaskManager");
-      const coll = db.collection("Users");
-
-      result = await coll.findOne({"login": login});
-      result.password = "";
-      result.projectIds = null;
+      console.log(`\ngetUserByLogin(${login})`);
+      console.log(result);
     } catch (e) {
       console.error(e);
     } finally {
@@ -80,11 +41,15 @@ class Users {
 
       const passwordMatch = await bcrypt.compare(password, user.password);
 
+      console.log(`\ngetUser(${login}, ${password})`);
+      console.log(result);
       if (passwordMatch) {
+        console.log("Password match"); 
         return user;
-      } else {
-        return null;
-      }
+      } 
+      
+      console.log("Password doesn't match"); 
+      return null;
     } catch (e) {
       console.error(e);
     } finally {
@@ -103,6 +68,8 @@ class Users {
       const coll = db.collection("Users");
 
       result = await coll.findOne({"_id": new ObjectId(id)});
+      console.log(`\ngetUserById(${id}`);
+      console.log(result);
     } catch (e) {
       console.error(e);
     } finally {
@@ -137,6 +104,7 @@ class Users {
       };
 
       result = await coll.insertOne(newUser);
+      console.log(`\ncreateUser(${login}, ${password})`);
       console.log(result);
     } catch (e) {
       console.error(e);
@@ -157,6 +125,7 @@ class Users {
       const coll = db.collection("Users");
 
       result = await coll.deleteOne({"login": login});
+      console.log(`\ndeleteUser(${login})`);
       console.log(result);
     } catch (e) {
       console.error(e);
@@ -179,6 +148,7 @@ class Users {
       const filter = { "_id": new ObjectId(id) };
 
       result = await coll.findOneAndReplace(filter, newUser);
+      console.log(`\nupdateUser(${id}, ${newUser})`);
       console.log(result);
     } catch (e) {
       console.error(e);
