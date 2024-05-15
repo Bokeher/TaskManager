@@ -50,7 +50,8 @@ export class CreateTaskDialogComponent implements OnInit {
       [],
       this.dataFromComponent
     );
-    this.project.tasks.push(this.task);
+    
+    this.project.tasks.unshift(this.task);
 
     this.sessionService.setSelectedProject(this.project);
     const { _id, ...project } = this.project;
