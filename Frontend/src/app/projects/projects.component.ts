@@ -15,7 +15,7 @@ export class ProjectsComponent implements OnInit {
   user?: User;
   projectData: Project[] = [];
   projectNumber: number = 0;
-  selectedProjectId?: number;
+  selectedProjectId?: string;
 
   constructor(
     private dataService: DataService,
@@ -36,7 +36,13 @@ export class ProjectsComponent implements OnInit {
     this.sessionService.getSelectedProjectObservable().subscribe((project) => {
       if(!project || !this.selectedProjectId) return;
       
-      this.projectData[this.selectedProjectId] = project;
+      // find project in project list
+      const currentProject = this.projectData.filter((project) => {
+        project._id === this.selectedProjectId
+      })
+
+      // correct its name
+      if(currentProject.length > 0) currentProject[0].name = project.name;
     })
   }
 
@@ -65,10 +71,10 @@ export class ProjectsComponent implements OnInit {
     return this.dataService.getProject(id);
   }
 
-  openProject(id: number) {
-    this.sessionService.setSelectedProject(this.projectData[id]);
+  openProject(index: number) {
+    this.sessionService.setSelectedProject(this.projectData[index]);
 
-    this.selectedProjectId = id;
+    this.selectedProjectId = this.projectData[index]._id;
     
     this.router.navigate(["/project"]);
   }
