@@ -9,7 +9,9 @@
     <span class="material-symbols-outlined redIcon" title="Leave project" i18n-title="leaveProject"> logout </span>
   </button>
 
-  <h1 class="center">{{ projectName }}</h1>
+  <div id="projectNameHeader">
+    <h1 class="center">{{ projectName }}</h1>
+  </div>
 
   <form (ngSubmit)="addUser()" class="dialogForm">
     <h3 i18n="@@addUserToWorkspace">Add user to workspace</h3>
@@ -37,6 +39,7 @@
         placeholder="Insert new project name..."
         i18n-placeholder="insertNewProjectName" 
         [(ngModel)]="projectNameForChange"
+        maxlength="128"
       />
       <button type="submit" class="btn-icon">
         <span class="material-symbols-outlined">done</span>

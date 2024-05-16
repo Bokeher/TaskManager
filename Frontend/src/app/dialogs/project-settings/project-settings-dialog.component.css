@@ -6,16 +6,22 @@
 }
 
 .btn-closeDialog { 
-  top: 1.1rem;
+  top: 1.4rem;
   right: 1.1rem;
 }
 
 #deleteProject, #leaveProject {
   position: absolute;
-  top: 1.1rem;
+  top: 1.4rem;
   left: 1.1rem;
 }
 
 #manageUsers {
   height: 3rem;
+}
+
+#projectNameHeader {
+  margin: 0 3.5rem;
+  overflow: hidden;
+  white-space: nowrap;
 }
