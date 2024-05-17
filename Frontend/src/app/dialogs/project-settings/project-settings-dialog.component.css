@@ -23,5 +23,13 @@
 #projectNameHeader {
   margin: 0 3.5rem;
   overflow: hidden;
+}
+
+#projectNameHeader h1 {
+  display: block;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  text-align: center;
 }
