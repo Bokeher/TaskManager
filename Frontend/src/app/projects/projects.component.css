@@ -23,3 +23,11 @@
   scale: 110%;
   margin-left: 0.7rem;
 }
+
+.text-ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,4 +1,11 @@
-<div *ngFor="let project of projectData; index as i; first as isFirst" class="project" (click)="openProject(i)" routerLink="project">
-  {{ project.name }}
+<div 
+  *ngFor="let project of projectData; index as i; first as isFirst" 
+  class="project" (click)="openProject(i)" routerLink="project"
+>
+  <p class="text-ellipsis">
+    {{ project.name }}
+  </p>
 </div>
-<div *ngIf="projectNumber > projectData.length"></div>
+
+<!-- Loading todo -->
+<!-- <div *ngIf="projectNumber > projectData.length"></div> -->
