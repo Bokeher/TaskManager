@@ -16,14 +16,20 @@
 }
 
 #projectName {
-  margin-left: 5rem;
-  margin-right: 5rem;
-  width: 15rem;
+  margin: 0 1rem;
+  width: 23rem;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
+}
+
+#projectName p {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
 }
 
 .headerButtons {
