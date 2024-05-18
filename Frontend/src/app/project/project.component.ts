@@ -33,6 +33,7 @@ export class ProjectComponent implements OnInit {
   showOnlyAssigned?: boolean;
 
   taskHoverStates: Map<Task, boolean> = new Map<Task, boolean>();
+  deleteButtonVisibility: boolean = true;
 
   constructor(
     private sessionService: SessionService,
@@ -248,6 +249,14 @@ export class ProjectComponent implements OnInit {
     this.project.tasks = tasks;
     
     this.updateSessionAndDbOfProject();
+  }
+
+  showDeleteButton() {
+    this.deleteButtonVisibility = true;
+  }
+  
+  hideDeleteButton() {
+    this.deleteButtonVisibility = false;
   }
 
   dropList(event: CdkDragDrop<string[]>) {

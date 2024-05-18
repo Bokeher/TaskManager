@@ -77,10 +77,12 @@
                 class="task" (click)="openEditTaskDialog(task)" 
                 cdkDrag [cdkDragDisabled]="showOnlyAssigned" 
                 (mouseenter)="onMouseEnter(task)" (mouseleave)="onMouseLeave(task)"
+                (cdkDragStarted)="hideDeleteButton()"
+                (cdkDragEnded)="showDeleteButton()"
               >
                 <button 
                   class="btn-icon deleteTask" 
-                  *ngIf="taskHoverStates.get(task)" (click)="deleteTask(task)" 
+                  *ngIf="taskHoverStates.get(task) && deleteButtonVisibility" (click)="deleteTask(task)" 
                   title="Delete this task" i18n-title="title-deleteTask"
                 >
                   <span class="material-symbols-outlined redIcon">
