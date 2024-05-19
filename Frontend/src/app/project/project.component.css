@@ -82,6 +82,14 @@ h2 {
   justify-content: center;
 }
 
+.cat-header h2 {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+  margin: 0 1.8rem;
+}
+
 .addtask {
   position: absolute;
   transform: translateY(-50%);
