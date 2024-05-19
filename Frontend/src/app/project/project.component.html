@@ -34,7 +34,7 @@
   >
     <div
       *ngFor="let category of tasksByCategories$ | async | keyvalue : originalOrder"
-      class="categories"
+      class="category"
       cdkDrag
       [cdkDragDisabled]="showOnlyAssigned"
     >
