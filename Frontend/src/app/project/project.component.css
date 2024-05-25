@@ -79,6 +79,11 @@ h2 {
   height: 3.2rem;
   padding: 1rem;
   justify-content: center;
+  cursor: pointer;
+}
+
+.cat-header:hover {
+  border: 1px solid #545454;
 }
 
 .cat-header h2 {

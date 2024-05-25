@@ -5,6 +5,7 @@ import { Task } from '../dataModels/task';
 import { DataService } from '../data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from '../dialogs/create-task/create-task-dialog.component';
+import { EditCategoryComponent } from "../dialogs/edit-category/edit-category-dialog.component";
 import { CreateCategoryDialogComponent } from '../dialogs/create-category/create-category-dialog.component';
 import { ProjectSettingsDialogComponent } from '../dialogs/project-settings/project-settings-dialog.component';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
@@ -151,6 +152,14 @@ export class ProjectComponent implements OnInit {
   openAddCategoryDialog(): void {
     this.closeDialog();
     this.dialog.open(CreateCategoryDialogComponent, {
+      backdropClass: 'blur',
+      hasBackdrop: true,
+    });
+  }
+
+  openEditCategory(category: any) {
+    this.closeDialog();
+    this.dialog.open(EditCategoryComponent, {
       backdropClass: 'blur',
       hasBackdrop: true,
     });
