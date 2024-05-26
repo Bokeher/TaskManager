@@ -1,1 +1,18 @@
-todo
+<div class="dialogContent">
+  <h1 i18n="@@profileSettings" class="center">Edit category</h1>
+  <button class="closeDialog" (click)="closeDialog()" class="btn-icon btn-closeDialog">
+    <span class="material-symbols-outlined"> close </span>
+  </button>
+  <form class="dialogForm">
+    <h3>{{ categoryName }}</h3>
+    <div class="inputRow">
+      <input
+        type="text"
+        name="categoryName"
+        #autoSelect
+        placeholder="Enter category name"
+        i18n-placeholder="enterCategoryName"
+      >
+    </div>
+  </form>
+</div>   
