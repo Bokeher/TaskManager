@@ -43,6 +43,11 @@ export class EditTaskDialogComponent implements OnInit {
       map(member => this.members.next(member))
     ).subscribe();
   }
+
+  ngOnDestroy(): void {
+    this.editTaskName();
+    this.editTaskDescription();
+  }
   
   @ViewChild('autoSelect') autoSelect!: ElementRef;
   ngAfterViewInit(): void {
