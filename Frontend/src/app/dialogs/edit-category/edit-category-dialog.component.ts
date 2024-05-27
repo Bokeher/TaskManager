@@ -14,11 +14,13 @@ export class EditCategoryComponent implements OnInit {
   project?: Project;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: string,
+    @Inject(MAT_DIALOG_DATA) public oldCategory: string,
     public dialog: MatDialog,
     private sessionService: SessionService,
     private dataService: DataService
-  ) {}
+  ) {
+    this.categoryName = this.oldCategory;
+  }
 
   ngOnInit(): void {
     this.sessionService.getSelectedProjectObservable().subscribe((project) => {
@@ -26,35 +28,28 @@ export class EditCategoryComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.saveCategoryName();
+  }
+
   @ViewChild('autoSelect') autoSelect!: ElementRef;
   ngAfterViewInit(): void {
-    // this.autoSelect.nativeElement.focus();
+    this.autoSelect.nativeElement.focus();
   }
 
   closeDialog(): void {
     this.dialog.closeAll();
   }
 
-  createCategory() {
-    console.log(this.categoryName);
-
-    if (
-      !this.project ||
-      !this.project._id ||
-      (this.project.categories &&
-        this.project.categories.includes(this.categoryName))
-    ) {
-      return;
+  saveCategoryName() {
+    if (!this.project) return;
+    
+    const categoryIndex = this.project.categories.findIndex(category => category === this.oldCategory);
+    if (categoryIndex !== -1) {
+      this.project.categories[categoryIndex] = this.categoryName;
+      this.oldCategory = this.categoryName;
+      this.sessionService.setSelectedProject(this.project);
     }
-
-    this.project.categories.push(this.categoryName);
-    this.sessionService.setSelectedProject(this.project);
-
-    const { _id, ...project } = this.project;
-
-    this.updateProject(_id, project);
-
-    this.categoryName = "";
   }
 
   updateProject(id: string, newProject: Project): void {

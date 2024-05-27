@@ -162,6 +162,7 @@ export class ProjectComponent implements OnInit {
     this.dialog.open(EditCategoryComponent, {
       backdropClass: 'blur',
       hasBackdrop: true,
+      data: category,
     });
   }
 

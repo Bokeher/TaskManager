@@ -3,8 +3,7 @@
   <button class="closeDialog" (click)="closeDialog()" class="btn-icon btn-closeDialog">
     <span class="material-symbols-outlined"> close </span>
   </button>
-  <form class="dialogForm">
-    <h3>{{ categoryName }}</h3>
+  <form class="dialogForm" (submit)="saveCategoryName()">
     <div class="inputRow">
       <input
         type="text"
@@ -12,7 +11,12 @@
         #autoSelect
         placeholder="Enter category name"
         i18n-placeholder="enterCategoryName"
+        [(ngModel)]="categoryName"
       >
+
+      <button type="submit" class="btn-icon"> 
+        <span class="material-symbols-outlined">done</span>
+      </button>
     </div>
   </form>
 </div>   

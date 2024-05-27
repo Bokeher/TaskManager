@@ -38,7 +38,7 @@
       cdkDrag
       [cdkDragDisabled]="showOnlyAssigned"
     >
-      <div class="cat-header" (click)="openEditCategory(category)">
+      <div class="cat-header" (click)="openEditCategory(category.key)">
         <div>
           <button 
             (click)="openCreateTaskDialog(category.key)" class="btn-icon addtask"
