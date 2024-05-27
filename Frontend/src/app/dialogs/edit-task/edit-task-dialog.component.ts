@@ -50,10 +50,6 @@ export class EditTaskDialogComponent implements OnInit {
   }
 
   closeDialog(): void {
-    // save changes
-    this.editTaskName();
-    this.editTaskDescription();
-
     this.dialog.closeAll();
   }
 
