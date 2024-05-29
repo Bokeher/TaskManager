@@ -41,7 +41,7 @@
       <div class="cat-header" (click)="openEditCategory(category.key)">
         <div>
           <button 
-            (click)="openCreateTaskDialog(category.key)" class="btn-icon addtask"
+            (click)="$event.stopPropagation(); openCreateTaskDialog(category.key)" class="btn-icon addtask"
             title="Create new task" i18n-title="title-createNewTask"
           >
             <span class="material-symbols-outlined">add</span>
