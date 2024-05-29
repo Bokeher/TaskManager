@@ -35,7 +35,6 @@ export class EditTaskDialogComponent implements OnInit {
     });
 
     const usersIds = [...new Set(this.task.memberIds)];
-    console.log(usersIds);
     
     this.subscriptionMember = forkJoin(
       usersIds.map((id) => this.dataService.getUserById(id))
@@ -45,6 +44,8 @@ export class EditTaskDialogComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
+    if(this.task.name.length < 1) return;
+    
     this.editTaskName();
     this.editTaskDescription();
   }
