@@ -42,7 +42,7 @@ export class EditCategoryComponent implements OnInit {
   }
 
   saveCategoryName() {
-    if (!this.project) return;
+    if (!this.project || this.categoryName.length < 1) return;
     
     const categoryIndex = this.project.categories.findIndex(category => category === this.oldCategory);
     if (categoryIndex !== -1) {
