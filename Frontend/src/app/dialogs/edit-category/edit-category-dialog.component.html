@@ -1,5 +1,5 @@
 <div class="dialogContent">
-  <h1 i18n="@@profileSettings" class="center">Edit category</h1>
+  <h2 i18n="@@profileSettings" class="center">Category name</h2>
   <button class="closeDialog" (click)="closeDialog()" class="btn-icon btn-closeDialog">
     <span class="material-symbols-outlined"> close </span>
   </button>
@@ -12,11 +12,8 @@
         placeholder="Enter category name"
         i18n-placeholder="enterCategoryName"
         [(ngModel)]="categoryName"
+        minlength="1"
       >
-
-      <button type="submit" class="btn-icon"> 
-        <span class="material-symbols-outlined">done</span>
-      </button>
     </div>
   </form>
-</div>   
+</div>
