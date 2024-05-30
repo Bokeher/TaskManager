@@ -5,14 +5,9 @@
   height: 32rem;
 }
 
-.btn-closeDialog { 
-  top: 1.4rem;
-  right: 1.1rem;
-}
-
 #deleteProject, #leaveProject {
   position: absolute;
-  top: 1.4rem;
+  top: 1.2rem;
   left: 1.1rem;
 }
 

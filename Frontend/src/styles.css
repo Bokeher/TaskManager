@@ -40,8 +40,14 @@ body {
 
 .btn-closeDialog {
   position: absolute;
-  top: 0.7rem;
+  top: 0.9rem;
   right: 0.7rem;
+}
+
+.btn-closeDialog-h1 {
+  position: absolute;
+  top: 1.2rem;
+  right: 1rem;
 }
 
 .dialogContent {
