@@ -63,14 +63,22 @@ body {
   margin: 2rem;
 }
 
-.inputRow {
+.inputRow, .inputRowNoSubmit {
   display: flex;
   align-items: center;
 }
 
 .inputRow input {
   height: 2.2rem;
-  width: 80%;
+  width: 85%;
+  text-align: center;
+  border-radius: 0.8rem;
+  border: none;
+}
+
+.inputRowNoSubmit input {
+  height: 2.2rem;
+  width: 95%;
   text-align: center;
   border-radius: 0.8rem;
   border: none;
@@ -78,8 +86,9 @@ body {
 
 .inputRow button {
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 0;
 }
+
 
 .blur {
   backdrop-filter: blur(2px);
