@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { SessionService } from '../../session.service';
 import { DataService } from '../../data.service';
@@ -21,7 +21,6 @@ export class ProjectSettingsDialogComponent implements OnInit {
   adminPrivileges: boolean = false;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public dataFromComponent: string,
     public dialog: MatDialog,
     private dataService: DataService,
     private sessionService: SessionService,
