@@ -14,7 +14,6 @@ import { User } from '../../dataModels/user';
 })
 export class ProjectSettingsDialogComponent implements OnInit {
   projectName?: string;
-  projectNameForChange?: string;
   project?: Project;
   user?: User;
   userLogin?: string;
@@ -34,6 +33,7 @@ export class ProjectSettingsDialogComponent implements OnInit {
         if(selectedProject) {
           this.project = selectedProject;
           this.projectName = selectedProject?.name;
+
         }
 
         this.adminPrivileges = this.sessionService.userIsAdmin();
@@ -50,18 +50,16 @@ export class ProjectSettingsDialogComponent implements OnInit {
   }
 
   changeProjectName(): void {
-    if(!this.projectNameForChange || !this.project ||
-      this.validate.validateProjectName(this.projectNameForChange).fails()) return;
+    if(!this.projectName || !this.project ||
+      this.validate.validateProjectName(this.projectName).fails()) return;
   
-    this.project.name = this.projectNameForChange;
+    this.project.name = this.projectName;
     this.sessionService.setSelectedProject(this.project);
 
     const { _id, ...newProjectWithoutId } = this.project;
     if (_id) {
       this.updateProject(_id, newProjectWithoutId);
     }
-
-    this.projectNameForChange = "";
   }
 
   leaveProject() {
