@@ -47,6 +47,13 @@ export class EditCategoryComponent implements OnInit {
     const categoryIndex = this.project.categories.findIndex(category => category === this.oldCategory);
     if (categoryIndex !== -1) {
       this.project.categories[categoryIndex] = this.categoryName;
+      
+      this.project.tasks.forEach(task => {
+        if(task.category === this.oldCategory) {
+          task.category = this.categoryName;
+        }
+      });
+
       this.oldCategory = this.categoryName;
       this.sessionService.setSelectedProject(this.project);
     }
