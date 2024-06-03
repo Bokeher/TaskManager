@@ -12,7 +12,8 @@
 }
 
 #manageUsers {
-  height: 3rem;
+  height: 10rem;
+  overflow-y: auto;
 }
 
 #projectNameHeader {
