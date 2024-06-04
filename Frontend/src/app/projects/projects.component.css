@@ -31,3 +31,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.loader {
+  margin-top: 0.7rem;
+  margin-left: 0.7rem;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 20px;
+  animation: l1 1s linear infinite alternate;
+}
+@keyframes l1 {to{opacity: 0}}
