@@ -8,3 +8,15 @@
   overflow-y: auto;
   height: 8rem;
 }
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: large;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  border: none;
+  background: transparent;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  resize: none;
+  overflow: hidden;
+}

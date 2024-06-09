@@ -23,6 +23,7 @@ import { CdkDrag, CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { EditTaskDialogComponent } from './dialogs/edit-task/edit-task-dialog.component';
 import { FilterDialogComponent } from './dialogs/filter-dialog/filter-dialog.component';
 import { EditCategoryComponent } from './dialogs/edit-category/edit-category-dialog.component';
+import { AutoResizeDirective } from './auto-resize.directive';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { EditCategoryComponent } from './dialogs/edit-category/edit-category-dia
     EditTaskDialogComponent,
     EditCategoryComponent,
     FilterDialogComponent,
+    AutoResizeDirective,
   ],
   imports: [
     BrowserModule,

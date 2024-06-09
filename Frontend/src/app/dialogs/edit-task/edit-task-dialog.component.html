@@ -5,15 +5,14 @@
   </button>
   <form class="dialogForm">
     <h3 i18n="@@taskName">Task name</h3>
-    <div class="inputRowNoSubmit">
-      <input
-        type="text"
+      <div class="inputRowNoSubmit">
+      <textarea 
         name="taskName"
         #autoSelect
         placeholder="Enter task name"
         i18n-placeholder="enterTaskName"
         [(ngModel)]="task.name"
-      >
+      ></textarea>
     </div>
   </form>
   <form class="dialogForm">
