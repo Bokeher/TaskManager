@@ -11,7 +11,7 @@
 
 textarea {
   width: 100%;
-  padding: 10px;
+  padding: 0.7rem;
   font-size: large;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   border: none;
@@ -19,4 +19,6 @@ textarea {
   transition: border-color 0.3s ease, background-color 0.3s ease;
   resize: none;
   overflow: hidden;
+  border: 1px solid #545454;
+  border-radius: 0.5rem;
 }
