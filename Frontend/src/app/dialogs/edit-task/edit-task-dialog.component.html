@@ -7,6 +7,7 @@
     <h3 i18n="@@taskName">Task name</h3>
       <div class="inputRowNoSubmit">
       <textarea 
+        appAutoResize
         name="taskName"
         #autoSelect
         placeholder="Enter task name"
@@ -20,25 +21,25 @@
   <form class="dialogForm">
     <h3 i18n="@@taskDescription">Task description</h3>
     <div class="inputRowNoSubmit">
-      <input
-        type="text"
+      <textarea 
+        appAutoResize
         name="taskDescription"
         placeholder="Enter task description"
         i18n-placeholder="enterTaskDescription"
         [(ngModel)]="task.description"
-      >
+      ></textarea>
     </div>
   </form>
   <form (ngSubmit)="addUserToTask()" class="dialogForm">
     <h3 i18n="@@addNewUserLogin">Assign to this task</h3>
     <div class="inputRow">
-      <input
-        type="text"
+      <textarea
         name="userLogin"
         placeholder="Enter name"
         i18n-placeholder="newUserLogin" 
         [(ngModel)]="userToAdd"
-      >
+        rows="1"
+      ></textarea>
       <button type="submit" class="btn-icon"> 
         <span class="material-symbols-outlined">done</span>
       </button>
