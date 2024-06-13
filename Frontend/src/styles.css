@@ -84,11 +84,32 @@ body {
   border: none;
 }
 
+textarea {
+  padding: 0.7rem;
+  font-size: large;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  border: none;
+  background: transparent;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  resize: none;
+  overflow: hidden;
+  border: 1px solid #545454;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+}
+
+.inputRow textarea {
+  width: 87%;
+}
+
+.inputRowNoSubmit textarea {
+  width: 100%;
+}
+
 .inputRow button {
   margin-left: auto;
   margin-right: 0;
 }
-
 
 .blur {
   backdrop-filter: blur(2px);
