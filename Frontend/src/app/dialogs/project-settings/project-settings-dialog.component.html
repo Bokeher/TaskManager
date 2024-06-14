@@ -16,14 +16,16 @@
   <form (ngSubmit)="addUser()" class="dialogForm">
     <h3 i18n="@@addUserToWorkspace">Add user to workspace</h3>
     <div class="inputRow">
-      <input
+      <textarea 
+        appAutoResize
         name="userLogin"
         #autoSelect
         type="text"
         placeholder="Insert username..."
         i18n-placeholder="insertUsername" 
         [(ngModel)]="userLogin"
-      />
+        rows="1"
+      ></textarea>
       <button type="submit" class="btn-icon">
         <span class="material-symbols-outlined">done</span>
       </button>
@@ -33,14 +35,16 @@
   <form *ngIf="adminPrivileges" (ngSubmit)="changeProjectName()" class="dialogForm">
     <h3 i18n="@@changeProjectName">Change project name</h3>
     <div class="inputRow">
-      <input
+      <textarea 
+        appAutoResize
         type="text"
         name="projectName"
         placeholder="Insert new project name..."
         i18n-placeholder="insertNewProjectName" 
         [(ngModel)]="projectName"
         maxlength="128"
-      />
+        rows="1"
+      ></textarea>
       <button type="submit" class="btn-icon">
         <span class="material-symbols-outlined">done</span>
       </button>
