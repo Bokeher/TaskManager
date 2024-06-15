@@ -5,7 +5,8 @@
   <h1 i18n="@@createNewProjectHeader" class="center">New Project</h1>
   <form (ngSubmit)="createProject()" class="dialogForm">
     <div class="inputRow">
-      <input
+      <textarea
+        appAutoResize
         #autoSelect
         type="text"
         id="projectName"
@@ -13,7 +14,8 @@
         placeholder="Enter project name"
         i18n-placeholder="enterProjectName"
         [(ngModel)]="formData.projectName"
-      />
+        rows="1"
+      ></textarea>
       <button id="btn-createProject" type="submit" class="btn-icon">
         <span class="material-symbols-outlined">done</span>
       </button>

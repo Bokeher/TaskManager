@@ -5,7 +5,8 @@
   </button>
   <form class="dialogForm" (submit)="saveCategoryName()">
     <div class="inputRowNoSubmit">
-      <input
+      <textarea
+        appAutoResize
         type="text"
         name="categoryName"
         #autoSelect
@@ -13,7 +14,8 @@
         i18n-placeholder="enterCategoryName"
         [(ngModel)]="categoryName"
         minlength="1"
-      >
+        rows="1"
+      ></textarea>
     </div>
   </form>
 </div>

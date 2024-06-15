@@ -9,14 +9,16 @@
   <form (ngSubmit)="changePassword()" class="dialogForm">
     <h3 i18n="@@changePassword">Change password:</h3>
     <div class="inputRow">
-      <input
+      <textarea
+        appAutoResize
         type="text"
         name="changePassword"
         id="changePassword"
         placeholder="Enter new password"
         i18n-placeholder="enterNewPassword"
         [(ngModel)]="password"
-      />
+        rows="1"
+      ></textarea>
       <button type="submit" class="btn-icon">
         <span class="material-symbols-outlined">done</span>
       </button>
@@ -25,14 +27,16 @@
   <form (ngSubmit)="changeAvatar()" class="dialogForm">
     <h3 i18n="@@changeAvatar">Change avatar:</h3>
     <div class="inputRow">
-      <input
+      <textarea
+        appAutoResize
         type="text"
         name="changeAvatar"
         id="changeAvatar"
         placeholder="Enter new image url"
         i18n-placeholder="link"
         [(ngModel)]="avatarUrl"
-      />
+        rows="1"
+      ></textarea>
       <button type="submit" class="btn-icon">
         <span class="material-symbols-outlined">done</span>
       </button>

@@ -5,7 +5,8 @@
   <h1 i18n="@@createNewCategoryHeader" class="center">New Category</h1>
   <form (ngSubmit)="createCategory()" class="dialogForm">
     <div class="inputRow">
-      <input
+      <textarea
+        appAutoResize
         #autoSelect
         type="text"
         name="categoryName"
@@ -13,7 +14,8 @@
         placeholder="Enter category name"
         i18n-placeholder="enterCategoryName"
         [(ngModel)]="categoryName"
-      />
+        rows="1"
+      ></textarea>
       <button id="btn-createCategory" type="submit" class="btn-icon">
         <span class="material-symbols-outlined">done</span>
       </button>
