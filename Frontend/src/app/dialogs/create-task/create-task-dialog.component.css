@@ -1,23 +1,38 @@
 /* for other styles check global styling at Frontend\src\styles.css */
 
 .dialogContent {
-  height: 15rem;
-  width: 25rem;
+  height: 23rem;
+  width: 33rem;
 }
 
 #secondRow {
   margin-top: 0.5rem;
 }
 
-h2 {
-  margin-right: 2rem;
+h1{
+  margin-bottom: 1.5rem;
 }
 
 #confirm {
   margin-top: 1rem;
   margin-right: 0rem;
   margin-left: auto;
-  width: 5rem;
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1rem;
+}
+
+#confirm button {
+  width: 84%;
+  background-color: #3a3a3a;
+}
+#confirm button:hover {
+  scale: 100%;
+}
+
+.btn-icon {
+  width: 2rem;
+  scale: 120%;
 }
