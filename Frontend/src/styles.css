@@ -2,6 +2,10 @@
   color: rgb(200, 200, 200);
 }
 
+:root {
+  color-scheme: dark;
+}
+
 input {
   color: black;
 }
