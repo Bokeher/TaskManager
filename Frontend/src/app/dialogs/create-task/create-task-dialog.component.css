@@ -5,6 +5,11 @@
   width: 33rem;
 }
 
+.btn-closeDialog {
+  top: 1.3rem;
+  right: 1.6rem;
+}
+
 #secondRow {
   margin-top: 0.5rem;
 }
