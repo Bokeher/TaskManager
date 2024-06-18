@@ -25,11 +25,15 @@ h1{
 }
 
 #confirm button {
+  transition: 0s;
   width: 84%;
   background-color: #3a3a3a;
 }
+
 #confirm button:hover {
-  scale: 100%;
+  border: 1px solid #5d5d5d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: scale(1.01);
 }
 
 .btn-icon {
