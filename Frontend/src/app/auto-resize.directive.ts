@@ -12,7 +12,7 @@ export class AutoResizeDirective implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.resize();
+    setTimeout(() => this.resize(), 0);
   }
 
   private resize(): void {
