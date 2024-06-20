@@ -2,9 +2,9 @@
   <button (click)="closeDialog()" id="closeDialog" class="btn-icon btn-closeDialog-h1">
     <span class="material-symbols-outlined"> close </span>
   </button>
-  <h1 i18n="@@createNewCategoryHeader" class="center">New Category</h1>
+  <h1 i18n="@@createNewCategoryHeader" class="center">Create a New Category</h1>
   <form (ngSubmit)="createCategory()" class="dialogForm">
-    <div class="inputRow">
+    <div class="inputRowNoSubmit">
       <textarea
         appAutoResize
         #autoSelect
@@ -16,8 +16,11 @@
         [(ngModel)]="categoryName"
         rows="1"
       ></textarea>
-      <button id="btn-createCategory" type="submit" class="btn-icon">
-        <span class="material-symbols-outlined">done</span>
+    </div>
+    
+    <div id="confirm">
+      <button id="confirmButton" type="submit" class="btn-icon">
+        Confirm
       </button>
     </div>
   </form>

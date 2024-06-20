@@ -2,3 +2,34 @@
 h1 {
     margin-right: 2rem;
 }
+
+.dialogContent {
+    height: 12rem;
+    width: 32rem;
+}
+
+#confirm {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#confirm button {
+    transition: 0s;
+    width: 84%;
+    background-color: #3a3a3a;
+}
+
+#confirm button:hover {
+    border: 1px solid #5d5d5d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.01);
+}
+
+.btn-icon {
+    width: 2rem;
+    scale: 120%;
+}
+  
