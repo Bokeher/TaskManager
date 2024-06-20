@@ -2,12 +2,7 @@
 
 .dialogContent {
   height: 23rem;
-  width: 33rem;
-}
-
-.btn-closeDialog {
-  top: 1.3rem;
-  right: 1.6rem;
+  width: 32rem;
 }
 
 #secondRow {
