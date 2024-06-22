@@ -58,6 +58,7 @@ body {
 .dialogContent {
   width: 20rem;
   height: 10rem;
+  overflow-x: hidden;
 }
 
 .center {
