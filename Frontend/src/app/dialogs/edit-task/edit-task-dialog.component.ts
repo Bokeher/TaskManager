@@ -17,6 +17,7 @@ export class EditTaskDialogComponent implements OnInit {
   newTaskName: string = '';
   newTaskDescription: string = '';
   userToAdd: string = '';
+  originalTask?: Task;
 
   members: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   members$ = this.members.asObservable();
@@ -30,6 +31,8 @@ export class EditTaskDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.originalTask = JSON.parse(JSON.stringify(this.task));
+
     this.sessionService.getSelectedProjectObservable().subscribe((project) => {
       if(project) this.project = project;
     });
@@ -60,7 +63,7 @@ export class EditTaskDialogComponent implements OnInit {
   }
 
   editTaskName(): void {
-    if (!this.project) return;
+    if (!this.project || this.originalTask?.name === this.task.name) return;
 
     this.project.tasks.forEach((task) => {
       if (JSON.stringify(task) === JSON.stringify(this.task)) {
@@ -77,7 +80,7 @@ export class EditTaskDialogComponent implements OnInit {
   }
 
   editTaskDescription(): void {
-    if (!this.project) return;
+    if (!this.project || this.originalTask?.description === this.task.description) return;
 
     this.project.tasks.forEach((task) => {
       if (JSON.stringify(task) === JSON.stringify(this.task)) {
