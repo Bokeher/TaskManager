@@ -57,6 +57,7 @@ body {
 
 .dialogContent {
   width: 20rem;
+  padding-bottom: 1.5rem;
 }
 
 .center {
@@ -64,7 +65,7 @@ body {
 }
 
 .dialogForm {
-  margin: 1.2rem;
+  margin: 1.2rem 1.2rem 0 1.2rem;
 }
 
 .inputRow, .inputRowNoSubmit {
