@@ -24,6 +24,7 @@ import { EditTaskDialogComponent } from './dialogs/edit-task/edit-task-dialog.co
 import { FilterDialogComponent } from './dialogs/filter-dialog/filter-dialog.component';
 import { EditCategoryComponent } from './dialogs/edit-category/edit-category-dialog.component';
 import { AutoResizeDirective } from './auto-resize.directive';
+import { SubmitOnEnterDirective } from './submit-on-enter.directive';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AutoResizeDirective } from './auto-resize.directive';
     EditCategoryComponent,
     FilterDialogComponent,
     AutoResizeDirective,
+    SubmitOnEnterDirective,
   ],
   imports: [
     BrowserModule,
