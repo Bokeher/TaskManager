@@ -1,4 +1,33 @@
 /* for other styles check global styling at Frontend\src\styles.css */
 h1 {
-    margin-right: 2.2rem;
+    margin-bottom: 2.2rem;
+}
+
+.dialogContent {
+    width: 32rem;
+}
+
+#confirm {
+    margin-top: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#confirm button {
+    transition: 0s;
+    width: 84%;
+    background-color: #3a3a3a;
+}
+
+#confirm button:hover {
+    border: 1px solid #5d5d5d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.01);
+}
+
+.btn-icon {
+    width: 2rem;
+    scale: 120%;
 }

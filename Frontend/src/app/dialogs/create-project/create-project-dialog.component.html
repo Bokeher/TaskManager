@@ -2,23 +2,26 @@
   <button (click)="closeDialog()" id="closeDialog" class="btn-icon btn-closeDialog-h1">
     <span class="material-symbols-outlined"> close </span>
   </button>
-  <h1 i18n="@@createNewProjectHeader" class="center">New Project</h1>
+  <h1 i18n="@@createNewProjectHeader" class="center">Create New Project</h1>
   <form (ngSubmit)="createProject()" class="dialogForm">
-    <div class="inputRow">
+    <div class="inputRowNoSubmit">
       <textarea
         submitOnEnter
         appAutoResize
         #autoSelect
         type="text"
-        id="projectName"
         name="projectName"
+        id="projectName"
         placeholder="Enter project name"
         i18n-placeholder="enterProjectName"
         [(ngModel)]="formData.projectName"
         rows="1"
       ></textarea>
-      <button id="btn-createProject" type="submit" class="btn-icon">
-        <span class="material-symbols-outlined">done</span>
+    </div>
+    
+    <div id="confirm">
+      <button id="confirmButton" type="submit" class="btn-icon">
+        Confirm
       </button>
     </div>
   </form>
