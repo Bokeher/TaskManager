@@ -11,7 +11,7 @@
 }
 
 #manageUsers {
-  height: 10rem;
+  height: 12rem;
   overflow-y: auto;
 }
 
@@ -27,4 +27,12 @@
   text-overflow: ellipsis;
   width: 100%;
   text-align: center;
+}
+
+h3 {
+  margin-bottom: 1rem;
+}
+
+form {
+  margin-bottom: 2rem;
 }
