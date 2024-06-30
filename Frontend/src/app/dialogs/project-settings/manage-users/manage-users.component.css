@@ -1,9 +1,24 @@
 table, tr, td, th {
-  border: 1px solid black;
+  border: 1px solid white;
   border-collapse: collapse;
-  padding: 5px;
+  padding: 5px 10px;
 }
 
 table {
   width: 100%;
+}
+
+table button {
+  border: 1px solid #3A3A3A;
+  background-color: #3A3A3A;
+  border-radius: 1rem;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table button:hover { 
+  border: 1px solid #5d5d5d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: scale(1.01);
+  color: white;
 }
