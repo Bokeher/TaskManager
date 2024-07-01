@@ -140,6 +140,8 @@ export class EditTaskDialogComponent implements OnInit {
         console.error(error);
       }
     );
+
+    this.userToAdd = "";
   }
 
   removeUserFromTask(user: User) {
