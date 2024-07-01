@@ -46,16 +46,22 @@
       </button>
     </div>
   </form>
-  <div id="users">
-    <table>
-      <tr *ngFor="let user of members$ | async">
-        <td>
-          {{user.login}}
-        </td>
-        <td>
-          <button (click)="removeUserFromTask(user)" i18n="@@removeUserFromTask" id="removeUser">Remove this user</button>
-        </td>
-      </tr>
-    </table>
+  <div class="dialogForm">
+    <h3>Assigned users</h3>
+    <div id="users">
+      <table>
+        <tr>
+          <th>Username</th>
+        </tr>
+        <tr *ngFor="let user of members$ | async">
+          <td>
+            {{user.login}}
+          </td>
+          <td>
+            <button (click)="removeUserFromTask(user)" i18n="@@removeUserFromTask" id="removeUser">Remove this user</button>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
