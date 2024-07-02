@@ -14,9 +14,9 @@ import { BehaviorSubject, Subscription, forkJoin, map } from 'rxjs';
 })
 export class EditTaskDialogComponent implements OnInit {
   project?: Project;
-  newTaskName: string = '';
-  newTaskDescription: string = '';
-  userToAdd: string = '';
+  newTaskName?: string;
+  newTaskDescription?: string;
+  userToAdd?: string;
   originalTask?: Task;
 
   members: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
@@ -108,6 +108,8 @@ export class EditTaskDialogComponent implements OnInit {
   }
 
   addUserToTask(): void{
+    if(!this.userToAdd) return;
+
     this.dataService.getUserByLogin(this.userToAdd).subscribe(
       (response: User) => {
         if (!this.project) return;
