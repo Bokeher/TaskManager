@@ -46,7 +46,7 @@
       </button>
     </div>
   </form>
-  <div class="dialogForm">
+  <div class="dialogForm" *ngIf="task.memberIds.length > 0">
     <h3>Assigned users</h3>
     <div id="users">
       <table>
