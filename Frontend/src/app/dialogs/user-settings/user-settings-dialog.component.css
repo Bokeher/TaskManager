@@ -2,10 +2,19 @@
 
 .dialogContent {
   width: 25rem;
+  margin-bottom: 10rem;
 }
 
 #logout {
   position: absolute;
   top: 1.2rem;
   left: 1.1rem;
+}
+
+form {
+  margin-bottom: 3rem;
+}
+
+h1 {
+  margin-bottom: 2rem;
 }
