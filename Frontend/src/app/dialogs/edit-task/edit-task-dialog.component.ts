@@ -19,6 +19,8 @@ export class EditTaskDialogComponent implements OnInit {
   userToAdd?: string;
   originalTask?: Task;
 
+  loadingComplete: boolean = false;
+
   members: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   members$ = this.members.asObservable();
   private subscriptionMember!: Subscription;
@@ -38,12 +40,14 @@ export class EditTaskDialogComponent implements OnInit {
     });
 
     const usersIds = [...new Set(this.task.memberIds)];
-    
+
     this.subscriptionMember = forkJoin(
       usersIds.map((id) => this.dataService.getUserById(id))
     ).pipe(
       map(member => this.members.next(member))
-    ).subscribe();
+    ).subscribe(() => {
+      this.loadingComplete = true;
+    });
   }
 
   ngOnDestroy(): void {
