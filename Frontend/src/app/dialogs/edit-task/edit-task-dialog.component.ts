@@ -110,7 +110,7 @@ export class EditTaskDialogComponent implements OnInit {
     );
   }
 
-  addUserToTask(): void{
+  addUserToTask(): void {
     if(!this.userToAdd) return;
 
     this.dataService.getUserByLogin(this.userToAdd).subscribe(
@@ -127,6 +127,11 @@ export class EditTaskDialogComponent implements OnInit {
         });
 
         if(!containsUser) return;
+
+        if(this.task.memberIds.includes(response._id)) {
+          // TODO: handle this with toast system
+          return;
+        }
 
         this.project.tasks.forEach((task) => {
           if (JSON.stringify(task) === JSON.stringify(this.task)) {
