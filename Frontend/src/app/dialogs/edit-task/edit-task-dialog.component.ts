@@ -43,9 +43,8 @@ export class EditTaskDialogComponent implements OnInit {
 
     this.subscriptionMember = forkJoin(
       usersIds.map((id) => this.dataService.getUserById(id))
-    ).pipe(
-      map(member => this.members.next(member))
-    ).subscribe(() => {
+    ).subscribe((members) => {
+      this.members.next(members);
       this.loadingComplete = true;
     });
   }
