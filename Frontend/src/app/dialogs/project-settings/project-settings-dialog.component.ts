@@ -99,10 +99,13 @@ export class ProjectSettingsDialogComponent implements OnInit {
 
     this.dataService.getUserByLogin(this.userLogin).subscribe(
       (response: User) => {
-        if (!this.isMember(response)) {
-          this.addUserToProject(response);
-          this.addProjectToUser(response);
+        if(this.isMember(response)) {
+          // TODO: handle this with toast system
+          return;
         }
+
+        this.addUserToProject(response);
+        this.addProjectToUser(response);
       },
       (error) => {
         console.error(error);
