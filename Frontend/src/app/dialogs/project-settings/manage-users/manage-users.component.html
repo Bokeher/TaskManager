@@ -17,4 +17,9 @@
       <button (click)="removeUser(user)" i18n="@@removeThisUser">Remove this user</button>
     </td>
   </tr>
+  <tr *ngIf="!loadingComplete">
+    <td colspan="2" class="loader">
+      Loading...
+    </td>
+  </tr>
 </table>

@@ -22,6 +22,7 @@ export class ManageUsersComponent {
   mergedData: ManagingUser[] = [];
   userNumber = 0;
   adminPrivileges: boolean = false;
+  loadingComplete: boolean = false;
 
   constructor(
     private sessionService: SessionService,
@@ -75,6 +76,8 @@ export class ManageUsersComponent {
           this.mergedData.push(managingUser);
         }
       });
+
+      this.loadingComplete = true;
     });
   }
 
