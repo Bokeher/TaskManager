@@ -79,4 +79,18 @@ export class Validate {
 
     return new Validator(data, rules);
   }
+
+  validateTask(name: string, description: string) {
+    const data = {
+      name,
+      description,
+    };
+
+    const rules = {
+      name: 'min:1|max:256|required|string',
+      description: 'max:1000|string',
+    };
+
+    return new Validator(data, rules);
+  }
 }
