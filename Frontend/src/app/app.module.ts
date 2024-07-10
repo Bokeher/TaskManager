@@ -25,6 +25,7 @@ import { FilterDialogComponent } from './dialogs/filter-dialog/filter-dialog.com
 import { EditCategoryComponent } from './dialogs/edit-category/edit-category-dialog.component';
 import { AutoResizeDirective } from './auto-resize.directive';
 import { SubmitOnEnterDirective } from './submit-on-enter.directive';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { SubmitOnEnterDirective } from './submit-on-enter.directive';
     MatDialogModule,
     CdkDrag,
     CdkDropList,
-    CdkDropListGroup
+    CdkDropListGroup,
+    ToastrModule.forRoot()
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
