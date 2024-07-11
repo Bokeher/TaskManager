@@ -5,6 +5,7 @@ import { DataService } from '../../data.service';
 import { SessionService } from '../../session.service';
 import { Task } from '../../dataModels/task';
 import { Validate } from 'src/app/validate';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-task-dialog',
@@ -24,7 +25,8 @@ export class CreateTaskDialogComponent implements OnInit {
     public dialog: MatDialog,
     private dataService: DataService,
     private sessionService: SessionService,
-    private validate: Validate
+    private validate: Validate,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -44,9 +46,17 @@ export class CreateTaskDialogComponent implements OnInit {
 
   createTask(): void {
     if (!this.project?._id) return;
+    
+    const validation = this.validate.validateTask(this.formData.name, this.formData.description);
+    if (validation.fails()) {
+      const errors = validation.errors.all();
 
-    if (this.validate.validateTask(this.formData.name, this.formData.description).fails()) {
-      // TODO: handle this with toast system
+      for(const field in errors) {
+        errors[field].forEach(error => {
+          this.toastr.error(error);
+        });
+      }
+      
       return;
     }
 
