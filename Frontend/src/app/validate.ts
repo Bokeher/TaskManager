@@ -74,7 +74,7 @@ export class Validate {
     };
 
     const rules = {
-      projectName: 'min:1|max:128|required|string',
+      projectName: 'max:128|required|string',
     };
 
     return new Validator(data, rules);
@@ -87,7 +87,7 @@ export class Validate {
     };
 
     const rules = {
-      name: 'min:1|max:256|required|string',
+      name: 'max:256|required|string',
       description: 'max:1000|string',
     };
 
