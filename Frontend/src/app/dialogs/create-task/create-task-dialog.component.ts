@@ -45,11 +45,10 @@ export class CreateTaskDialogComponent implements OnInit {
   }
 
   createTask(): void {
-    if (!this.project?._id) return;
-    
-    if(!this.validate.validateTask(this.formData.name, this.formData.description, this.toastr)) {
-      return;
-    }
+    if (
+      !this.project?._id || 
+      !this.validate.validateTask(this.formData.name, this.formData.description, this.toastr)
+    ) return;
 
     this.task = new Task(
       this.formData.name,
