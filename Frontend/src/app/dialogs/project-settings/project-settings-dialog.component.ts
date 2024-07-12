@@ -6,6 +6,7 @@ import { Project } from '../../dataModels/project';
 import { DeleteProjectDialogComponent } from '../delete-project/delete-project-dialog.component';
 import { Validate } from '../../validate';
 import { User } from '../../dataModels/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-project-settings-dialog',
@@ -23,7 +24,8 @@ export class ProjectSettingsDialogComponent implements OnInit {
     public dialog: MatDialog,
     private dataService: DataService,
     private sessionService: SessionService,
-    private validate: Validate
+    private validate: Validate,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -50,8 +52,11 @@ export class ProjectSettingsDialogComponent implements OnInit {
   }
 
   changeProjectName(): void {
-    if(!this.projectName || !this.project ||
-      this.validate.validateProjectName(this.projectName).fails()) return;
+    if (
+      !this.projectName || 
+      !this.project || 
+      !this.validate.validateProjectName(this.projectName, this.toastr)
+    ) return;
   
     this.project.name = this.projectName;
     this.sessionService.setSelectedProject(this.project);

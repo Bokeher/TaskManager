@@ -67,8 +67,11 @@ export class Validate {
 
     return new Validator(data, rules);
   }
-
-  validateProjectName(projectName: string) {
+  
+  /**
+   * @returns false when validation fails, else return true
+   */
+  validateProjectName(projectName: string, toastr: ToastrService): boolean {
     const data = {
       projectName,
       error: '',
@@ -78,7 +81,9 @@ export class Validate {
       projectName: 'max:128|required|string',
     };
 
-    return new Validator(data, rules);
+    const validation = new Validator(data, rules);
+
+    return this.checkValidation(validation, toastr);
   }
 
   /**
@@ -97,7 +102,7 @@ export class Validate {
 
     const validation = new Validator(data, rules);
 
-    return this.checkValidation(validation, toastr)
+    return this.checkValidation(validation, toastr);
   }
 
   private checkValidation(validation: Validator.Validator<any>, toastr: ToastrService): boolean {

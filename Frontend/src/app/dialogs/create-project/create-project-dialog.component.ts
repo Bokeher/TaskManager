@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Project } from '../../dataModels/project';
 import { Validate } from '../../validate';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-project-dialog',
@@ -23,7 +24,8 @@ export class CreateProjectDialogComponent extends Validate implements OnInit {
     private sessionService: SessionService,
     public dialog: MatDialog,
     private validate: Validate,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     super();
   }
@@ -44,10 +46,11 @@ export class CreateProjectDialogComponent extends Validate implements OnInit {
   }
 
   createProject(): any {
-    if (!this.user?._id || !this.user) return;
-
-    if (this.validate.validateProjectName(this.formData.projectName).fails())
-      return;
+    if (
+      !this.user?._id || 
+      !this.user || 
+      !this.validate.validateProjectName(this.formData.projectName, this.toastr)
+    ) return;
 
     this.dataService
       .createProject(this.formData.projectName, this.user._id)
