@@ -47,16 +47,7 @@ export class CreateTaskDialogComponent implements OnInit {
   createTask(): void {
     if (!this.project?._id) return;
     
-    const validation = this.validate.validateTask(this.formData.name, this.formData.description);
-    if (validation.fails()) {
-      const errors = validation.errors.all();
-
-      for(const field in errors) {
-        errors[field].forEach(error => {
-          this.toastr.error(error);
-        });
-      }
-      
+    if(!this.validate.validateTask(this.formData.name, this.formData.description, this.toastr)) {
       return;
     }
 

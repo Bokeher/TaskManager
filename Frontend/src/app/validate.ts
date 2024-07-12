@@ -1,5 +1,6 @@
 import * as Validator from 'validatorjs';
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class Validate {
@@ -80,7 +81,10 @@ export class Validate {
     return new Validator(data, rules);
   }
 
-  validateTask(name: string, description: string) {
+  /**
+   * @returns false when validation fails, else return true
+   */
+  validateTask(name: string, description: string, toastr: ToastrService): boolean {
     const data = {
       name,
       description,
@@ -91,6 +95,23 @@ export class Validate {
       description: 'max:1000|string',
     };
 
-    return new Validator(data, rules);
+    const validation = new Validator(data, rules);
+
+    return this.checkValidation(validation, toastr)
   }
+
+  private checkValidation(validation: Validator.Validator<any>, toastr: ToastrService): boolean {
+    if(!validation.fails()) return true;
+
+    const errors = validation.errors.all();
+
+    for(const field in errors) {
+      errors[field].forEach(error => {
+        toastr.error(error);
+      });
+    }
+
+    return false;
+  }
+
 }
