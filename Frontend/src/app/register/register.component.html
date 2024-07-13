@@ -37,11 +37,6 @@
           [(ngModel)]="formData.password"
         />
       </div>
-<!--       
-      <div *ngIf="showPasswordRules" class="haslodupa">
-        <p i18n="@@passwordRules">password need to be at least 8 characters long and include letters numbers and symbols</p>
-      </div> -->
-
       <div class="inputBox">
         <i class="material-symbols-outlined"> password </i>
         <input
@@ -52,10 +47,6 @@
           (focusout) ="checkPasswords()"
           [(ngModel)]="formData.password_confirmation"
         />
-      </div>
-
-      <div *ngIf="passwordMatch" class="hasloconfirmdupa">
-        <p i18n="@@passwordMatch">passwords doesn't match</p>
       </div>
 
       <button type="submit" id="registerButton" i18n="@@register">Register</button>

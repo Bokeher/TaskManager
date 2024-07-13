@@ -50,10 +50,14 @@ export class Validate {
     return new Validator(data, rules);
   }
 
+  /**
+   * @returns false when validation fails, else return true
+   */
   validatePasswordConfirmation(
     password: string,
-    password_confirmation: string
-  ) {
+    password_confirmation: string, 
+    toastr: ToastrService
+  ): boolean {
     const data = {
       password,
       password_confirmation,
@@ -65,7 +69,9 @@ export class Validate {
       password_confirmation: 'required',
     };
 
-    return new Validator(data, rules);
+    const validation = new Validator(data, rules);
+
+    return this.checkValidation(validation, toastr);
   }
   
   /**

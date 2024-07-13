@@ -4,6 +4,7 @@ import { User } from '../dataModels/user';
 import { SessionService } from '../session.service';
 import { Validate } from '../validate';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +28,8 @@ export class RegisterComponent extends Validate implements OnInit {
     private dataService: DataService,
     private sessionService: SessionService,
     public validate: Validate,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     super();
   }
@@ -72,16 +74,11 @@ export class RegisterComponent extends Validate implements OnInit {
   }
   
   checkPasswords() {
-    if (
-      this.validatePasswordConfirmation(
-        this.formData.password,
-        this.formData.password_confirmation
-      ).fails()
-    ) {
-      this.passwordMatch = true;
-    } else {
-      this.passwordMatch = false;
-    }
+    this.passwordMatch = !this.validatePasswordConfirmation(
+      this.formData.password,
+      this.formData.password_confirmation,
+      this.toastr
+    );
   }
   
   onSubmit() {
