@@ -54,14 +54,13 @@ export class Validate {
    * @returns false when validation fails, else return true
    */
   validatePasswordConfirmation(
-    password: string,
+    password: string, 
     password_confirmation: string, 
     toastr: ToastrService
   ): boolean {
     const data = {
       password,
       password_confirmation,
-      error: '',
     };
 
     const rules = {
@@ -80,7 +79,6 @@ export class Validate {
   validateProjectName(projectName: string, toastr: ToastrService): boolean {
     const data = {
       projectName,
-      error: '',
     };
 
     const rules = {
