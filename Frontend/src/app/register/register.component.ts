@@ -66,11 +66,7 @@ export class RegisterComponent extends Validate implements OnInit {
   }
 
   checkPassword() {
-    if (this.validatePassword(this.formData.password).fails()) {
-      this.showPasswordRules = true;
-    } else {
-      this.showPasswordRules = false;
-    }
+    this.showPasswordRules = this.validatePassword(this.formData.password, this.toastr);
   }
   
   checkPasswords() {

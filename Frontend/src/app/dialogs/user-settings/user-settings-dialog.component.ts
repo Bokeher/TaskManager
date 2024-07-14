@@ -5,6 +5,7 @@ import { DataService } from '../../data.service';
 import { Validate } from '../../validate';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-settings-dialog',
@@ -22,7 +23,8 @@ export class UserSettingsDialogComponent extends Validate implements OnInit {
     private sessionService: SessionService,
     private validate: Validate,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     super();
   }
@@ -36,7 +38,7 @@ export class UserSettingsDialogComponent extends Validate implements OnInit {
   changePassword(): void {
     if (!this.user) return;
 
-    if (this.validate.validatePassword(this.password).fails()) {
+    if (!this.validate.validatePassword(this.password, this.toastr)) {
       this.output = 'Nieprawidłowe hasło.';
       return;
     }

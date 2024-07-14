@@ -36,10 +36,12 @@ export class Validate {
     return validation;
   }
 
-  validatePassword(password: string) {
+  /**
+   * @returns false when validation fails, else return true
+   */
+  validatePassword(password: string, toastr: ToastrService) {
     const data = {
       password,
-      error: '',
     };
 
     const rules = {
@@ -47,7 +49,9 @@ export class Validate {
         'min:8|required|string|regex:"(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[#?!@$%^&*-])"',
     };
 
-    return new Validator(data, rules);
+    const validation = new Validator(data, rules);
+
+    return this.checkValidation(validation, toastr);
   }
 
   /**
