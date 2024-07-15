@@ -45,24 +45,32 @@ export class RegisterComponent extends Validate implements OnInit {
     this.autoSelect.nativeElement.focus();
   }
 
-  getUser(name: string, password: string, password_confirmation: string, email: string) {
+  getUser(
+    name: string, password: string,
+    password_confirmation: string, email: string
+  ) {
     if (
-      this.validate
-        .validateRegistration(email, name, password, password_confirmation)
-        .passes()
-    ) {
-      this.dataService.createUser(name, password, email).subscribe(
-        (response: User) => {
-          this.user = response;
-          this.sessionService.setUser(this.user);
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
+      !this.validate.validateRegistration(
+        email,
+        name,
+        password,
+        password_confirmation,
+        this.toastr
+      )
+    ) return;
+  
+    
+    this.dataService.createUser(name, password, email).subscribe(
+      (response: User) => {
+        this.user = response;
+        this.sessionService.setUser(this.user);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
 
-      this.router.navigate(["/"]);
-    }
+    this.router.navigate(["/"]);
   }
 
   checkPassword() {

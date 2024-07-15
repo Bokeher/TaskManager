@@ -10,36 +10,55 @@ export class Validate {
     email: string,
     name: string,
     password: string,
-    password_confirmation: string
+    password_confirmation: string,
+    toastr: ToastrService
   ) {
-    const data = {
-      email,
-      name,
-      password,
-      password_confirmation,
-      error: '',
-    };
-
-    const rules = {
-      email: 'required|email',
-      name: 'required',
-      password: 'min:8|string|confirmed|regex:"(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[#?!@$%^&*-])"',
-      password_confirmation: 'required',
-    };
-
-    const validation = new Validator(data, rules);
-    
-    if (validation.fails()) {
-      this.error = 'Podano zły adres email użytkownika lub hasło!';
-    }
-    
-    return validation;
+    return (
+      this.validateEmail(email, toastr) &&
+      this.validateName(name, toastr) &&
+      this.validatePassword(password, toastr) &&
+      this.validatePasswordConfirmation(password, password_confirmation, toastr)
+    );
   }
 
   /**
    * @returns false when validation fails, else return true
    */
-  validatePassword(password: string, toastr: ToastrService) {
+  validateName(name: string, toastr: ToastrService): boolean {
+    const data = {
+      name,
+    };
+
+    const rules = {
+      name: 'required',
+    };
+
+    const validation = new Validator(data, rules);
+
+    return this.checkValidation(validation, toastr);
+  }
+
+  /**
+   * @returns false when validation fails, else return true
+   */
+  validateEmail(email: string, toastr: ToastrService): boolean {
+    const data = {
+      email,
+    };
+
+    const rules = {
+      email: 'required|email',
+    };
+
+    const validation = new Validator(data, rules);
+
+    return this.checkValidation(validation, toastr);
+  }
+  
+  /**
+   * @returns false when validation fails, else return true
+   */
+  validatePassword(password: string, toastr: ToastrService): boolean {
     const data = {
       password,
     };
