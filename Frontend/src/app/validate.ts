@@ -8,14 +8,14 @@ export class Validate {
 
   validateRegistration(
     email: string,
-    name: string,
+    username: string,
     password: string,
     password_confirmation: string,
     toastr: ToastrService
   ) {
     return (
       this.validateEmail(email, toastr) &&
-      this.validateName(name, toastr) &&
+      this.validateUsername(username, toastr) &&
       this.validatePassword(password, toastr) &&
       this.validatePasswordConfirmation(password, password_confirmation, toastr)
     );
@@ -24,13 +24,13 @@ export class Validate {
   /**
    * @returns false when validation fails, else return true
    */
-  validateName(name: string, toastr: ToastrService): boolean {
+  validateUsername(username: string, toastr: ToastrService): boolean {
     const data = {
-      name,
+      username,
     };
 
     const rules = {
-      name: 'required',
+      username: 'required',
     };
 
     const validation = new Validator(data, rules);

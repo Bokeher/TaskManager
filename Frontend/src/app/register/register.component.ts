@@ -16,7 +16,7 @@ export class RegisterComponent extends Validate implements OnInit {
   submitted: boolean = false;
 
   formData = {
-    name: '',
+    username: '',
     password: '',
     password_confirmation: '',
     email: '',
@@ -46,13 +46,13 @@ export class RegisterComponent extends Validate implements OnInit {
   }
 
   getUser(
-    name: string, password: string,
+    username: string, password: string,
     password_confirmation: string, email: string
   ) {
     if (
       !this.validate.validateRegistration(
         email,
-        name,
+        username,
         password,
         password_confirmation,
         this.toastr
@@ -60,7 +60,7 @@ export class RegisterComponent extends Validate implements OnInit {
     ) return;
   
     
-    this.dataService.createUser(name, password, email).subscribe(
+    this.dataService.createUser(username, password, email).subscribe(
       (response: User) => {
         this.user = response;
         this.sessionService.setUser(this.user);
@@ -88,7 +88,7 @@ export class RegisterComponent extends Validate implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.getUser(
-      this.formData.name,
+      this.formData.username,
       this.formData.password,
       this.formData.password_confirmation,
       this.formData.email
