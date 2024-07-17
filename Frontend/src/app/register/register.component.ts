@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent extends Validate implements OnInit {
+export class RegisterComponent implements OnInit {
   user?: User;
   submitted: boolean = false;
 
@@ -30,9 +30,7 @@ export class RegisterComponent extends Validate implements OnInit {
     public validate: Validate,
     private router: Router,
     private toastr: ToastrService
-  ) {
-    super();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.sessionService.getUserObservable().subscribe((user) => {
@@ -74,11 +72,11 @@ export class RegisterComponent extends Validate implements OnInit {
   }
 
   checkPassword() {
-    this.showPasswordRules = this.validatePassword(this.formData.password, this.toastr);
+    this.showPasswordRules = this.validate.validatePassword(this.formData.password, this.toastr);
   }
   
   checkPasswords() {
-    this.passwordMatch = !this.validatePasswordConfirmation(
+    this.passwordMatch = !this.validate.validatePasswordConfirmation(
       this.formData.password,
       this.formData.password_confirmation,
       this.toastr

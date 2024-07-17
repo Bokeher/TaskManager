@@ -54,8 +54,6 @@
       <a routerLink="/login" i18n="@@alreadyHaveAccount">
         Already have an account? Log in!
       </a>
-
-      <div [ngClass]="{ error: error, none: !error }">{{ error }}</div>
     </form>
 
     <div *ngIf="submitted">
