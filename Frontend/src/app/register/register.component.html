@@ -11,6 +11,7 @@
           name="email"
           placeholder="email"
           i18n-placeholder="email"
+          (focusout)="checkEmail()"
           [(ngModel)]="formData.email"
         />
       </div>
@@ -22,6 +23,7 @@
           name="username"
           placeholder="username"
           i18n-placeholder="username"
+          (focusout)="checkUsername()"
           [(ngModel)]="formData.username"
         />
       </div>

@@ -82,6 +82,14 @@ export class RegisterComponent implements OnInit {
       this.toastr
     );
   }
+
+  checkEmail() {
+    this.validate.validateEmail(this.formData.email, this.toastr);
+  }
+
+  checkUsername() {
+    this.validate.validateUsername(this.formData.username, this.toastr);
+  }
   
   onSubmit() {
     this.submitted = true;
