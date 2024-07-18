@@ -33,7 +33,11 @@ export class Validate {
       username: 'required',
     };
 
-    const validation = new Validator(data, rules);
+    const customMessages = {
+      'required.username': 'Please enter your username.',
+    };
+
+    const validation = new Validator(data, rules, customMessages);
 
     return this.checkValidation(validation, toastr);
   }
