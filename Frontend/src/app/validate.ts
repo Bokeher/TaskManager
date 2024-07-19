@@ -54,7 +54,12 @@ export class Validate {
       email: 'required|email',
     };
 
-    const validation = new Validator(data, rules);
+    const customMessages = {
+      'required.email': 'Please enter your email.',
+      'email.email': 'Invalid email format.'
+    };
+
+    const validation = new Validator(data, rules, customMessages);
 
     return this.checkValidation(validation, toastr);
   }
@@ -72,7 +77,12 @@ export class Validate {
         'min:8|required|string|regex:"(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[#?!@$%^&*-])"',
     };
 
-    const validation = new Validator(data, rules);
+    const customMessages = {
+      'required.password': 'Please enter your password.',
+      'regex.password': 'Your password must contain at least one number, one uppercase letter, and one special character.',
+    };
+
+    const validation = new Validator(data, rules, customMessages);
 
     return this.checkValidation(validation, toastr);
   }
@@ -92,10 +102,14 @@ export class Validate {
 
     const rules = {
       password: 'required|confirmed',
-      password_confirmation: 'required',
     };
 
-    const validation = new Validator(data, rules);
+    const customMessages = {
+      'required.password': 'Please confirm your password.',
+      'confirmed.password': 'The passwords do not match.',
+    };
+
+    const validation = new Validator(data, rules, customMessages);
 
     return this.checkValidation(validation, toastr);
   }
