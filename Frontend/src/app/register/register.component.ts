@@ -21,8 +21,10 @@ export class RegisterComponent implements OnInit {
     password_confirmation: '',
     email: '',
   };
-  showPasswordRules = false;
-  passwordMatch = false;
+  validEmail: boolean = true;
+  validUsername: boolean = true;
+  validPassword: boolean = true;
+  passwordMatch: boolean = true;
 
   constructor(
     private dataService: DataService,
@@ -71,24 +73,48 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(["/"]);
   }
 
-  checkPassword() {
-    this.showPasswordRules = this.validate.validatePassword(this.formData.password, this.toastr);
+  checkEmail() {
+    this.validEmail = this.validate.validateEmail(this.formData.email, this.toastr);
+
+    if (!this.validEmail) {
+      setTimeout(() => {
+        this.validEmail = true;
+      }, 100);
+    }
   }
-  
+
+  checkUsername() {
+    this.validUsername = this.validate.validateUsername(this.formData.username, this.toastr);
+
+    if (!this.validUsername) {
+      setTimeout(() => {
+        this.validUsername = true;
+      }, 100);
+    }
+  }
+
+  checkPassword() {
+    this.validPassword = this.validate.validatePassword(this.formData.password, this.toastr);
+
+    if (!this.validPassword) {
+      setTimeout(() => {
+        this.validPassword = true;
+      }, 100);
+    }
+  }
+
   checkPasswords() {
     this.passwordMatch = !this.validate.validatePasswordConfirmation(
       this.formData.password,
       this.formData.password_confirmation,
       this.toastr
     );
-  }
 
-  checkEmail() {
-    this.validate.validateEmail(this.formData.email, this.toastr);
-  }
-
-  checkUsername() {
-    this.validate.validateUsername(this.formData.username, this.toastr);
+    if (!this.passwordMatch) {
+      setTimeout(() => {
+        this.passwordMatch = true;
+      }, 100);
+    }
   }
   
   onSubmit() {
