@@ -151,7 +151,7 @@ export class Validate {
   }
 
   private checkValidation(validation: Validator.Validator<any>, toastr: ToastrService): boolean {
-    if(!validation.fails()) return true;
+    if(validation.passes()) return true;
 
     const errors = validation.errors.all();
 
