@@ -104,7 +104,7 @@ export class RegisterComponent implements OnInit {
   }
 
   checkPasswords() {
-    this.passwordMatch = !this.validate.validatePasswordConfirmation(
+    this.passwordMatch = this.validate.validatePasswordConfirmation(
       this.formData.password,
       this.formData.password_confirmation,
       this.toastr
