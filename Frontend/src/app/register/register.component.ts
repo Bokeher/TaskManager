@@ -21,10 +21,16 @@ export class RegisterComponent implements OnInit {
     password_confirmation: '',
     email: '',
   };
+  
   validEmail: boolean = true;
   validUsername: boolean = true;
   validPassword: boolean = true;
   passwordMatch: boolean = true;
+
+  validEmailShake: boolean = false;
+  validUsernameShake: boolean = false;
+  validPasswordShake: boolean = false;
+  passwordMatchShake: boolean = false;
 
   constructor(
     private dataService: DataService,
@@ -76,9 +82,11 @@ export class RegisterComponent implements OnInit {
   checkEmail() {
     this.validEmail = this.validate.validateEmail(this.formData.email, this.toastr);
 
-    if (!this.validEmail) {
+    this.validEmailShake = !this.validEmail;
+
+    if (!this.validEmailShake) {
       setTimeout(() => {
-        this.validEmail = true;
+        this.validEmailShake = true;
       }, 100);
     }
   }
@@ -86,9 +94,11 @@ export class RegisterComponent implements OnInit {
   checkUsername() {
     this.validUsername = this.validate.validateUsername(this.formData.username, this.toastr);
 
-    if (!this.validUsername) {
+    this.validUsernameShake = !this.validUsername;
+
+    if (!this.validUsernameShake) {
       setTimeout(() => {
-        this.validUsername = true;
+        this.validUsernameShake = true;
       }, 100);
     }
   }
@@ -96,9 +106,11 @@ export class RegisterComponent implements OnInit {
   checkPassword() {
     this.validPassword = this.validate.validatePassword(this.formData.password, this.toastr);
 
-    if (!this.validPassword) {
+    this.validPasswordShake = !this.validPassword;
+
+    if (!this.validPasswordShake) {
       setTimeout(() => {
-        this.validPassword = true;
+        this.validPasswordShake = true;
       }, 100);
     }
   }
@@ -110,9 +122,11 @@ export class RegisterComponent implements OnInit {
       this.toastr
     );
 
-    if (!this.passwordMatch) {
+    this.passwordMatchShake = !this.passwordMatch;
+    
+    if (this.passwordMatchShake) {
       setTimeout(() => {
-        this.passwordMatch = true;
+        this.passwordMatchShake = false;
       }, 100);
     }
   }

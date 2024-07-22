@@ -3,7 +3,7 @@
     <form #userRegister="ngForm" (ngSubmit)="onSubmit()" novalidate>
       <div id="header">TaskManager</div>
 
-      <div [class.shake]="!validEmail" class="inputBox">
+      <div [class.shake]="validEmailShake" [class.error]="!validEmail" class="inputBox">
         <i class="material-symbols-outlined"> person </i>
         <input
           #autoSelect
@@ -16,7 +16,7 @@
         />
       </div>
 
-      <div [class.shake]="!validUsername" class="inputBox">
+      <div [class.shake]="validUsernameShake" [class.error]="!validUsername" class="inputBox">
         <i class="material-symbols-outlined"> person </i>
         <input
           type="text"
@@ -28,7 +28,7 @@
         />
       </div>
 
-      <div [class.shake]="!validPassword" class="inputBox">
+      <div [class.shake]="validPasswordShake" [class.error]="!validPassword" class="inputBox">
         <i class="material-symbols-outlined"> password </i>
         <input
           type="password"
@@ -39,8 +39,8 @@
           [(ngModel)]="formData.password"
         />
       </div>
-      
-      <div [class.shake]="!passwordMatch" class="inputBox">
+
+      <div [class.shake]="passwordMatchShake" [class.error]="!passwordMatch" class="inputBox">
         <i class="material-symbols-outlined"> password </i>
         <input
           type="password"

@@ -32,6 +32,15 @@
   background-color: rgba(255, 255, 255, 0);
 }
 
+.inputBox.error {
+  border-color: red;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.inputBox.error::placeholder {
+  color: red;
+}
+
 i {
   margin-top: 1.2rem;
   margin-left: 0.6rem;
@@ -82,22 +91,6 @@ a:hover {
   transition: 0.2s;
   color: blueviolet;
   transform: scale(1.1);
-}
-
-.error {
-  width: fit-content;
-
-  text-align: center;
-  color: rgb(255, 0, 0);
-  position: absolute;
-  margin-left: 30px;
-  margin-top: 8px;
-}
-
-.error p {
-  color: red;
-  font-size: 15px;
-  margin-top: -6px;
 }
 
 .shake {
