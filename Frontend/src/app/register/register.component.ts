@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit {
 
     this.validEmailShake = !this.validEmail;
 
-    if (!this.validEmailShake) {
+    if (this.validEmailShake) {
       setTimeout(() => {
         this.validEmailShake = true;
       }, 100);
@@ -96,7 +96,7 @@ export class RegisterComponent implements OnInit {
 
     this.validUsernameShake = !this.validUsername;
 
-    if (!this.validUsernameShake) {
+    if (this.validUsernameShake) {
       setTimeout(() => {
         this.validUsernameShake = true;
       }, 100);
@@ -108,7 +108,7 @@ export class RegisterComponent implements OnInit {
 
     this.validPasswordShake = !this.validPassword;
 
-    if (!this.validPasswordShake) {
+    if (this.validPasswordShake) {
       setTimeout(() => {
         this.validPasswordShake = true;
       }, 100);
