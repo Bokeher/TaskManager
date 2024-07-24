@@ -54,7 +54,7 @@
 
       <button type="submit" id="registerButton" i18n="@@register">Register</button>
 
-      <a routerLink="/login" i18n="@@alreadyHaveAccount">
+      <a routerLink="/login" i18n="@@alreadyHaveAccount" (click)="clearToast()">
         Already have an account? Log in!
       </a>
     </form>

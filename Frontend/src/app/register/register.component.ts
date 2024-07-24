@@ -140,4 +140,8 @@ export class RegisterComponent implements OnInit {
       this.formData.email
     );
   }
+
+  clearToast() {
+    this.toastr.clear();
+  }
 }
