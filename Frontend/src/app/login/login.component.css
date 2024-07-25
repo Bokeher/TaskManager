@@ -74,7 +74,7 @@ button:hover {
 a {
   text-decoration: none;
   display: block;
-  margin-top: 3.5rem;
+  margin-top: 2rem;
   text-align: center;
 }
 
@@ -85,17 +85,11 @@ a:hover {
 }
 
 .error {
-  width: fit-content;
-
   text-align: center;
-  color: rgb(255, 0, 0);
-  position: absolute;
-  margin-left: 30px;
-  margin-top: 8px;
+  margin-top: 1.3rem;
 }
 
 .error p {
   color: red;
-  font-size: 15px;
-  margin-top: -6px;
+  font-size: 16px;
 }
