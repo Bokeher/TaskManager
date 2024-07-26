@@ -150,6 +150,27 @@ export class Validate {
     return this.checkValidation(validation, toastr);
   }
 
+  /**
+   * @returns false when validation fails, else return true
+   */
+  validateCategoryName(categoryName: string, toastr: ToastrService): boolean {
+    const data = {
+      categoryName,
+    };
+
+    const rules = {
+      categoryName: 'max:256|required|string',
+    };
+
+    const customMessages = {
+      'required.categoryName': 'Please enter category name.',
+    };
+
+    const validation = new Validator(data, rules, customMessages);
+
+    return this.checkValidation(validation, toastr);
+  }
+
   private checkValidation(validation: Validator.Validator<any>, toastr: ToastrService): boolean {
     if(validation.passes()) return true;
 

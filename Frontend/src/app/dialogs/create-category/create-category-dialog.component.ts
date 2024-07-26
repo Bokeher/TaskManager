@@ -3,6 +3,8 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { SessionService } from '../../session.service';
 import { Project } from '../../dataModels/project';
 import { DataService } from '../../data.service';
+import { Validate } from 'src/app/validate';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-category-dialog',
@@ -17,7 +19,9 @@ export class CreateCategoryDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: string,
     public dialog: MatDialog,
     private sessionService: SessionService,
-    private dataService: DataService
+    private dataService: DataService,
+    private validate: Validate,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -36,16 +40,12 @@ export class CreateCategoryDialogComponent implements OnInit {
   }
 
   createCategory() {
-    console.log(this.categoryName);
-
     if (
       !this.project ||
       !this.project._id ||
-      (this.project.categories &&
-        this.project.categories.includes(this.categoryName))
-    ) {
-      return;
-    }
+      (this.project.categories && this.project.categories.includes(this.categoryName)) ||
+      !this.validate.validateCategoryName(this.categoryName, this.toastr)
+    ) return;
 
     this.project.categories.push(this.categoryName);
     this.sessionService.setSelectedProject(this.project);
