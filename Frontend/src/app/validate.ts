@@ -145,7 +145,11 @@ export class Validate {
       description: 'max:1000|string',
     };
 
-    const validation = new Validator(data, rules);
+    const customMessages = {
+      'required.name': 'Please enter task name.',
+    };
+
+    const validation = new Validator(data, rules, customMessages);
 
     return this.checkValidation(validation, toastr);
   }
