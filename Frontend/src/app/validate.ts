@@ -126,7 +126,11 @@ export class Validate {
       projectName: 'max:128|required|string',
     };
 
-    const validation = new Validator(data, rules);
+    const customMessages = {
+      'required.projectName': 'Please enter project name.',
+    };
+    
+    const validation = new Validator(data, rules customMessages);
 
     return this.checkValidation(validation, toastr);
   }
