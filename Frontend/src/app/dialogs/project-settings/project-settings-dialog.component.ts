@@ -35,7 +35,6 @@ export class ProjectSettingsDialogComponent implements OnInit {
         if(selectedProject) {
           this.project = selectedProject;
           this.projectName = selectedProject?.name;
-
         }
 
         this.adminPrivileges = this.sessionService.userIsAdmin();
@@ -53,9 +52,9 @@ export class ProjectSettingsDialogComponent implements OnInit {
 
   changeProjectName(): void {
     if (
+      !this.validate.validateProjectName(this.projectName, this.toastr) || 
       !this.projectName || 
-      !this.project || 
-      !this.validate.validateProjectName(this.projectName, this.toastr)
+      !this.project 
     ) return;
   
     this.project.name = this.projectName;

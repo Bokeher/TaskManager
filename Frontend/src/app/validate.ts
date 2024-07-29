@@ -117,7 +117,7 @@ export class Validate {
   /**
    * @returns false when validation fails, else return true
    */
-  validateProjectName(projectName: string, toastr: ToastrService): boolean {
+  validateProjectName(projectName: string | undefined, toastr: ToastrService): boolean {
     const data = {
       projectName,
     };
@@ -131,7 +131,7 @@ export class Validate {
     };
     
     const validation = new Validator(data, rules, customMessages);
-    
+
     return this.checkValidation(validation, toastr);
   }
 
