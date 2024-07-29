@@ -130,8 +130,8 @@ export class Validate {
       'required.projectName': 'Please enter project name.',
     };
     
-    const validation = new Validator(data, rules customMessages);
-
+    const validation = new Validator(data, rules, customMessages);
+    
     return this.checkValidation(validation, toastr);
   }
 
