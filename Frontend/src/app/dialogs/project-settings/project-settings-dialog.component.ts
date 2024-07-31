@@ -106,8 +106,10 @@ export class ProjectSettingsDialogComponent implements OnInit {
     
     this.dataService.getUserByLogin(this.userLogin).subscribe(
       (response: User) => {
+        if(!response) return;
+
         if(this.isMember(response)) {
-          // TODO: handle this with toast system
+          this.toastr.error("This user is already a member of this project.")
           return;
         }
 
