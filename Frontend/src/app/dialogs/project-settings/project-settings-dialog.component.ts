@@ -99,8 +99,11 @@ export class ProjectSettingsDialogComponent implements OnInit {
   }
 
   addUser(): void {
-    if (!this.userLogin) return;
-
+    if (
+      !this.validate.validateUsername(this.userLogin, this.toastr) || 
+      !this.userLogin
+    ) return;
+    
     this.dataService.getUserByLogin(this.userLogin).subscribe(
       (response: User) => {
         if(this.isMember(response)) {

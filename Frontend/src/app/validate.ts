@@ -24,7 +24,7 @@ export class Validate {
   /**
    * @returns false when validation fails, else return true
    */
-  validateUsername(username: string, toastr: ToastrService): boolean {
+  validateUsername(username: string | undefined, toastr: ToastrService): boolean {
     const data = {
       username,
     };
@@ -34,7 +34,7 @@ export class Validate {
     };
 
     const customMessages = {
-      'required.username': 'Please enter your username.',
+      'required.username': 'Please enter username.',
     };
 
     const validation = new Validator(data, rules, customMessages);
