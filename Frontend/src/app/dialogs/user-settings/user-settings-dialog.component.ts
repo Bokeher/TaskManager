@@ -36,12 +36,7 @@ export class UserSettingsDialogComponent extends Validate implements OnInit {
   }
 
   changePassword(): void {
-    if (!this.user) return;
-
-    if (!this.validate.validatePassword(this.password, this.toastr)) {
-      this.output = 'Nieprawidłowe hasło.';
-      return;
-    }
+    if (!this.user || !this.validate.validatePassword(this.password, this.toastr)) return;
 
     this.user.password = this.password;
 
@@ -49,7 +44,7 @@ export class UserSettingsDialogComponent extends Validate implements OnInit {
 
     if (_id && this.user._id) {
       this.updateUser(this.user._id, newUserWithoutId);
-      this.output = 'Pomyślnie zmieniono hasło.';
+      this.toastr.success("Password changed")
     }
 
     this.password = "";
@@ -63,7 +58,7 @@ export class UserSettingsDialogComponent extends Validate implements OnInit {
     const { _id, ...newUserWithoutId } = this.user;
     if (_id && this.user._id) {
       this.updateUser(this.user._id, newUserWithoutId);
-      this.output = 'Pomyślnie zmieniono awatar.';
+      this.toastr.success("Avatar url changed")
     }
 
     this.avatarUrl = "";
