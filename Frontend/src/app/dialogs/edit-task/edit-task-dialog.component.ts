@@ -6,6 +6,7 @@ import { Task } from '../../dataModels/task';
 import { Project } from '../../dataModels/project';
 import { User } from '../../dataModels/user';
 import { BehaviorSubject, Subscription, forkJoin, map } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-task-dialog',
@@ -29,7 +30,8 @@ export class EditTaskDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public task: Task,
     public dialog: MatDialog,
     private sessionService: SessionService,
-    private dataService: DataService
+    private dataService: DataService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -111,7 +113,10 @@ export class EditTaskDialogComponent implements OnInit {
   }
 
   addUserToTask(): void {
-    if(!this.userToAdd) return;
+    if(!this.userToAdd) {
+      this.toastr.error("Please enter username");
+      return;
+    }
 
     this.dataService.getUserByLogin(this.userToAdd).subscribe(
       (response: User) => {
@@ -129,7 +134,7 @@ export class EditTaskDialogComponent implements OnInit {
         if(!containsUser) return;
 
         if(this.task.memberIds.includes(response._id)) {
-          // TODO: handle this with toast system
+          this.toastr.error("This user is already assigned to this task.")
           return;
         }
 
