@@ -103,7 +103,7 @@ button.toast-close-button {
   background-position: 15px center;
   background-repeat: no-repeat;
   background-size: 24px;
-  box-shadow: 0 0 12px #999999;
+  box-shadow: 0 0 2px black;
   color: #FFFFFF;
 }
 .toast-container .ngx-toastr:hover {
@@ -144,7 +144,7 @@ button.toast-close-button {
   pointer-events: auto;
 }
 .toast-success {
-  background-color: #51A351;
+  background-color: #2c7c2c;
 }
 .toast-error {
   background-color: #BD362F;
