@@ -1,162 +1,134 @@
-require('dotenv').config()
-
-const { MongoClient, ObjectId } = require('mongodb');
+const { ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
+const { connectDB } = require('../db');
 
 class Users {
-  uri = process.env.MONGODB_URI;
 
   async getUserByLogin(login) {
-    let result;
-    const client = new MongoClient(this.uri);
- 
     try {
-      await client.connect();
-
-      const db = client.db("TaskManager");
+      const db = await connectDB();
       const coll = db.collection("Users");
 
-      result = await coll.findOne({"login": login});
-      console.log(`\ngetUserByLogin(${login})`);
+      const result = await coll.findOne({ login });
+
+      console.log(`getUserByLogin(${login})`);
       console.log(result);
+
+      return result;
     } catch (e) {
       console.error(e);
-    } finally {
-      await client.close();
-      return result;
     }
   }
 
   async getUser(login, password) {
-    let result;
-    const client = new MongoClient(this.uri);
- 
     try {
-      await client.connect();
-
-      const db = client.db("TaskManager");
+      const db = await connectDB();
       const coll = db.collection("Users");
 
-      const user = await coll.findOne({ "login": login });
+      const user = await coll.findOne({ login });
 
       if (!user) return null;
 
       const passwordMatch = await bcrypt.compare(password, user.password);
 
-      console.log(`\ngetUser(${login}, ${password})`);
-      console.log(result);
+      console.log(`getUser(${login})`);
+
       if (passwordMatch) {
-        console.log("Password match"); 
+        console.log("Password match");
         return user;
-      } 
-      
-      console.log("Password doesn't match"); 
+      }
+
+      console.log("Password doesn't match");
       return null;
+
     } catch (e) {
       console.error(e);
-    } finally {
-      await client.close();
     }
   }
 
   async getUserById(id) {
-    let result;
-    const client = new MongoClient(this.uri);
- 
     try {
-      await client.connect();
-
-      const db = client.db("TaskManager");
+      const db = await connectDB();
       const coll = db.collection("Users");
 
-      result = await coll.findOne({"_id": new ObjectId(id)});
-      console.log(`\ngetUserById(${id}`);
+      const result = await coll.findOne({ _id: new ObjectId(id) });
+
+      console.log(`getUserById(${id})`);
       console.log(result);
+
+      return result;
     } catch (e) {
       console.error(e);
-    } finally {
-      await client.close();
-      return result;
     }
   }
 
   async createUser(login, password) {
-    let result;
-    const client = new MongoClient(this.uri);
-
-    const hashedPassword = await bcrypt.hash(password, 10);
- 
     try {
-      await client.connect();
-
-      const db = client.db("TaskManager");
+      const db = await connectDB();
       const coll = db.collection("Users");
-      
-      const existingUser = await coll.findOne({"login": login});
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      const existingUser = await coll.findOne({ login });
+
       if (existingUser) {
         console.log('User already exists.');
         return null;
       }
 
       const newUser = {
-        "avatarUrl": "",
-        "login": login,
-        "password": hashedPassword,
-        "projectIds": []
+        avatarUrl: "",
+        login,
+        password: hashedPassword,
+        projectIds: []
       };
 
-      result = await coll.insertOne(newUser);
-      console.log(`\ncreateUser(${login}, ${password})`);
+      const result = await coll.insertOne(newUser);
+
+      console.log(`createUser(${login})`);
       console.log(result);
+
+      return result;
+
     } catch (e) {
       console.error(e);
-    } finally {
-      await client.close();
-      return result;
     }
   }
 
   async deleteUser(login) {
-    let result;
-    const client = new MongoClient(this.uri);
- 
     try {
-      await client.connect();
-
-      const db = client.db("TaskManager");
+      const db = await connectDB();
       const coll = db.collection("Users");
 
-      result = await coll.deleteOne({"login": login});
-      console.log(`\ndeleteUser(${login})`);
+      const result = await coll.deleteOne({ login });
+
+      console.log(`deleteUser(${login})`);
       console.log(result);
+
+      return result;
+
     } catch (e) {
       console.error(e);
-    } finally {
-      await client.close();
-      return result;
     }
   }
 
   async updateUser(id, newUser) {
-    let result;
-    const client = new MongoClient(this.uri);
-
-    try {  
-      await client.connect();
-
-      const db = client.db("TaskManager");
+    try {
+      const db = await connectDB();
       const coll = db.collection("Users");
-      
-      const filter = { "_id": new ObjectId(id) };
 
-      result = await coll.findOneAndReplace(filter, newUser);
-      console.log(`\nupdateUser(${id}, ${newUser})`);
+      const result = await coll.findOneAndReplace(
+        { _id: new ObjectId(id) },
+        newUser
+      );
+
+      console.log(`updateUser(${id})`);
       console.log(result);
+
+      return result;
+
     } catch (e) {
       console.error(e);
-    } finally {
-      await client.close();
-      return result;
     }
   }
 }
