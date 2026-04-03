@@ -4,14 +4,14 @@
 todo.txt
 
 # Compiled output
-/dist
+client/dist/
 /tmp
 /out-tsc
 /bazel-out
 
 # Node
-/client/node_modules
-/server/node_modules
+/client/node_modules/
+/server/node_modules/
 node_modules/
 npm-debug.log
 yarn-error.log
