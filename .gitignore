@@ -1,6 +1,6 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-/Server/.env
+/server/.env
 todo.txt
 
 # Compiled output
@@ -10,8 +10,8 @@ todo.txt
 /bazel-out
 
 # Node
-/Frontend/node_modules
-/Server/node_modules
+/client/node_modules
+/server/node_modules
 node_modules/
 npm-debug.log
 yarn-error.log
@@ -34,7 +34,7 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-Frontend/.angular/cache
+client/.angular/cache
 .sass-cache/
 /connect.lock
 /coverage
