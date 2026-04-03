@@ -16,9 +16,10 @@ import { FilterDialogComponent } from '../dialogs/filter-dialog/filter-dialog.co
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-project',
-  templateUrl: './project.component.html',
-  styleUrls: ['./project.component.css'],
+    selector: 'app-project',
+    templateUrl: './project.component.html',
+    styleUrls: ['./project.component.css'],
+    standalone: false
 })
 export class ProjectComponent implements OnInit {
   project?: Project;

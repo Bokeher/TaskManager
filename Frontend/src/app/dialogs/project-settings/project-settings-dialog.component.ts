@@ -9,9 +9,10 @@ import { User } from '../../dataModels/user';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-project-settings-dialog',
-  templateUrl: './project-settings-dialog.component.html',
-  styleUrls: ['./project-settings-dialog.component.css'],
+    selector: 'app-project-settings-dialog',
+    templateUrl: './project-settings-dialog.component.html',
+    styleUrls: ['./project-settings-dialog.component.css'],
+    standalone: false
 })
 export class ProjectSettingsDialogComponent implements OnInit {
   projectName?: string;

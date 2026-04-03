@@ -5,9 +5,10 @@ import { Project } from '../../dataModels/project';
 import { DataService } from '../../data.service';
 
 @Component({
-  selector: 'app-edit-category-dialog',
-  templateUrl: './edit-category-dialog.component.html',
-  styleUrls: ['./edit-category-dialog.component.css'],
+    selector: 'app-edit-category-dialog',
+    templateUrl: './edit-category-dialog.component.html',
+    styleUrls: ['./edit-category-dialog.component.css'],
+    standalone: false
 })
 export class EditCategoryComponent implements OnInit {
   categoryName = '';

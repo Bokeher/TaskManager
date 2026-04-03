@@ -8,9 +8,10 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-user-settings-dialog',
-  templateUrl: './user-settings-dialog.component.html',
-  styleUrls: ['./user-settings-dialog.component.css'],
+    selector: 'app-user-settings-dialog',
+    templateUrl: './user-settings-dialog.component.html',
+    styleUrls: ['./user-settings-dialog.component.css'],
+    standalone: false
 })
 export class UserSettingsDialogComponent extends Validate implements OnInit {
   password: string = '';

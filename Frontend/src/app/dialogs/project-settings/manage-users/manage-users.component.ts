@@ -11,9 +11,10 @@ import { User } from '../../../dataModels/user';
 import { ManagingUser } from '../../../dataModels/managingUser';
 
 @Component({
-  selector: '[app-manage-users]',
-  templateUrl: './manage-users.component.html',
-  styleUrls: ['./manage-users.component.css'],
+    selector: '[app-manage-users]',
+    templateUrl: './manage-users.component.html',
+    styleUrls: ['./manage-users.component.css'],
+    standalone: false
 })
 export class ManageUsersComponent {
   projectMembers?: ProjectMember[];

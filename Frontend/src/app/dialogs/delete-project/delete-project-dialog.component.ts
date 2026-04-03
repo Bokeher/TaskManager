@@ -7,9 +7,10 @@ import { Project } from '../../dataModels/project';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-delete-project-dialog',
-  templateUrl: './delete-project-dialog.component.html',
-  styleUrls: ['./delete-project-dialog.component.css'],
+    selector: 'app-delete-project-dialog',
+    templateUrl: './delete-project-dialog.component.html',
+    styleUrls: ['./delete-project-dialog.component.css'],
+    standalone: false
 })
 export class DeleteProjectDialogComponent implements OnInit {
   project?: Project;

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -27,46 +27,40 @@ import { AutoResizeDirective } from './auto-resize.directive';
 import { SubmitOnEnterDirective } from './submit-on-enter.directive';
 import { ToastrModule } from 'ngx-toastr';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    UserSettingsDialogComponent,
-    ProjectSettingsDialogComponent,
-    ProjectsComponent,
-    ProjectComponent,
-    CreateProjectDialogComponent,
-    CreateTaskDialogComponent,
-    CreateCategoryDialogComponent,
-    DeleteProjectDialogComponent,
-    ManageUsersComponent,
-    EditTaskDialogComponent,
-    EditCategoryComponent,
-    FilterDialogComponent,
-    AutoResizeDirective,
-    SubmitOnEnterDirective,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatDialogModule,
-    CdkDrag,
-    CdkDropList,
-    CdkDropListGroup,
-    ToastrModule.forRoot()
-  ],
-  providers: [
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
-    {
-      provide: MatDialogRef,
-      useValue: {},
-    },
-    Validate,
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        LoginComponent,
+        RegisterComponent,
+        UserSettingsDialogComponent,
+        ProjectSettingsDialogComponent,
+        ProjectsComponent,
+        ProjectComponent,
+        CreateProjectDialogComponent,
+        CreateTaskDialogComponent,
+        CreateCategoryDialogComponent,
+        DeleteProjectDialogComponent,
+        ManageUsersComponent,
+        EditTaskDialogComponent,
+        EditCategoryComponent,
+        FilterDialogComponent,
+        AutoResizeDirective,
+        SubmitOnEnterDirective,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        CdkDrag,
+        CdkDropList,
+        CdkDropListGroup,
+        ToastrModule.forRoot()], providers: [
+        { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+        {
+            provide: MatDialogRef,
+            useValue: {},
+        },
+        Validate,
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}

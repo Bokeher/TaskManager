@@ -9,9 +9,10 @@ import { BehaviorSubject, Subscription, forkJoin, map } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-edit-task-dialog',
-  templateUrl: './edit-task-dialog.component.html',
-  styleUrls: ['./edit-task-dialog.component.css'],
+    selector: 'app-edit-task-dialog',
+    templateUrl: './edit-task-dialog.component.html',
+    styleUrls: ['./edit-task-dialog.component.css'],
+    standalone: false
 })
 export class EditTaskDialogComponent implements OnInit {
   project?: Project;

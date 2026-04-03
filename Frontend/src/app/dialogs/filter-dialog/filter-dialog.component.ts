@@ -3,9 +3,10 @@ import { SessionService } from '../../session.service';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-filter-dialog',
-  templateUrl: './filter-dialog.component.html',
-  styleUrls: ['./filter-dialog.component.css']
+    selector: 'app-filter-dialog',
+    templateUrl: './filter-dialog.component.html',
+    styleUrls: ['./filter-dialog.component.css'],
+    standalone: false
 })
 export class FilterDialogComponent implements OnInit {
   onlyAssigned: boolean = false;

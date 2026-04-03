@@ -2,7 +2,8 @@ import { Directive, HostListener, Optional, Host } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Directive({
-  selector: '[submitOnEnter]'
+    selector: '[submitOnEnter]',
+    standalone: false
 })
 export class SubmitOnEnterDirective {
 

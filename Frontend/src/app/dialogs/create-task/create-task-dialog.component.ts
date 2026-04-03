@@ -8,9 +8,10 @@ import { Validate } from 'src/app/validate';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-create-task-dialog',
-  templateUrl: './create-task-dialog.component.html',
-  styleUrls: ['./create-task-dialog.component.css'],
+    selector: 'app-create-task-dialog',
+    templateUrl: './create-task-dialog.component.html',
+    styleUrls: ['./create-task-dialog.component.css'],
+    standalone: false
 })
 export class CreateTaskDialogComponent implements OnInit {
   project?: Project;

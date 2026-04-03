@@ -7,9 +7,10 @@ import { Validate } from 'src/app/validate';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-create-category-dialog',
-  templateUrl: './create-category-dialog.component.html',
-  styleUrls: ['./create-category-dialog.component.css'],
+    selector: 'app-create-category-dialog',
+    templateUrl: './create-category-dialog.component.html',
+    styleUrls: ['./create-category-dialog.component.css'],
+    standalone: false
 })
 export class CreateCategoryDialogComponent implements OnInit {
   categoryName = '';

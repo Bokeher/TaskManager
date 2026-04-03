@@ -9,9 +9,10 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-create-project-dialog',
-  templateUrl: './create-project-dialog.component.html',
-  styleUrls: ['./create-project-dialog.component.css'],
+    selector: 'app-create-project-dialog',
+    templateUrl: './create-project-dialog.component.html',
+    styleUrls: ['./create-project-dialog.component.css'],
+    standalone: false
 })
 export class CreateProjectDialogComponent extends Validate implements OnInit {
   user?: User;

@@ -1,4 +1,4 @@
-import * as Validator from 'validatorjs';
+import Validator from 'validatorjs';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
