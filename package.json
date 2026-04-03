@@ -4,15 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run start:frontend\" \"npm run start:server\"",
-    "start:frontend": "cd frontend && ng serve",
-    "start:frontend-pl": "cd frontend && ng serve --configuration=pl-PL --open --port 4201",
-    "start:frontend-cs": "cd frontend && ng serve --configuration=cs-CS --open --port 4202",
+    "start": "concurrently \"npm run start:client\" \"npm run start:server\"",
+    "start:client": "cd client && ng serve",
+    "start:client-pl": "cd client && ng serve --configuration=pl-PL --open --port 4201",
+    "start:client-cs": "cd client && ng serve --configuration=cs-CS --open --port 4202",
     "start:server": "cd server && node server.js",
-    "start-pl": "concurrently \"npm run start:frontend-pl\" \"npm run start:server\"",
-    "start-cs": "concurrently \"npm run start:frontend-cs\" \"npm run start:server\"",
-    "install-all": "npm install && cd Frontend && npm install && cd ../Server && npm install && cd ..",
-    "extract-translation": "cd Frontend && ng extract-i18n --output-path src/locale"
+    "start-pl": "concurrently \"npm run start:client-pl\" \"npm run start:server\"",
+    "start-cs": "concurrently \"npm run start:client-cs\" \"npm run start:server\"",
+    "install-all": "npm install && cd client && npm install && cd ../Server && npm install && cd ..",
+    "extract-translation": "cd client && ng extract-i18n --output-path src/locale"
   },
   "keywords": [],
   "author": "",
