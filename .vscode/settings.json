@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "client",
         "server",
-        "server/users"
+        "server/users",
+        "client/ui"
     ]
 }
