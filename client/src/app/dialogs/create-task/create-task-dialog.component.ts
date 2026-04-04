@@ -4,7 +4,7 @@ import { Project } from '../../dataModels/project';
 import { DataService } from '../../data.service';
 import { SessionService } from '../../session.service';
 import { Task } from '../../dataModels/task';
-import { Validate } from 'src/app/validate';
+import { Validate } from '../../validate';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

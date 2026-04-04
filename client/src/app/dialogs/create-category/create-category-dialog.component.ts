@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { SessionService } from '../../session.service';
 import { Project } from '../../dataModels/project';
 import { DataService } from '../../data.service';
-import { Validate } from 'src/app/validate';
+import { Validate } from '../../validate';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
