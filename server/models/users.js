@@ -62,7 +62,7 @@ class Users {
     }
   }
 
-  async createUser(login, password) {
+  async createUser(login, password, email) {
     try {
       const db = await connectDB();
       const coll = db.collection("Users");
@@ -80,7 +80,8 @@ class Users {
         avatarUrl: "",
         login,
         password: hashedPassword,
-        projectIds: []
+        projectIds: [],
+        email
       };
 
       const result = await coll.insertOne(newUser);

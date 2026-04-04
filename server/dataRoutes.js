@@ -56,8 +56,8 @@ router.post('/getUserById', async (req, res) => {
 
 router.put('/createUser', async (req, res) => {
   try {
-    const { login, password } = req.body;
-    const result = await new Users().createUser(login, password);
+    const { login, password, email } = req.body;
+    const result = await new Users().createUser(login, password, email);
     res.status(200).json(result);
   } catch (error) {
     res.status(500).json({ error: error.message });
