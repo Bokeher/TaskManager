@@ -126,15 +126,18 @@ class Users {
       const db = await connectDB();
       const coll = db.collection("Users");
 
-      const result = await coll.findOneAndReplace(
+      const result = await coll.findOneAndUpdate(
         { _id: new ObjectId(id) },
-        newUser
+        { $set: newUser },
+        { returnDocument: 'after' }
       );
 
-      console.log(`updateUser(${id})`);
-      console.log(result);
+      const { password, ...safeUser} = result.value
 
-      return result;
+      console.log(`updateUser(${id})`);
+      console.log(safeUser);
+
+      return safeUser;
 
     } catch (e) {
       console.error(e);
