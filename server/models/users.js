@@ -11,10 +11,12 @@ class Users {
 
       const result = await coll.findOne({ login });
 
-      console.log(`getUserByLogin(${login})`);
-      console.log(result);
+      const { password, ...safeUser } = result
 
-      return result;
+      console.log(`getUserByLogin(${login})`);
+      console.log(safeUser);
+
+      return safeUser;
     } catch (e) {
       console.error(e);
     }
@@ -35,7 +37,11 @@ class Users {
 
       if (passwordMatch) {
         console.log("Password match");
-        return user;
+
+        const { password, ...safeUser } = user
+        console.log(safeUser);
+
+        return safeUser;
       }
 
       console.log("Password doesn't match");
@@ -53,10 +59,12 @@ class Users {
 
       const result = await coll.findOne({ _id: new ObjectId(id) });
 
+      const { password, ...safeUser } = result
+      
       console.log(`getUserById(${id})`);
-      console.log(result);
+      console.log(safeUser);
 
-      return result;
+      return safeUser;
     } catch (e) {
       console.error(e);
     }
