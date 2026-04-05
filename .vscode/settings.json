@@ -3,6 +3,7 @@
         "client",
         "server",
         "server/users",
-        "client/ui"
+        "client/ui",
+        "client/register"
     ]
 }
