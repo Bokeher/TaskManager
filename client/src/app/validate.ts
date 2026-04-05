@@ -34,7 +34,7 @@ export class Validate {
     };
 
     const customMessages = {
-      'required.username': 'Please enter username.',
+      'required.username': $localize`:@@enterUsername: Please enter username.`,
     };
 
     const validation = new Validator(data, rules, customMessages);
@@ -55,8 +55,8 @@ export class Validate {
     };
 
     const customMessages = {
-      'required.email': 'Please enter your email.',
-      'email.email': 'Invalid email format.'
+      'required.email': $localize`:@@enterEmail: Please enter your email.`,
+      'email.email': $localize`:@@invalidEmailFormat: Invalid email format.`,
     };
 
     const validation = new Validator(data, rules, customMessages);
@@ -78,8 +78,8 @@ export class Validate {
     };
 
     const customMessages = {
-      'required.password': 'Please enter your password.',
-      'regex.password': 'Your password must contain at least one number, one uppercase letter, and one special character.',
+      'required.password': $localize`:@@enterPassword: Please enter your password.`,
+      'regex.password': $localize`:@@passwordRequirements: Your password must contain at least one number, one uppercase letter, and one special character.`,
     };
 
     const validation = new Validator(data, rules, customMessages);
@@ -105,8 +105,8 @@ export class Validate {
     };
 
     const customMessages = {
-      'required.password': 'Please confirm your password.',
-      'confirmed.password': 'The passwords do not match.',
+      'required.password': $localize`:@@confirmPassword: Please confirm your password.`,
+      'confirmed.password': $localize`:@@passwordDontMatch: The passwords do not match.`
     };
 
     const validation = new Validator(data, rules, customMessages);
@@ -127,7 +127,7 @@ export class Validate {
     };
 
     const customMessages = {
-      'required.projectName': 'Please enter project name.',
+      'required.projectName': $localize`:@@enterProjectName: Please enter project name.`,
     };
     
     const validation = new Validator(data, rules, customMessages);
@@ -150,7 +150,7 @@ export class Validate {
     };
 
     const customMessages = {
-      'required.name': 'Please enter task name.',
+      'required.name': $localize`:@@enterTaskName: Please enter task name.`,
     };
 
     const validation = new Validator(data, rules, customMessages);
@@ -171,7 +171,7 @@ export class Validate {
     };
 
     const customMessages = {
-      'required.categoryName': 'Please enter category name.',
+      'required.categoryName': $localize`:@@enterCategoryName: Please enter category name.`,
     };
 
     const validation = new Validator(data, rules, customMessages);

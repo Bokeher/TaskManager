@@ -4,6 +4,7 @@
         "server",
         "server/users",
         "client/ui",
-        "client/register"
+        "client/register",
+        "client/validation"
     ]
 }
