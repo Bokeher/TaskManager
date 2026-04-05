@@ -47,25 +47,27 @@ export class DeleteProjectDialogComponent implements OnInit {
     if (!this.project?._id) return;
     const projectId = this.project._id;
 
-    this.dataService.deleteProject(this.project?._id).subscribe(() => {
-      if (!this.user) return;
+    this.dataService.deleteProject(this.project?._id).subscribe({
+      next: () => {
+        if (!this.user) return;
 
-      // delete project from current user
-      this.user.projectIds = this.user.projectIds.filter((id) => id != projectId);
-      
-      const { _id, ...newUserWithoutId } = this.user;
+        // delete project from current user
+        this.user.projectIds = this.user.projectIds.filter((id) => id != projectId);
+        
+        const { _id, ...newUserWithoutId } = this.user;
 
-      if(_id) this.updateUser(_id, newUserWithoutId);
-      this.sessionService.setUser(this.user);
-      
-      // delete project from other users
-      this.deleteProjectFromUsers(projectId);
+        if(_id) this.updateUser(_id, newUserWithoutId);
+        this.sessionService.setUser(this.user);
+        
+        // delete project from other users
+        this.deleteProjectFromUsers(projectId);
 
-      this.router.navigate(["/"]);
+        this.router.navigate(["/"]);
 
-      this.dialog.closeAll();
-    }, (error) => {
-      console.error(error);
+        this.dialog.closeAll();
+      }, error: (error) => {
+        console.error(error);
+      }
     });
   }
 
@@ -87,13 +89,13 @@ export class DeleteProjectDialogComponent implements OnInit {
 
 
   updateUser(id: string, newUser: User): void {
-    this.dataService.updateUser(id, newUser).subscribe(
-      (response: any) => {
+    this.dataService.updateUser(id, newUser).subscribe({
+      next: (response: any) => {
         console.log(response);
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
       }
-    );
+    });
   }
 }

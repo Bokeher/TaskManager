@@ -37,8 +37,8 @@ export class LoginComponent implements OnInit{
   }
 
   getUser(email: string, name: string, password: string) {
-    this.dataService.getUser(email, name, password).subscribe(
-      (response: User) => {
+    this.dataService.getUser(email, name, password).subscribe({
+      next: (response: User) => {
         this.user = response;
 
         if(!this.user) {
@@ -49,10 +49,10 @@ export class LoginComponent implements OnInit{
         this.sessionService.setUser(this.user);
         this.router.navigate(["/"]);
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
       }
-    );
+    });
   }
 
   onSubmit() {

@@ -103,14 +103,14 @@ export class EditTaskDialogComponent implements OnInit {
   }
 
   updateProject(id: string, newProject: Project): void {
-    this.dataService.updateProject(id, newProject).subscribe(
-      (response: Project) => {
+    this.dataService.updateProject(id, newProject).subscribe({
+      next: (response: Project) => {
         console.log(response);
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
       }
-    );
+    });
   }
 
   addUserToTask(): void {
@@ -119,8 +119,8 @@ export class EditTaskDialogComponent implements OnInit {
       return;
     }
 
-    this.dataService.getUserByLogin(this.userToAdd).subscribe(
-      (response: User) => {
+    this.dataService.getUserByLogin(this.userToAdd).subscribe({
+      next: (response: User) => {
         if (!this.project) return;
         if (!response._id) return;
         
@@ -152,10 +152,10 @@ export class EditTaskDialogComponent implements OnInit {
           }
         });
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
       }
-    );
+    });
 
     this.userToAdd = "";
   }

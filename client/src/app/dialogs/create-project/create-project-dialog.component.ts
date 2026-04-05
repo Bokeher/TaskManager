@@ -55,8 +55,8 @@ export class CreateProjectDialogComponent extends Validate implements OnInit {
 
     this.dataService
       .createProject(this.formData.projectName, this.user._id)
-      .subscribe(
-        (response: any) => {
+      .subscribe({
+        next: (response: any) => {
           if (!this.user?._id || !this.user) return;
 
           this.user.projectIds.push(response.insertedId);
@@ -69,35 +69,35 @@ export class CreateProjectDialogComponent extends Validate implements OnInit {
           this.getProject(response.insertedId);
           this.dialog.closeAll();
         },
-        (error) => {
+        error: (error) => {
           console.error(error);
         }
-      );
+      });
   }
 
   updateUser(id: string, newUser: User): void {
-    this.dataService.updateUser(id, newUser).subscribe(
-      (response: any) => {
+    this.dataService.updateUser(id, newUser).subscribe({
+      next: (response: any) => {
         console.log(response);
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
       }
-    );
+    });
   }
 
   getProject(id: string): void {
-    this.dataService.getProject(id).subscribe(
-      (projectResponse: Project) => {
+    this.dataService.getProject(id).subscribe({
+      next: (projectResponse: Project) => {
         if (projectResponse) {
           this.sessionService.setSelectedProject(projectResponse);
 
           this.router.navigate(["/project"]);
         }
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
       }
-    );
+    });
   }
 }

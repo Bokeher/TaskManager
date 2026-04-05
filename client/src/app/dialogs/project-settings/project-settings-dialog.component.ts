@@ -105,8 +105,8 @@ export class ProjectSettingsDialogComponent implements OnInit {
       !this.userLogin
     ) return;
     
-    this.dataService.getUserByLogin(this.userLogin).subscribe(
-      (response: User) => {
+    this.dataService.getUserByLogin(this.userLogin).subscribe({
+      next: (response: User) => {
         if(!response) return;
 
         if(this.isMember(response)) {
@@ -117,10 +117,10 @@ export class ProjectSettingsDialogComponent implements OnInit {
         this.addUserToProject(response);
         this.addProjectToUser(response);
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
       }
-    );
+    });
 
     this.userLogin = "";
   }
@@ -191,24 +191,24 @@ export class ProjectSettingsDialogComponent implements OnInit {
   }
 
   updateUser(id: string, newUser: User): void {
-    this.dataService.updateUser(id, newUser).subscribe(
-      (response: User) => {
+    this.dataService.updateUser(id, newUser).subscribe({
+      next: (response: User) => {
         console.log(response);
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
       }
-    );
+    });
   }
 
   updateProject(id: string, newProject: Project): void {
-    this.dataService.updateProject(id, newProject).subscribe(
-      (response: Project) => {
+    this.dataService.updateProject(id, newProject).subscribe({
+      next: (response: Project) => {
         console.log(response);
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
       }
-    );
+    });
   }
 }

@@ -125,13 +125,13 @@ export class ManageUsersComponent {
   }
 
   updateProject(id: string, newProject: Project): void {
-    this.dataService.updateProject(id, newProject).subscribe(
-      (response: Project) => {
+    this.dataService.updateProject(id, newProject).subscribe({
+      next: (response: Project) => {
         console.log(response);
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
       }
-    );
+    });
   }
 }

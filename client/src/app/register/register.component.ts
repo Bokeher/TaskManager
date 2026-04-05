@@ -67,23 +67,22 @@ export class RegisterComponent implements OnInit {
     ) return;
   
     
-    this.dataService.createUser(username, password, email).subscribe(
-      (response: User) => {
+    this.dataService.createUser(username, password, email).subscribe({
+      next: (response: User) => {
         if (response == null) {
-          const message = $localize`:@@usernameTaken: Username taken`
-          this.toastr.error(message)
-          return
+          const message = $localize`:@@usernameTaken: Username taken`;
+          this.toastr.error(message);
+          return;
         }
         
         this.user = response;
-
         this.sessionService.setUser(this.user);
         this.router.navigate(["/"]);
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
       }
-    );
+    });
   }
 
   checkEmail() {
