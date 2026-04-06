@@ -5,6 +5,7 @@ import { Project } from '../dataModels/project';
 import { SessionService } from '../session.service';
 import { concatMap, finalize, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-projects',
@@ -21,7 +22,8 @@ export class ProjectsComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private sessionService: SessionService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -51,6 +53,12 @@ export class ProjectsComponent implements OnInit {
     if (!this.user) return;
 
     this.projectData = [];
+
+    if (this.user.projectIds.length === 0) {
+      const message: string = $localize`:@@noProjects: You don't have any projects.`
+      this.toastr.error(message)
+      return
+    }
 
     this.user.projectIds.forEach((projectId) => {
       this.getProject(projectId)
