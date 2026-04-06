@@ -6,6 +6,7 @@
         "client/ui",
         "client/register",
         "client/validation",
-        "client/projects"
+        "client/projects",
+        "client/home"
     ]
 }

@@ -26,6 +26,7 @@ import { EditCategoryComponent } from './dialogs/edit-category/edit-category-dia
 import { AutoResizeDirective } from './auto-resize.directive';
 import { SubmitOnEnterDirective } from './submit-on-enter.directive';
 import { ToastrModule } from 'ngx-toastr';
+import { HomeComponent } from "./home/home.component";
 
 @NgModule({ declarations: [
         AppComponent,
@@ -45,6 +46,7 @@ import { ToastrModule } from 'ngx-toastr';
         FilterDialogComponent,
         AutoResizeDirective,
         SubmitOnEnterDirective,
+        HomeComponent,
     ],
     bootstrap: [AppComponent], imports: [BrowserModule,
         AppRoutingModule,

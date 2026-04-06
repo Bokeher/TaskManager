@@ -1,0 +1,22 @@
+<section class="home-wrapper" *ngIf="user as currentUser">
+  <h1 i18n="@@homeWelcome">Welcome, {{ currentUser.login }}!</h1>
+
+  <div class="home-tips">
+    <h2 i18n="@@homeTipsTitle">App Navigation</h2>
+
+    <ul>
+    <li i18n="@@homeTip2">
+        <span class="material-symbols-outlined" aria-hidden="true">add</span>
+        Create a new project.
+    </li>
+      <li i18n="@@homeTip1">
+        <span class="material-symbols-outlined" aria-hidden="true">apps</span>
+        Open your project list.
+      </li>
+      <li i18n="@@homeTip3">
+        <span class="material-symbols-outlined" aria-hidden="true">person</span>
+        Manage your user settings.
+      </li>
+    </ul>
+  </div>
+</section>
