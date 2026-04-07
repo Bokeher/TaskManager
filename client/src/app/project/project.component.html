@@ -1,5 +1,5 @@
 <div id="main">
-  <div id="projectHeader">
+  <div id="projectHeader" class="elevated-card">
     <button 
       (click)="openProjectSettingsDialog()" 
       id="openProjectSettings" class="btn-icon headerButtons" 
@@ -38,7 +38,7 @@
       cdkDrag
       [cdkDragDisabled]="showOnlyAssigned"
     >
-      <div class="cat-header" (click)="openEditCategory(category.key)">
+      <div class="cat-header elevated-card" (click)="openEditCategory(category.key)">
         <div>
           <button 
             (click)="$event.stopPropagation(); openCreateTaskDialog(category.key)" class="btn-icon addtask"
@@ -69,7 +69,7 @@
           <div *ngFor="let task of category.value">
             <div *ngIf="!showOnlyAssigned || isUserMemberOfTask(task)">
               <div 
-                class="task" (click)="openEditTaskDialog(task)" 
+                class="task elevated-card" (click)="openEditTaskDialog(task)" 
                 cdkDrag [cdkDragDisabled]="showOnlyAssigned" 
                 (mouseenter)="onMouseEnter(task)" (mouseleave)="onMouseLeave(task)"
                 (cdkDragStarted)="hideDeleteButton()"

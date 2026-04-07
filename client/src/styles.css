@@ -29,6 +29,11 @@ body {
   cursor: pointer;
 }
 
+.elevated-card {
+  border: 1px solid #3e3e3e;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+}
+
 .btn-icon span {
   display: flex;
   justify-content: center;
