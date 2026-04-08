@@ -63,3 +63,7 @@ If you don't have one:
 - copy the connection string
 - paste it into `.env`
 - replace `<db_password>` with your password
+
+
+> [!NOTE]  
+> If you are having trouble with the SRV connection string, try disabling the **"SRV Connection String"** option and use a standard connection string (`mongodb://`) instead.
