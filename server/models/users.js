@@ -94,7 +94,7 @@ class Users {
 
       const result = await coll.insertOne(newUser);
 
-      const { password_, ...safeUser } = newUser
+      const { password: _, ...safeUser } = newUser
 
       console.log(`createUser(${login})`);
       console.log(safeUser);
