@@ -25,9 +25,9 @@
 # Project Setup
 
 ## 1. Environment variables
-
-1. Create a `.env` file by copying `.env.example`
-2. Replace `<your-mongodb-connection-string>` in `.env`
+1. Go to `/server` folder
+2. Create a `.env` file by copying `.env.example`
+3. Replace `<your-mongodb-connection-string>` in `.env`
 with your [MongoDB URI](#how-to-get-mongodb-uri)
 
 #### Example MongoDB URI
@@ -38,6 +38,8 @@ mongodb+srv://<username>:<password>@<cluster-host>/<database>?retryWrites=true&w
 
 ## 2. Install dependencies
 
+Run this command from the **project root** (not `/server`):
+
 ```
 npm run install-all
 ```
@@ -45,6 +47,8 @@ npm run install-all
 ---
 
 ## 3. Run the project
+
+Run this command from the **project root** (not `/server`):
 
 ```
 npm start
