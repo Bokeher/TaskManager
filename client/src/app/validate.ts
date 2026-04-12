@@ -1,10 +1,8 @@
-import Validator from 'validatorjs';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class Validate {
-  error: String = '';
 
   validateRegistration(
     email: string,
@@ -21,176 +19,116 @@ export class Validate {
     );
   }
 
-  /**
-   * @returns false when validation fails, else return true
-   */
   validateUsername(username: string | undefined, toastr: ToastrService): boolean {
-    const data = {
-      username,
-    };
-
-    const rules = {
-      username: 'required',
-    };
-
-    const customMessages = {
-      'required.username': $localize`:@@enterUsername: Please enter username.`,
-    };
-
-    const validation = new Validator(data, rules, customMessages);
-
-    return this.checkValidation(validation, toastr);
-  }
-
-  /**
-   * @returns false when validation fails, else return true
-   */
-  validateEmail(email: string, toastr: ToastrService): boolean {
-    const data = {
-      email,
-    };
-
-    const rules = {
-      email: 'required|email',
-    };
-
-    const customMessages = {
-      'required.email': $localize`:@@enterEmail: Please enter your email.`,
-      'email.email': $localize`:@@invalidEmailFormat: Invalid email format.`,
-    };
-
-    const validation = new Validator(data, rules, customMessages);
-
-    return this.checkValidation(validation, toastr);
-  }
-  
-  /**
-   * @returns false when validation fails, else return true
-   */
-  validatePassword(password: string, toastr: ToastrService): boolean {
-    const data = {
-      password,
-    };
-
-    const rules = {
-      password:
-        'min:8|required|string|regex:"(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[#?!@$%^&*-])"',
-    };
-
-    const customMessages = {
-      'required.password': $localize`:@@enterPassword: Please enter your password.`,
-      'regex.password': $localize`:@@passwordRequirements: Your password must contain at least one number, one uppercase letter, and one special character.`,
-    };
-
-    const validation = new Validator(data, rules, customMessages);
-
-    return this.checkValidation(validation, toastr);
-  }
-
-  /**
-   * @returns false when validation fails, else return true
-   */
-  validatePasswordConfirmation(
-    password: string, 
-    password_confirmation: string, 
-    toastr: ToastrService
-  ): boolean {
-    const data = {
-      password,
-      password_confirmation,
-    };
-
-    const rules = {
-      password: 'required|confirmed',
-    };
-
-    const customMessages = {
-      'required.password': $localize`:@@confirmPassword: Please confirm your password.`,
-      'confirmed.password': $localize`:@@passwordDontMatch: The passwords do not match.`
-    };
-
-    const validation = new Validator(data, rules, customMessages);
-
-    return this.checkValidation(validation, toastr);
-  }
-  
-  /**
-   * @returns false when validation fails, else return true
-   */
-  validateProjectName(projectName: string | undefined, toastr: ToastrService): boolean {
-    const data = {
-      projectName,
-    };
-
-    const rules = {
-      projectName: 'max:128|required|string',
-    };
-
-    const customMessages = {
-      'required.projectName': $localize`:@@enterProjectName: Please enter project name.`,
-    };
+    if (!username || username.trim() === '') {
+      toastr.error($localize`:@@enterUsername: Please enter username.`);
+      return false;
+    }
     
-    const validation = new Validator(data, rules, customMessages);
-
-    return this.checkValidation(validation, toastr);
+    return true;
   }
 
-  /**
-   * @returns false when validation fails, else return true
-   */
-  validateTask(name: string, description: string, toastr: ToastrService): boolean {
-    const data = {
-      name,
-      description,
-    };
-
-    const rules = {
-      name: 'max:256|required|string',
-      description: 'max:1000|string',
-    };
-
-    const customMessages = {
-      'required.name': $localize`:@@enterTaskName: Please enter task name.`,
-    };
-
-    const validation = new Validator(data, rules, customMessages);
-
-    return this.checkValidation(validation, toastr);
-  }
-
-  /**
-   * @returns false when validation fails, else return true
-   */
-  validateCategoryName(categoryName: string, toastr: ToastrService): boolean {
-    const data = {
-      categoryName,
-    };
-
-    const rules = {
-      categoryName: 'max:256|required|string',
-    };
-
-    const customMessages = {
-      'required.categoryName': $localize`:@@enterCategoryName: Please enter category name.`,
-    };
-
-    const validation = new Validator(data, rules, customMessages);
-
-    return this.checkValidation(validation, toastr);
-  }
-
-  private checkValidation(validation: Validator.Validator<any>, toastr: ToastrService): boolean {
-    if(validation.passes()) return true;
-
-    const errors = validation.errors.all();
-
-    for(const field in errors) {
-      errors[field].forEach(error => {
-        toastr.error(error);
-      });
+  validateEmail(email: string, toastr: ToastrService): boolean {
+    if (!email) {
+      toastr.error($localize`:@@enterEmail: Please enter your email.`);
+      return false;
     }
 
-    return false;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      toastr.error($localize`:@@invalidEmailFormat: Invalid email format.`);
+      return false;
+    }
+
+    return true;
   }
 
+  validatePassword(password: string, toastr: ToastrService): boolean {
+    if (!password) {
+      toastr.error($localize`:@@enterPassword: Please enter your password.`);
+      return false;
+    }
+
+    if (password.length < 8) {
+      toastr.error($localize`:@@passwordMinLength: Password must be at least 8 characters long.`);
+      return false;
+    }
+
+    const passwordRegex = /(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[#?!@$%^&*-])/;
+
+    if (!passwordRegex.test(password)) {
+      toastr.error(
+        $localize`:@@passwordRequirements: Your password must contain at least one number, one uppercase letter, and one special character.`
+      );
+      return false;
+    }
+
+    return true;
+  }
+
+  validatePasswordConfirmation(
+    password: string,
+    password_confirmation: string,
+    toastr: ToastrService
+  ): boolean {
+    if (!password_confirmation) {
+      toastr.error($localize`:@@confirmPassword: Please confirm your password.`);
+      return false;
+    }
+
+    if (password !== password_confirmation) {
+      toastr.error($localize`:@@passwordDontMatch: The passwords do not match.`);
+      return false;
+    }
+
+    return true;
+  }
+
+  validateProjectName(projectName: string | undefined, toastr: ToastrService): boolean {
+    if (!projectName || projectName.trim() === '') {
+      toastr.error($localize`:@@enterProjectName: Please enter project name.`);
+      return false;
+    }
+
+    if (projectName.length > 128) {
+      toastr.error($localize`:@@projectNameTooLong: Project name is too long.`);
+      return false;
+    }
+
+    return true;
+  }
+
+  validateTask(name: string, description: string, toastr: ToastrService): boolean {
+    if (!name || name.trim() === '') {
+      toastr.error($localize`:@@enterTaskName: Please enter task name.`);
+      return false;
+    }
+
+    if (name.length > 256) {
+      toastr.error($localize`:@@taskNameTooLong: Task name is too long.`);
+      return false;
+    }
+
+    if (description && description.length > 1000) {
+      toastr.error($localize`:@@descriptionTooLong: Description is too long.`);
+      return false;
+    }
+
+    return true;
+  }
+
+  validateCategoryName(categoryName: string, toastr: ToastrService): boolean {
+    if (!categoryName || categoryName.trim() === '') {
+      toastr.error($localize`:@@enterCategoryName: Please enter category name.`);
+      return false;
+    }
+
+    if (categoryName.length > 256) {
+      toastr.error($localize`:@@categoryNameTooLong: Category name is too long.`);
+      return false;
+    }
+
+    return true;
+  }
 }
