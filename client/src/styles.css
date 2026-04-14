@@ -1,15 +1,7 @@
 @import url("toastStyles.css");
 
-* {
-  color: rgb(200, 200, 200);
-}
-
 :root {
   color-scheme: dark;
-}
-
-input {
-  color: black;
 }
 
 body {
@@ -17,6 +9,7 @@ body {
   background-color: rgb(23, 23, 23);
   font-family: Roboto, "Helvetica Neue", sans-serif;
   height: 100vh;
+  color: rgb(200, 200, 200);
 }
 
 .btn-icon {
@@ -43,7 +36,7 @@ body {
 .btn-icon:hover {
   background-color: #3a3a3a;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transform: scale(1.2);
+  transform: scale(1.05);
 }
 
 .redIcon {
