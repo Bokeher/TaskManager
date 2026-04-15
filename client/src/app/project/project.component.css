@@ -141,11 +141,21 @@ h2 {
 }
 
 /* done this way, because cdkDrag deletes styles inside it */
-.task > .deleteTask {
-  background-color: #292929;
+.task .deleteTask {
   position: absolute;
   top: 0.4rem;
   right: 0.4rem;
+
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.task:hover .deleteTask {
+  opacity: 1;
+}
+
+.task.cdk-drag-dragging .deleteTask {
+  opacity: 0;
 }
 
 .task > .deleteTask:hover {

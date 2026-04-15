@@ -50,7 +50,7 @@
 
         <h2>{{ category.key }}</h2>
 
-        <div *ngIf="!category.value.length" class="no-tasks">
+        <div *ngIf="!category.value.length">
           <button 
             (click)="deleteCategory(category.key)" class="btn-icon del-cat" 
             title="Delete this category" i18n-title="title-deleteCategory"
@@ -69,15 +69,14 @@
           <div *ngFor="let task of category.value">
             <div *ngIf="!showOnlyAssigned || isUserMemberOfTask(task)">
               <div 
-                class="task elevated-card" (click)="openEditTaskDialog(task)" 
-                cdkDrag [cdkDragDisabled]="showOnlyAssigned" 
-                (mouseenter)="onMouseEnter(task)" (mouseleave)="onMouseLeave(task)"
-                (cdkDragStarted)="hideDeleteButton()"
-                (cdkDragEnded)="showDeleteButton()"
+                class="task elevated-card"
+                (click)="openEditTaskDialog(task)" 
+                cdkDrag
+                [cdkDragDisabled]="showOnlyAssigned"
               >
                 <button 
                   class="btn-icon deleteTask" 
-                  *ngIf="taskHoverStates.get(task) && deleteButtonVisibility" (click)="deleteTask(task)" 
+                  (click)="$event.stopPropagation(); deleteTask(task)"
                   title="Delete this task" i18n-title="title-deleteTask"
                 >
                   <span class="material-symbols-outlined redIcon">
