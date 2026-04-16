@@ -30,7 +30,6 @@ export class ProjectComponent implements OnInit {
 
   members: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
   members$ = this.members.asObservable();
-  private subscriptionMember!: Subscription;
 
   showOnlyAssigned?: boolean;
 
@@ -80,11 +79,13 @@ export class ProjectComponent implements OnInit {
         // get all members of any task in project, then delete duplicates
         const usersIds = [...new Set(this.project.tasks.map(e => e.memberIds).flat())];
         
-        this.subscriptionMember = forkJoin(
-          usersIds.map((id) => this.dataService.getUserById(id))
-        ).pipe(
-          map(member => this.members.next(member))
-        ).subscribe();
+        forkJoin(
+          usersIds.map(id => this.dataService.getUserById(id))
+        )
+        .pipe(takeUntil(this.destroy))
+        .subscribe((members) => {
+          this.members.next(members);
+        });
       });
 
     this.sessionService.getShowOnlyAssignedTasksObservable()

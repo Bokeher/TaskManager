@@ -25,7 +25,6 @@ export class EditTaskDialogComponent implements OnInit {
 
   members: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   members$ = this.members.asObservable();
-  private subscriptionMember!: Subscription;
 
   private destroy = new Subject<void>();
   
@@ -48,9 +47,11 @@ export class EditTaskDialogComponent implements OnInit {
 
     const usersIds = [...new Set(this.task.memberIds)];
 
-    this.subscriptionMember = forkJoin(
+    forkJoin(
       usersIds.map((id) => this.dataService.getUserById(id))
-    ).subscribe((members) => {
+    )
+    .pipe(takeUntil(this.destroy))
+    .subscribe((members) => {
       this.members.next(members);
       this.loadingComplete = true;
     });
