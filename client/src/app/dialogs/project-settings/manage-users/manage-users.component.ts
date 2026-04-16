@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { SessionService } from '../../../session.service';
 import { DataService } from '../../../data.service';
 import { MatDialog } from '@angular/material/dialog';
-import { zip, from  } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { zip, from, Subject  } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 
 import { Project } from '../../../dataModels/project';
 import { ProjectMember } from '../../../dataModels/projectMember';
@@ -25,32 +25,42 @@ export class ManageUsersComponent {
   adminPrivileges: boolean = false;
   loadingComplete: boolean = false;
 
+  private destroy = new Subject<void>();
+  
   constructor(
     private sessionService: SessionService,
     private dataService: DataService,
     public dialog: MatDialog
   ) {}
-
+  
   ngOnInit(): void {
     this.mergedData = [];
-
+    
     this.sessionService
       .getSelectedProjectObservable()
+      .pipe(takeUntil(this.destroy))
       .subscribe((selectedProject) => {
         if (selectedProject) {
           this.project = selectedProject;
           this.userNumber = this.project.projectMembers.length;
-
+          
           this.mergedData = [];
           this.getAllMembersAndPushToArray();
-
+          
           this.adminPrivileges = this.sessionService.userIsAdmin();
         }
       });
-
-    this.sessionService.getUserObservable().subscribe((user) => {
-      if(user && user._id) this.userId = user._id;
-    })
+  
+    this.sessionService.getUserObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((user) => {
+        if(user && user._id) this.userId = user._id;
+      })
+  }
+  
+  ngOnDestroy() {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   getAllMembersAndPushToArray() {

@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { User } from '../dataModels/user';
 import { SessionService } from '../session.service';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-login',
@@ -18,6 +19,8 @@ export class LoginComponent implements OnInit{
     name: '',
     password: '',
   };
+  
+  private destroy = new Subject<void>();
 
   constructor(
     private dataService: DataService,
@@ -26,11 +29,18 @@ export class LoginComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.sessionService.getUserObservable().subscribe((user) => {
-      if(user) this.router.navigate(["/"]);
-    })
+    this.sessionService.getUserObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((user) => {
+        if(user) this.router.navigate(["/"]);
+      })
   }
 
+  ngOnDestroy() {
+    this.destroy.next();
+    this.destroy.complete();
+  }
+  
   @ViewChild('autoSelect') autoSelect!: ElementRef;
   ngAfterViewInit(): void {
     this.autoSelect.nativeElement.focus();

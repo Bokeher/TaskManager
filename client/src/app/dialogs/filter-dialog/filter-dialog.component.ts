@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SessionService } from '../../session.service';
 import { MatDialog } from '@angular/material/dialog';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-filter-dialog',
@@ -11,15 +12,24 @@ import { MatDialog } from '@angular/material/dialog';
 export class FilterDialogComponent implements OnInit {
   onlyAssigned: boolean = false;
 
+  private destroy = new Subject<void>();
+  
   constructor(
     private sessionService: SessionService,     
     public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.sessionService.getShowOnlyAssignedTasksObservable().subscribe((show) => {
-      this.onlyAssigned = show;
-    })
+    this.sessionService.getShowOnlyAssignedTasksObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((show) => {
+        this.onlyAssigned = show;
+      })
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   @ViewChild('autoSelect') autoSelect!: ElementRef;

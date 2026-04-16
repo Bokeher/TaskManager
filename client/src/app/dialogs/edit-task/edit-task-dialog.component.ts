@@ -5,7 +5,7 @@ import { SessionService } from '../../session.service';
 import { Task } from '../../dataModels/task';
 import { Project } from '../../dataModels/project';
 import { User } from '../../dataModels/user';
-import { BehaviorSubject, Subscription, forkJoin, map } from 'rxjs';
+import { BehaviorSubject, Subject, Subscription, forkJoin, map, takeUntil } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -27,6 +27,8 @@ export class EditTaskDialogComponent implements OnInit {
   members$ = this.members.asObservable();
   private subscriptionMember!: Subscription;
 
+  private destroy = new Subject<void>();
+  
   constructor(
     @Inject(MAT_DIALOG_DATA) public task: Task,
     public dialog: MatDialog,
@@ -38,9 +40,11 @@ export class EditTaskDialogComponent implements OnInit {
   ngOnInit() {
     this.originalTask = JSON.parse(JSON.stringify(this.task));
 
-    this.sessionService.getSelectedProjectObservable().subscribe((project) => {
-      if(project) this.project = project;
-    });
+    this.sessionService.getSelectedProjectObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((project) => {
+        if(project) this.project = project;
+      });
 
     const usersIds = [...new Set(this.task.memberIds)];
 
@@ -57,6 +61,9 @@ export class EditTaskDialogComponent implements OnInit {
     
     this.editTaskName();
     this.editTaskDescription();
+
+    this.destroy.next();
+    this.destroy.complete();
   }
   
   @ViewChild('autoSelect') autoSelect!: ElementRef;

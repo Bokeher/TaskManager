@@ -5,6 +5,7 @@ import { User } from '../../dataModels/user';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Project } from '../../dataModels/project';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-delete-project-dialog',
@@ -16,6 +17,8 @@ export class DeleteProjectDialogComponent implements OnInit {
   project?: Project;
   user?: User;
 
+  private destroy = new Subject<void>();
+
   constructor(
     private dataService: DataService,
     private sessionService: SessionService,
@@ -25,13 +28,22 @@ export class DeleteProjectDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.sessionService.getSelectedProjectObservable().subscribe((project) => {
-      if(project) this.project = project;
-    });
+    this.sessionService.getSelectedProjectObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((project) => {
+        if(project) this.project = project;
+      });
 
-    this.sessionService.getUserObservable().subscribe((user) => {
-      if(user) this.user = user;
-    });
+    this.sessionService.getUserObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((user) => {
+        if(user) this.user = user;
+      });
+  }
+
+  ngOnDestroy() {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   @ViewChild('autoSelect') autoSelect!: ElementRef;

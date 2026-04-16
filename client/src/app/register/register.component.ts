@@ -5,6 +5,7 @@ import { SessionService } from '../session.service';
 import { Validate } from '../validate';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-register',
@@ -33,6 +34,8 @@ export class RegisterComponent implements OnInit {
   validPasswordShake: boolean = false;
   passwordMatchShake: boolean = false;
 
+  private destroy = new Subject<void>();
+  
   constructor(
     private dataService: DataService,
     private sessionService: SessionService,
@@ -42,9 +45,16 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.sessionService.getUserObservable().subscribe((user) => {
-      if(user) this.router.navigate(["/"]);
-    })
+    this.sessionService.getUserObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((user) => {
+        if(user) this.router.navigate(["/"]);
+      })
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   @ViewChild('autoSelect') autoSelect!: ElementRef;

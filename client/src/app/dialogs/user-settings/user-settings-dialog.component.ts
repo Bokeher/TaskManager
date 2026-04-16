@@ -6,6 +6,7 @@ import { Validate } from '../../validate';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-user-settings-dialog',
@@ -19,6 +20,8 @@ export class UserSettingsDialogComponent extends Validate implements OnInit {
   user?: User;
   output: string = '';
 
+  private destroy = new Subject<void>();
+
   constructor(
     private dataService: DataService,
     private sessionService: SessionService,
@@ -31,9 +34,16 @@ export class UserSettingsDialogComponent extends Validate implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sessionService.getUserObservable().subscribe((user) => {
-      this.user = user!;
-    });
+    this.sessionService.getUserObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((user) => {
+        this.user = user!;
+      });
+  }
+
+  ngOnDestroy() {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   changePassword(): void {

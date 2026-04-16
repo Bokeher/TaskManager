@@ -7,6 +7,7 @@ import { DeleteProjectDialogComponent } from '../delete-project/delete-project-d
 import { Validate } from '../../validate';
 import { User } from '../../dataModels/user';
 import { ToastrService } from 'ngx-toastr';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-project-settings-dialog',
@@ -21,6 +22,8 @@ export class ProjectSettingsDialogComponent implements OnInit {
   userLogin?: string;
   adminPrivileges: boolean = false;
 
+  private destroy = new Subject<void>();
+
   constructor(
     public dialog: MatDialog,
     private dataService: DataService,
@@ -32,6 +35,7 @@ export class ProjectSettingsDialogComponent implements OnInit {
   ngOnInit() {
     this.sessionService
       .getSelectedProjectObservable()
+      .pipe(takeUntil(this.destroy))
       .subscribe((selectedProject) => {
         if(selectedProject) {
           this.project = selectedProject;
@@ -41,11 +45,18 @@ export class ProjectSettingsDialogComponent implements OnInit {
         this.adminPrivileges = this.sessionService.userIsAdmin();
       });
 
-    this.sessionService.getUserObservable().subscribe((user) => {
-      if(user) this.user = user;
-    });
+    this.sessionService.getUserObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((user) => {
+        if(user) this.user = user;
+      });
   }
   
+  ngOnDestroy() {
+    this.destroy.next();
+    this.destroy.complete();
+  }
+
   @ViewChild('autoSelect') autoSelect!: ElementRef;
   ngAfterViewInit(): void {
     this.autoSelect.nativeElement.focus();

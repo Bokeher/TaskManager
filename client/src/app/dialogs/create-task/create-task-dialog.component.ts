@@ -6,6 +6,7 @@ import { SessionService } from '../../session.service';
 import { Task } from '../../dataModels/task';
 import { Validate } from '../../validate';
 import { ToastrService } from 'ngx-toastr';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-create-task-dialog',
@@ -21,6 +22,8 @@ export class CreateTaskDialogComponent implements OnInit {
     description: '',
   };
 
+  private destroy = new Subject<void>();
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public dataFromComponent: string,
     public dialog: MatDialog,
@@ -31,9 +34,16 @@ export class CreateTaskDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.sessionService.getSelectedProjectObservable().subscribe((project) => {
-      if(project) this.project = project;
-    });
+    this.sessionService.getSelectedProjectObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((project) => {
+        if(project) this.project = project;
+      });
+  }
+
+  ngOnDestroy() {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   @ViewChild('autoSelect') autoSelect!: ElementRef;

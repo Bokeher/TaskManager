@@ -11,7 +11,7 @@ import { ProjectSettingsDialogComponent } from '../dialogs/project-settings/proj
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { EditTaskDialogComponent } from '../dialogs/edit-task/edit-task-dialog.component';
 import { User } from '../dataModels/user';
-import { Observable, forkJoin, map, BehaviorSubject, share, Subscription } from 'rxjs';
+import { Observable, forkJoin, map, BehaviorSubject, share, Subscription, Subject, takeUntil } from 'rxjs';
 import { FilterDialogComponent } from '../dialogs/filter-dialog/filter-dialog.component';
 import { Router } from '@angular/router';
 
@@ -34,6 +34,8 @@ export class ProjectComponent implements OnInit {
 
   showOnlyAssigned?: boolean;
 
+  private destroy = new Subject<void>();
+  
   constructor(
     private sessionService: SessionService,
     private dataService: DataService,
@@ -48,7 +50,7 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
     this.sessionService
       .getSelectedProjectObservable()
-      .pipe(share())
+      .pipe(takeUntil(this.destroy))
       .subscribe((selectedProject) => {
         
         if(!selectedProject) {
@@ -85,13 +87,22 @@ export class ProjectComponent implements OnInit {
         ).subscribe();
       });
 
-    this.sessionService.getShowOnlyAssignedTasksObservable().subscribe((showOnlyAssigned) => {
-      this.showOnlyAssigned = showOnlyAssigned;
-    })
+    this.sessionService.getShowOnlyAssignedTasksObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((showOnlyAssigned) => {
+        this.showOnlyAssigned = showOnlyAssigned;
+      })
 
-    this.sessionService.getUserObservable().subscribe((user) => {
-      if (user) this.user = user;
-    })
+    this.sessionService.getUserObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((user) => {
+        if (user) this.user = user;
+      })
+  }
+
+  ngOnDestroy() {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   getAvatarUrl(member: User): string {

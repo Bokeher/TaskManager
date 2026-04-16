@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { SessionService } from '../../session.service';
 import { Project } from '../../dataModels/project';
 import { DataService } from '../../data.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-edit-category-dialog',
@@ -14,6 +15,8 @@ export class EditCategoryComponent implements OnInit {
   categoryName = '';
   project?: Project;
 
+  private destroy = new Subject<void>();
+  
   constructor(
     @Inject(MAT_DIALOG_DATA) public oldCategory: string,
     public dialog: MatDialog,
@@ -24,13 +27,17 @@ export class EditCategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sessionService.getSelectedProjectObservable().subscribe((project) => {
-      if(project) this.project = project;
-    });
+    this.sessionService.getSelectedProjectObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((project) => {
+        if(project) this.project = project;
+      });
   }
 
   ngOnDestroy(): void {
     this.saveCategoryName();
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   @ViewChild('autoSelect') autoSelect!: ElementRef;

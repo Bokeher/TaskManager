@@ -3,7 +3,7 @@ import { DataService } from '../data.service';
 import { User } from '../dataModels/user';
 import { Project } from '../dataModels/project';
 import { SessionService } from '../session.service';
-import { concatMap, finalize, of } from 'rxjs';
+import { concatMap, finalize, of, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -19,6 +19,8 @@ export class ProjectsComponent implements OnInit {
   projectNumber: number = 0;
   selectedProjectId?: string;
 
+  private destroy = new Subject<void>();
+
   constructor(
     private dataService: DataService,
     private sessionService: SessionService,
@@ -27,8 +29,10 @@ export class ProjectsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.sessionService.getUserObservable().subscribe((user) => {
-      if(!user) return;
+    this.sessionService.getUserObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((user) => {
+        if(!user) return;
 
       this.user = user;
       this.projectNumber = user.projectIds.length;
@@ -36,17 +40,24 @@ export class ProjectsComponent implements OnInit {
       this.getAllProjects();
     });
 
-    this.sessionService.getSelectedProjectObservable().subscribe((project) => {
-      if(!project || !this.selectedProjectId) return;
-      
-      // find project in project list
-      const currentProject = this.projectData.filter((project) => {
-        project._id === this.selectedProjectId
-      })
+    this.sessionService.getSelectedProjectObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((project) => {
+        if(!project || !this.selectedProjectId) return;
+        
+        // find project in project list
+        const currentProject = this.projectData.filter((project) => {
+          project._id === this.selectedProjectId
+        })
 
-      // correct its name
-      if(currentProject.length > 0) currentProject[0].name = project.name;
-    })
+        // correct its name
+        if(currentProject.length > 0) currentProject[0].name = project.name;
+      })
+  }
+
+  ngOnDestroy() {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   getAllProjects() {

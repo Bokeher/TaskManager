@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../dataModels/user';
 import { SessionService } from '../session.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -10,12 +11,20 @@ import { SessionService } from '../session.service';
 })
 export class HomeComponent implements OnInit {
   user?: User;
+  private destroy = new Subject<void>();
 
   constructor(private sessionService: SessionService) {}
 
   ngOnInit(): void {
-    this.sessionService.getUserObservable().subscribe((user) => {
-      this.user = user ?? undefined;
-    });
+    this.sessionService.getUserObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((user) => {
+        this.user = user ?? undefined;
+      });
+  }
+
+  ngOnDestroy() {
+    this.destroy.next();
+    this.destroy.complete();
   }
 }

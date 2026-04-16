@@ -5,6 +5,7 @@ import { Project } from '../../dataModels/project';
 import { DataService } from '../../data.service';
 import { Validate } from '../../validate';
 import { ToastrService } from 'ngx-toastr';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-create-category-dialog',
@@ -16,6 +17,8 @@ export class CreateCategoryDialogComponent implements OnInit {
   categoryName = '';
   project?: Project;
 
+  private destroy = new Subject<void>();
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: string,
     public dialog: MatDialog,
@@ -26,9 +29,16 @@ export class CreateCategoryDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.sessionService.getSelectedProjectObservable().subscribe((project) => {
-      if(project) this.project = project;
-    });
+    this.sessionService.getSelectedProjectObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((project) => {
+        if(project) this.project = project;
+      });
+  }
+
+  ngOnDestroy() {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   @ViewChild('autoSelect') autoSelect!: ElementRef;

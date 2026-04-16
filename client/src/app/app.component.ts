@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateProjectDialogComponent } from './dialogs/create-project/create-project-dialog.component';
 import { UserSettingsDialogComponent } from './dialogs/user-settings/user-settings-dialog.component';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -17,6 +18,8 @@ export class AppComponent implements OnInit {
   displayProjects: boolean = false;
   user?: User;
 
+  private destroy = new Subject<void>();
+
   constructor(
     private sessionService: SessionService,
     public dialog: MatDialog,
@@ -24,13 +27,20 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.sessionService.getUserObservable().subscribe((user) => {
-      this.user = user!;
-    })
+    this.sessionService.getUserObservable()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((user) => {
+        this.user = user!;
+      })
 
     if(!this.isLoggedIn()) {
       this.router.navigate(["/login"]);
     }
+  }
+
+  ngOnDestroy() {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   goToMainSite() {
