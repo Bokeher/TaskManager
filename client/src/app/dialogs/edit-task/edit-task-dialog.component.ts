@@ -130,7 +130,10 @@ export class EditTaskDialogComponent implements OnInit {
     this.dataService.getUserByLogin(this.userToAdd).subscribe({
       next: (response: User) => {
         if (!this.project) return;
-        if (!response || !response._id) return;
+        if (!response || !response._id) {
+          this.toastr.error("No user found with this login.")
+          return;
+        }
         
         let containsUser = false;
 
@@ -140,7 +143,10 @@ export class EditTaskDialogComponent implements OnInit {
           }
         });
 
-        if(!containsUser) return;
+        if(!containsUser) {
+          this.toastr.error("This user is not a member of this project.")
+          return;
+        }
 
         if(this.task.memberIds.includes(response._id)) {
           this.toastr.error("This user is already assigned to this task.")
@@ -149,11 +155,13 @@ export class EditTaskDialogComponent implements OnInit {
 
         this.project.tasks.forEach((task) => {
           if (JSON.stringify(task) === JSON.stringify(this.task)) {
-            if(!response._id) return;
+            if (!response._id) return;
             if (!this.project) return;
 
             task.memberIds.push(response._id);
             this.sessionService.setSelectedProject(this.project);
+
+            this.toastr.success("User added successfully.");
 
             const { _id, ...newProject } = this.project;
             if (_id) this.updateProject(_id, newProject);
