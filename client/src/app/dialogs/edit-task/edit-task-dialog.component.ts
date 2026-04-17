@@ -130,7 +130,7 @@ export class EditTaskDialogComponent implements OnInit {
     this.dataService.getUserByLogin(this.userToAdd).subscribe({
       next: (response: User) => {
         if (!this.project) return;
-        if (!response._id) return;
+        if (!response || !response._id) return;
         
         let containsUser = false;
 
