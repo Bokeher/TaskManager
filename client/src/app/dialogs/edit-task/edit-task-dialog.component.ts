@@ -123,7 +123,7 @@ export class EditTaskDialogComponent implements OnInit {
 
   addUserToTask(): void {
     if(!this.userToAdd) {
-      this.toastr.error("Please enter username");
+      this.toastr.error($localize`:@@enterUsername:Please enter username`);
       return;
     }
 
@@ -131,7 +131,7 @@ export class EditTaskDialogComponent implements OnInit {
       next: (response: User) => {
         if (!this.project) return;
         if (!response || !response._id) {
-          this.toastr.error("No user found with this login.")
+          this.toastr.error($localize`:@@userNotFound:No user found with this login.`);
           return;
         }
         
@@ -144,12 +144,12 @@ export class EditTaskDialogComponent implements OnInit {
         });
 
         if(!containsUser) {
-          this.toastr.error("This user is not a member of this project.")
+          this.toastr.error($localize`:@@userNotInProject:This user is not a member of this project.`);
           return;
         }
 
         if(this.task.memberIds.includes(response._id)) {
-          this.toastr.error("This user is already assigned to this task.")
+          this.toastr.error($localize`:@@userAlreadyAssigned:This user is already assigned to this task.`);
           return;
         }
 
@@ -161,7 +161,7 @@ export class EditTaskDialogComponent implements OnInit {
             task.memberIds.push(response._id);
             this.sessionService.setSelectedProject(this.project);
 
-            this.toastr.success("User added successfully.");
+            this.toastr.success($localize`:@@userAddedSuccess:User added successfully.`);
 
             const { _id, ...newProject } = this.project;
             if (_id) this.updateProject(_id, newProject);
