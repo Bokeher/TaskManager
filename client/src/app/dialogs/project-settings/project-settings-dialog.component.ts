@@ -118,7 +118,10 @@ export class ProjectSettingsDialogComponent implements OnInit {
     
     this.dataService.getUserByLogin(this.userLogin).subscribe({
       next: (response: User) => {
-        if(!response) return;
+        if(!response) {
+          this.toastr.error($localize`:@@userNotFound:No user found with this login.`);
+          return;
+        }
 
         if(this.isMember(response)) {
           this.toastr.error("This user is already a member of this project.")
@@ -127,6 +130,8 @@ export class ProjectSettingsDialogComponent implements OnInit {
 
         this.addUserToProject(response);
         this.addProjectToUser(response);
+
+        this.toastr.success($localize`:@@userAddedSuccess:User added successfully.`);
       },
       error: (error) => {
         console.error(error);
