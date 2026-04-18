@@ -124,7 +124,7 @@ export class ProjectSettingsDialogComponent implements OnInit {
         }
 
         if(this.isMember(response)) {
-          this.toastr.error("This user is already a member of this project.")
+          this.toastr.error($localize`:@@userAlreadyAssignedToProject:This user is already a member of this project.`);
           return;
         }
 
