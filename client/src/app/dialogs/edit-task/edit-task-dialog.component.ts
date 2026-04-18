@@ -45,16 +45,7 @@ export class EditTaskDialogComponent implements OnInit {
         if(project) this.project = project;
       });
 
-    const usersIds = [...new Set(this.task.memberIds)];
-
-    forkJoin(
-      usersIds.map((id) => this.dataService.getUserById(id))
-    )
-    .pipe(takeUntil(this.destroy))
-    .subscribe((members) => {
-      this.members.next(members);
-      this.loadingComplete = true;
-    });
+    this.loadTaskMembers();
   }
 
   ngOnDestroy(): void {
@@ -121,6 +112,27 @@ export class EditTaskDialogComponent implements OnInit {
     });
   }
 
+  loadTaskMembers(): void {
+    const usersIds = [...new Set(this.task.memberIds)];
+
+    if (!usersIds.length) {
+      this.members.next([]);
+      this.loadingComplete = true;
+      return;
+    }
+
+    this.loadingComplete = false;
+
+    forkJoin(
+      usersIds.map((id) => this.dataService.getUserById(id))
+    )
+    .pipe(takeUntil(this.destroy))
+    .subscribe((members) => {
+      this.members.next(members);
+      this.loadingComplete = true;
+    });
+  }
+
   addUserToTask(): void {
     if(!this.userToAdd) {
       this.toastr.error($localize`:@@enterUsername:Please enter username`);
@@ -159,6 +171,8 @@ export class EditTaskDialogComponent implements OnInit {
             if (!this.project) return;
 
             task.memberIds.push(response._id);
+            this.members.next([...this.members.value, response]);
+            this.loadingComplete = true;
             this.sessionService.setSelectedProject(this.project);
 
             this.toastr.success($localize`:@@userAddedSuccess:User added successfully.`);

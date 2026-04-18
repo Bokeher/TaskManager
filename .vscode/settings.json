@@ -9,6 +9,7 @@
         "client/projects",
         "client/home",
         "client/project",
-        "client/project-settings"
+        "client/project-settings",
+        "client/edit-task"
     ]
 }
