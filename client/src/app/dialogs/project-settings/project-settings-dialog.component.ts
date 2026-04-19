@@ -208,9 +208,7 @@ export class ProjectSettingsDialogComponent implements OnInit {
 
   updateUser(id: string, newUser: User): void {
     this.dataService.updateUser(id, newUser).subscribe({
-      next: (response: User) => {
-        console.log(response);
-      },
+      next: () => {},
       error: (error) => {
         console.error(error);
       }
@@ -219,9 +217,7 @@ export class ProjectSettingsDialogComponent implements OnInit {
 
   updateProject(id: string, newProject: Project): void {
     this.dataService.updateProject(id, newProject).subscribe({
-      next: (response: Project) => {
-        console.log(response);
-      },
+      next: () => {},
       error: (error) => {
         console.error(error);
       }

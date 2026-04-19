@@ -82,9 +82,7 @@ export class CreateTaskDialogComponent implements OnInit {
 
   updateProject(id: string, newProject: Project): void {
     this.dataService.updateProject(id, newProject).subscribe({
-      next: (response: Project) => {
-        console.log(response);
-      },
+      next: () => {},
       error: (error) => {
         console.error(error);
       }

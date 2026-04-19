@@ -81,9 +81,7 @@ export class UserSettingsDialogComponent extends Validate implements OnInit {
 
   updateUser(id: string, newUser: User): void {
     this.dataService.updateUser(id, newUser).subscribe({
-      next: (response: any) => {
-        console.log(response);
-      },
+      next: () => {},
       error: (error) => {
         console.error(error);
       }
