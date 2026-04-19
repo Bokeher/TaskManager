@@ -55,8 +55,7 @@ export class AppComponent implements OnInit {
   }
 
   isLoggedIn(): boolean {
-    if(this.user) return true;
-    return false;
+    return this.user != null;
   }
 
   clearAllSessionData(): void {
