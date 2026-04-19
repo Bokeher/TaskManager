@@ -79,6 +79,8 @@ export class AppComponent implements OnInit {
     this.dialog.open(UserSettingsDialogComponent, {
       backdropClass: 'blur',
       hasBackdrop: true,
+      autoFocus: true,
+      restoreFocus: false
     });
   }
 
