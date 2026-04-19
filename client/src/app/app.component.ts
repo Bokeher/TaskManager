@@ -30,7 +30,13 @@ export class AppComponent implements OnInit {
     this.sessionService.getUserObservable()
       .pipe(takeUntil(this.destroy))
       .subscribe((user) => {
-        this.user = user!;
+        if (!user) {
+          this.user = undefined;
+          this.displayProjects = false;
+          return;
+        }
+
+        this.user = user;
       })
 
     if(!this.isLoggedIn()) {
@@ -54,6 +60,7 @@ export class AppComponent implements OnInit {
   }
 
   clearAllSessionData(): void {
+    this.displayProjects = false;
     this.sessionService.logout();
   }
   
