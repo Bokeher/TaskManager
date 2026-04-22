@@ -3,6 +3,7 @@
         "client",
         "server",
         "server/users",
+        "server/projects",
         "client/ui",
         "client/register",
         "client/validation",

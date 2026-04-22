@@ -63,15 +63,15 @@ class Projects {
       console.error(e);
     }
   }
-
+  
   async updateProject(id, newProject) {
     try {
       const db = await connectDB();
       const coll = db.collection("Projects");
 
-      const result = await coll.findOneAndReplace(
+      const result = await coll.updateOne(
         { _id: new ObjectId(id) },
-        newProject
+        { $set: newProject }
       );
 
       console.log(`updateProject(${id})`);
