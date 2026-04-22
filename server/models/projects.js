@@ -10,9 +10,6 @@ class Projects {
 
       const result = await coll.findOne({ _id: new ObjectId(projectId) });
 
-      console.log(`getProject(${projectId})`);
-      console.log(result);
-
       return result;
     } catch (e) {
       console.error(e);
@@ -39,9 +36,6 @@ class Projects {
 
       const result = await coll.insertOne(newProject);
 
-      console.log(`createProject(${projectName}, ${creatorId})`);
-      console.log(result);
-
       return result;
     } catch (e) {
       console.error(e);
@@ -55,15 +49,12 @@ class Projects {
 
       const result = await coll.deleteOne({ _id: new ObjectId(id) });
 
-      console.log(`deleteProject(${id})`);
-      console.log(result);
-
       return result;
     } catch (e) {
       console.error(e);
     }
   }
-  
+
   async updateProject(id, newProject) {
     try {
       const db = await connectDB();
@@ -73,9 +64,6 @@ class Projects {
         { _id: new ObjectId(id) },
         { $set: newProject }
       );
-
-      console.log(`updateProject(${id})`);
-      console.log(result);
 
       return result;
     } catch (e) {

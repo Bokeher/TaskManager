@@ -13,9 +13,6 @@ class Users {
 
       const { password, ...safeUser } = result
 
-      console.log(`getUserByLogin(${login})`);
-      console.log(safeUser);
-
       return safeUser;
     } catch (e) {
       console.error(e);
@@ -33,20 +30,13 @@ class Users {
 
       const passwordMatch = await bcrypt.compare(password, user.password);
 
-      console.log(`getUser(${login})`);
-
       if (passwordMatch) {
-        console.log("Password match");
-
         const { password, ...safeUser } = user
-        console.log(safeUser);
 
         return safeUser;
       }
 
-      console.log("Password doesn't match");
       return null;
-
     } catch (e) {
       console.error(e);
     }
@@ -61,9 +51,6 @@ class Users {
 
       const { password, ...safeUser } = result
       
-      console.log(`getUserById(${id})`);
-      console.log(safeUser);
-
       return safeUser;
     } catch (e) {
       console.error(e);
@@ -80,7 +67,6 @@ class Users {
       const existingUser = await coll.findOne({ login });
 
       if (existingUser) {
-        console.log('User already exists.');
         return null;
       }
 
@@ -96,9 +82,6 @@ class Users {
 
       const { password: _, ...safeUser } = newUser
 
-      console.log(`createUser(${login})`);
-      console.log(safeUser);
-
       return safeUser;
     } catch (e) {
       console.error(e);
@@ -111,9 +94,6 @@ class Users {
       const coll = db.collection("Users");
 
       const result = await coll.deleteOne({ login });
-
-      console.log(`deleteUser(${login})`);
-      console.log(result);
 
       return result;
 
@@ -134,9 +114,6 @@ class Users {
       );
 
       const { password, ...safeUser} = result.value
-
-      console.log(`updateUser(${id})`);
-      console.log(safeUser);
 
       return safeUser;
 
