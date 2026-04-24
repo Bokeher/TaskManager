@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../../data.service';
 import { SessionService } from '../../session.service';
 import { User } from '../../dataModels/user';
@@ -15,7 +15,7 @@ import { Subject, takeUntil } from 'rxjs';
     styleUrls: ['./create-project-dialog.component.css'],
     standalone: false
 })
-export class CreateProjectDialogComponent extends Validate implements OnInit {
+export class CreateProjectDialogComponent extends Validate implements OnInit, OnDestroy {
   user?: User;
   formData = {
     projectName: '',
@@ -42,7 +42,7 @@ export class CreateProjectDialogComponent extends Validate implements OnInit {
       });    
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
   }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
 import { User } from '../dataModels/user';
 import { SessionService } from '../session.service';
@@ -11,7 +11,7 @@ import { Subject, takeUntil } from 'rxjs';
     styleUrls: ['./login.component.css'],
     standalone: false
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit, OnDestroy {
   showError: boolean = false;
   user?: User;
   formData = {
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit{
       })
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
   }

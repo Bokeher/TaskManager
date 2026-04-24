@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { SessionService } from '../../session.service';
 import { DataService } from '../../data.service';
@@ -15,7 +15,7 @@ import { Subject, takeUntil } from 'rxjs';
     styleUrls: ['./project-settings-dialog.component.css'],
     standalone: false
 })
-export class ProjectSettingsDialogComponent implements OnInit {
+export class ProjectSettingsDialogComponent implements OnInit, OnDestroy {
   projectName?: string;
   project?: Project;
   user?: User;
@@ -32,7 +32,7 @@ export class ProjectSettingsDialogComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.sessionService
       .getSelectedProjectObservable()
       .pipe(takeUntil(this.destroy))
@@ -52,7 +52,7 @@ export class ProjectSettingsDialogComponent implements OnInit {
       });
   }
   
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
   }

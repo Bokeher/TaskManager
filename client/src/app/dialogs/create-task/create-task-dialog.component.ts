@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Project } from '../../dataModels/project';
 import { DataService } from '../../data.service';
@@ -14,7 +14,7 @@ import { Subject, takeUntil } from 'rxjs';
     styleUrls: ['./create-task-dialog.component.css'],
     standalone: false
 })
-export class CreateTaskDialogComponent implements OnInit {
+export class CreateTaskDialogComponent implements OnInit, OnDestroy {
   project?: Project;
   task?: Task;
   formData = {
@@ -41,7 +41,7 @@ export class CreateTaskDialogComponent implements OnInit {
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
   }

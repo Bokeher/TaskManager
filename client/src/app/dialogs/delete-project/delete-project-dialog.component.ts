@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../../data.service';
 import { SessionService } from '../../session.service';
 import { User } from '../../dataModels/user';
@@ -13,7 +13,7 @@ import { Subject, takeUntil } from 'rxjs';
     styleUrls: ['./delete-project-dialog.component.css'],
     standalone: false
 })
-export class DeleteProjectDialogComponent implements OnInit {
+export class DeleteProjectDialogComponent implements OnInit, OnDestroy {
   project?: Project;
   user?: User;
 
@@ -41,7 +41,7 @@ export class DeleteProjectDialogComponent implements OnInit {
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
   }

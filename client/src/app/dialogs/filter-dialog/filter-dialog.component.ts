@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SessionService } from '../../session.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
@@ -9,7 +9,7 @@ import { Subject, takeUntil } from 'rxjs';
     styleUrls: ['./filter-dialog.component.css'],
     standalone: false
 })
-export class FilterDialogComponent implements OnInit {
+export class FilterDialogComponent implements OnInit, OnDestroy {
   onlyAssigned: boolean = false;
 
   private destroy = new Subject<void>();

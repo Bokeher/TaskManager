@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SessionService } from '../../session.service';
 import { User } from '../../dataModels/user';
 import { DataService } from '../../data.service';
@@ -14,7 +14,7 @@ import { Subject, takeUntil } from 'rxjs';
     styleUrls: ['./user-settings-dialog.component.css'],
     standalone: false
 })
-export class UserSettingsDialogComponent extends Validate implements OnInit {
+export class UserSettingsDialogComponent extends Validate implements OnInit, OnDestroy {
   password: string = '';
   avatarUrl: string = '';
   user?: User;
@@ -41,7 +41,7 @@ export class UserSettingsDialogComponent extends Validate implements OnInit {
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
   }

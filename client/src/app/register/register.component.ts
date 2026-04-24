@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
 import { User } from '../dataModels/user';
 import { SessionService } from '../session.service';
@@ -13,7 +13,7 @@ import { Subject, takeUntil } from 'rxjs';
     styleUrls: ['./register.component.css'],
     standalone: false
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   user?: User;
   submitted: boolean = false;
 

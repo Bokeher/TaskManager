@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { SessionService } from '../../session.service';
 import { Project } from '../../dataModels/project';
@@ -13,7 +13,7 @@ import { Subject, takeUntil } from 'rxjs';
     styleUrls: ['./create-category-dialog.component.css'],
     standalone: false
 })
-export class CreateCategoryDialogComponent implements OnInit {
+export class CreateCategoryDialogComponent implements OnInit, OnDestroy {
   categoryName = '';
   project?: Project;
 
@@ -36,7 +36,7 @@ export class CreateCategoryDialogComponent implements OnInit {
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
   }

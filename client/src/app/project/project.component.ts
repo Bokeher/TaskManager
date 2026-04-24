@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SessionService } from '../session.service';
 import { Project } from '../dataModels/project';
 import { Task } from '../dataModels/task';
@@ -21,7 +21,7 @@ import { Router } from '@angular/router';
     styleUrls: ['./project.component.css'],
     standalone: false
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent implements OnInit, OnDestroy {
   project?: Project;
   user?: User;
 
@@ -101,7 +101,7 @@ export class ProjectComponent implements OnInit {
       })
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
   }

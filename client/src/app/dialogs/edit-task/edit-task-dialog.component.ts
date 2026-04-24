@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { DataService } from '../../data.service';
 import { SessionService } from '../../session.service';
@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./edit-task-dialog.component.css'],
     standalone: false
 })
-export class EditTaskDialogComponent implements OnInit {
+export class EditTaskDialogComponent implements OnInit, OnDestroy {
   project?: Project;
   newTaskName?: string;
   newTaskDescription?: string;
@@ -36,7 +36,7 @@ export class EditTaskDialogComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.originalTask = JSON.parse(JSON.stringify(this.task));
 
     this.sessionService.getSelectedProjectObservable()

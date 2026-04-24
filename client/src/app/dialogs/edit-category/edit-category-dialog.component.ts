@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { SessionService } from '../../session.service';
 import { Project } from '../../dataModels/project';
@@ -11,7 +11,7 @@ import { Subject, takeUntil } from 'rxjs';
     styleUrls: ['./edit-category-dialog.component.css'],
     standalone: false
 })
-export class EditCategoryComponent implements OnInit {
+export class EditCategoryComponent implements OnInit, OnDestroy {
   categoryName = '';
   project?: Project;
 

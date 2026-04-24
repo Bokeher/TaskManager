@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from '../dataModels/user';
 import { SessionService } from '../session.service';
 import { Subject, takeUntil } from 'rxjs';
@@ -9,7 +9,7 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./home.component.css'],
   standalone: false,
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   user?: User;
   private destroy = new Subject<void>();
 
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
   }

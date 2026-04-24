@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { User } from '../dataModels/user';
 import { Project } from '../dataModels/project';
@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./projects.component.css'],
     standalone: false
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, OnDestroy {
   user?: User;
   projectData: Project[] = [];
   projectNumber: number = 0;
@@ -28,7 +28,7 @@ export class ProjectsComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.sessionService.getUserObservable()
       .pipe(takeUntil(this.destroy))
       .subscribe((user) => {
@@ -55,7 +55,7 @@ export class ProjectsComponent implements OnInit {
       })
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
   }

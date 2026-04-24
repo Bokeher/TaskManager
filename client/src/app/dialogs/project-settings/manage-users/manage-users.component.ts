@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SessionService } from '../../../session.service';
 import { DataService } from '../../../data.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,7 +16,7 @@ import { ManagingUser } from '../../../dataModels/managingUser';
     styleUrls: ['./manage-users.component.css'],
     standalone: false
 })
-export class ManageUsersComponent {
+export class ManageUsersComponent implements OnInit, OnDestroy {
   projectMembers?: ProjectMember[];
   project?: Project;
   userId?: string;
@@ -58,7 +58,7 @@ export class ManageUsersComponent {
       })
   }
   
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
   }
