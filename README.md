@@ -2,6 +2,12 @@
 
 **TaskManager** is a web application for **project and task management**. It allows users to create projects, organize work in categories, assign members to tasks, and track progress in one place. The project is built as a full-stack app with an Angular frontend, Node.js/Express backend, and MongoDB database.
 
+## Preview
+
+### Main application view
+
+<img width="1200" alt="taskmanager_main" src="https://github.com/user-attachments/assets/e9359524-3aec-45cb-8cfa-9137c95b16cc" />
+
 ## Tech Stack
 
 - **Frontend:** Angular
