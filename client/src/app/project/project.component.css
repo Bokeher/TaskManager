@@ -188,9 +188,10 @@ h2 {
 .avatar {
   display: inline-block;
   margin-top: 0.5rem;
+  margin-right: 0.3rem;
 }
 
 .avatar img {
-  width: 2.5rem;
+  width: 3rem;
   border-radius: 50%;
 }
