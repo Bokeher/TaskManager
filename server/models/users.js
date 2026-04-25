@@ -11,6 +11,8 @@ class Users {
 
       const result = await coll.findOne({ login });
 
+      if (!result) return null
+
       const { password, ...safeUser } = result
 
       return safeUser;
@@ -49,6 +51,8 @@ class Users {
 
       const result = await coll.findOne({ _id: new ObjectId(id) });
 
+      if (!result) return null
+
       const { password, ...safeUser } = result
       
       return safeUser;
@@ -79,6 +83,8 @@ class Users {
       };
 
       const result = await coll.insertOne(newUser);
+
+      if (!result) return null
 
       const { password: _, ...safeUser } = newUser
 
@@ -112,6 +118,8 @@ class Users {
         { $set: newUser },
         { returnDocument: 'after' }
       );
+
+      if (!result) return null
 
       const { password, ...safeUser} = result.value
 
