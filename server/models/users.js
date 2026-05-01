@@ -105,9 +105,16 @@ class Users {
       const db = await connectDB();
       const coll = db.collection("Users");
 
+      // shallow copy to avoid modifying input
+      const updatedUser = { ...newUser }; 
+
+      if (updatedUser.password) {
+        updatedUser.password = await bcrypt.hash(updatedUser.password, 10);
+      }
+
       const result = await coll.findOneAndUpdate(
         { _id: new ObjectId(id) },
-        { $set: newUser },
+        { $set: updatedUser },
         { returnDocument: 'after' }
       );
 
