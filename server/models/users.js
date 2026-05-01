@@ -3,6 +3,12 @@ const bcrypt = require('bcrypt');
 const { connectDB } = require('../db');
 
 class Users {
+  sanitizeUser(user) {
+    if (!user) return null;
+
+    const { password, ...safeUser } = user;
+    return safeUser;
+  }
 
   async getUserByLogin(login) {
     try {
@@ -11,11 +17,7 @@ class Users {
 
       const result = await coll.findOne({ login });
 
-      if (!result) return null
-
-      const { password, ...safeUser } = result
-
-      return safeUser;
+      return this.sanitizeUser(result);
     } catch (e) {
       console.error(e);
     }
@@ -32,11 +34,7 @@ class Users {
 
       const passwordMatch = await bcrypt.compare(password, user.password);
 
-      if (passwordMatch) {
-        const { password, ...safeUser } = user
-
-        return safeUser;
-      }
+      if (passwordMatch) return this.sanitizeUser(user);
 
       return null;
     } catch (e) {
@@ -51,11 +49,7 @@ class Users {
 
       const result = await coll.findOne({ _id: new ObjectId(id) });
 
-      if (!result) return null
-
-      const { password, ...safeUser } = result
-      
-      return safeUser;
+      return this.sanitizeUser(result);
     } catch (e) {
       console.error(e);
     }
@@ -86,9 +80,7 @@ class Users {
 
       if (!result) return null
 
-      const { password: _, ...safeUser } = newUser
-
-      return safeUser;
+      return this.sanitizeUser(newUser);
     } catch (e) {
       console.error(e);
     }
@@ -121,9 +113,7 @@ class Users {
 
       if (!result) return null
 
-      const { password, ...safeUser} = result.value
-
-      return safeUser;
+      return this.sanitizeUser(result.value);
 
     } catch (e) {
       console.error(e);
