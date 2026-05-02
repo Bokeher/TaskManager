@@ -8,10 +8,12 @@ import { Project } from './dataModels/project';
 })
 export class SessionService {
   private userKey = 'userSession';
+  private tokenKey = 'authToken';
   private selectedProjectKey = 'selectedProject';
   private showOnlyAssignedTasksKey = 'showOnlyAssignedTasks';
 
   private userSubject = new BehaviorSubject<User | null>(null);
+  private tokenSubject = new BehaviorSubject<string | null>(null);
   private selectedProjectSubject = new BehaviorSubject<Project | null>(null);
   private showOnlyAssignedTasksSubject = new BehaviorSubject<boolean>(false);
 
@@ -36,6 +38,29 @@ export class SessionService {
   clearUser(): void {
     localStorage.removeItem(this.userKey);
     this.userSubject.next(null);
+  }
+  
+  // Token
+  setToken(token: string): void {
+    localStorage.setItem(this.tokenKey, token);
+    this.tokenSubject.next(token);
+  }
+
+  getTokenObservable(): Observable<string | null> {
+    return this.tokenSubject.asObservable();
+  }
+
+  getToken(): string | null {
+    return this.tokenSubject.getValue();
+  }
+
+  clearToken(): void {
+    localStorage.removeItem(this.tokenKey);
+    this.tokenSubject.next(null);
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.getToken() && !!this.getUser();
   }
 
   // Only assigned flag
@@ -103,14 +128,24 @@ export class SessionService {
   }
 
   logout(): void {
+    this.clearToken();
     this.clearUser();
     this.clearSelectedProject();
+    this.clearShowOnlyAssignedTasks();
   }
 
   loadAllDataFromStorage(): void {
+    this.loadTokenFromStorage();
     this.loadUserDataFromStorage();
     this.loadSelectedProjectData();
     this.loadShowOnlyAssignedTasks();
+  }
+
+  loadTokenFromStorage(): void {
+    const token = localStorage.getItem(this.tokenKey);
+    if (token) {
+      this.tokenSubject.next(token);
+    }
   }
 
   userIsAdmin(): boolean {
