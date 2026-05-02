@@ -12,6 +12,8 @@
         "client/project",
         "client/project-settings",
         "client/edit-task",
-        "server/auth"
+        "server/auth",
+        "client/session",
+        "client/auth"
     ]
 }

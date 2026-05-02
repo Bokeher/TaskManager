@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -27,6 +27,7 @@ import { AutoResizeDirective } from './auto-resize.directive';
 import { SubmitOnEnterDirective } from './submit-on-enter.directive';
 import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from "./home/home.component";
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -61,6 +62,11 @@ import { HomeComponent } from "./home/home.component";
         {
             provide: MatDialogRef,
             useValue: {},
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
         },
         Validate,
         provideHttpClient(withInterceptorsFromDi()),
