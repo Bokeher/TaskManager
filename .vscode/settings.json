@@ -11,6 +11,7 @@
         "client/home",
         "client/project",
         "client/project-settings",
-        "client/edit-task"
+        "client/edit-task",
+        "server/auth"
     ]
 }
