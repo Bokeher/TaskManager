@@ -17,8 +17,14 @@ router.post('/getAllUserData', authenticateToken, async (req, res) => {
 router.post('/getUser', async (req, res) => {
   try {
     const { login, password } = req.body; 
-    const data = await new Users().getUser(login, password);
-    res.status(200).json(data);
+    const user = await new Users().getUser(login, password);
+
+    if (!user) {
+      return res.status(200).json(null);
+    }
+
+    const token = generateToken(user);
+    res.status(200).json({ user, token });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -58,8 +64,14 @@ router.post('/getUserById', authenticateToken, async (req, res) => {
 router.put('/createUser', async (req, res) => {
   try {
     const { login, password, email } = req.body;
-    const result = await new Users().createUser(login, password, email);
-    res.status(200).json(result);
+    const user = await new Users().createUser(login, password, email);
+
+    if (!user) {
+      return res.status(200).json(null);
+    }
+
+    const token = generateToken(user);
+    res.status(200).json({ user, token });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -98,7 +110,7 @@ router.post('/getAllProjects', authenticateToken, async (req, res) => {
 router.post('/getProject', authenticateToken, requireProjectMember, async (req, res) => {
   try {
     // project is attached by auth middleware
-    const data = req.project;
+    const data = req.project; 
     res.status(200).json(data);
   } catch (error) {
     res.status(500).json({ error: error.message });
