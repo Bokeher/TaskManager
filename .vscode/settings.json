@@ -4,6 +4,7 @@
         "server",
         "server/users",
         "server/projects",
+        "server/auth",
         "client/ui",
         "client/register",
         "client/validation",
@@ -12,8 +13,8 @@
         "client/project",
         "client/project-settings",
         "client/edit-task",
-        "server/auth",
         "client/session",
-        "client/auth"
+        "client/auth",
+        "client/routing"
     ]
 }
