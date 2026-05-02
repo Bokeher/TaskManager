@@ -6,11 +6,12 @@ import { ProjectsComponent } from './projects/projects.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from "./home/home.component";
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'project', component: ProjectComponent },
-  { path: 'projects', component: ProjectsComponent },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'project', component: ProjectComponent, canActivate: [AuthGuard] },
+  { path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '**', redirectTo: ''},
