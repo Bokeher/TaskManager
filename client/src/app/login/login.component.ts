@@ -4,6 +4,7 @@ import { User } from '../dataModels/user';
 import { SessionService } from '../session.service';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { AuthResponse } from '../dataModels/authResponse';
 
 @Component({
     selector: 'app-login',
@@ -48,14 +49,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   getUser(email: string, name: string, password: string) {
     this.dataService.getUser(email, name, password).subscribe({
-      next: (response: User) => {
-        this.user = response;
+      next: (response: AuthResponse | null) => {
+        this.user = response?.user;
 
-        if(!this.user) {
+        if(!response || !this.user) {
           this.showError = true;
           return;
         }
 
+        this.sessionService.setToken(response.token);
         this.sessionService.setUser(this.user);
         this.router.navigate(["/"]);
       },

@@ -6,6 +6,7 @@ import { Validate } from '../validate';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subject, takeUntil } from 'rxjs';
+import { AuthResponse } from '../dataModels/authResponse';
 
 @Component({
     selector: 'app-register',
@@ -78,14 +79,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
   
     
     this.dataService.createUser(username, password, email).subscribe({
-      next: (response: User) => {
+      next: (response: AuthResponse | null) => {
         if (response == null) {
           const message = $localize`:@@usernameTaken: Username taken`;
           this.toastr.error(message);
           return;
         }
         
-        this.user = response;
+        this.user = response.user;
+        this.sessionService.setToken(response.token);
         this.sessionService.setUser(this.user);
         this.router.navigate(["/"]);
       },

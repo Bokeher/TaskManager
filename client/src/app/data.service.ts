@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from './dataModels/user';
 import { Project } from './dataModels/project';
+import { AuthResponse } from './dataModels/authResponse';
 import { environment } from "../environments/environment";
 
 @Injectable({
@@ -19,8 +20,8 @@ export class DataService {
    * @param password The user's password.
    * @returns An Observable that emits the retrieved User object.
    */
-  getUser(email: string, login: string, password: string): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}getUser`, {
+  getUser(email: string, login: string, password: string): Observable<AuthResponse | null> {
+    return this.http.post<AuthResponse | null>(`${this.apiUrl}getUser`, {
       email,
       login,
       password,
@@ -51,8 +52,8 @@ export class DataService {
    * @param password The user's password.
    * @returns An Observable that emits the created User object.
    */
-  createUser(login: string, password: string, email: string): Observable<User> {
-    return this.http.put<User>(`${this.apiUrl}createUser`, {
+  createUser(login: string, password: string, email: string): Observable<AuthResponse | null> {
+    return this.http.put<AuthResponse | null>(`${this.apiUrl}createUser`, {
       email,
       login,
       password,
