@@ -8,6 +8,13 @@
 
 <img width="1200" alt="taskmanager_main" src="https://github.com/user-attachments/assets/e9359524-3aec-45cb-8cfa-9137c95b16cc" />
 
+## Live Demo
+
+[Open live demo](https://taskmanager-demo.onrender.com/)
+
+> [!NOTE]
+> The live demo is hosted on Render's free tier, so the first request may take 15–60 seconds due to cold start.
+
 ## Tech Stack
 
 - **Frontend:** Angular
@@ -17,6 +24,7 @@
 ## Main Implemented Features
 
 - User registration and login
+- JWT-based authentication and protected API routes
 - Secure password storage (`bcrypt` hashing)
 - Creating and deleting projects
 - Project settings and member management

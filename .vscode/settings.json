@@ -16,6 +16,7 @@
         "client/edit-task",
         "client/session",
         "client/auth",
-        "client/routing"
+        "client/routing",
+        "readme"
     ]
 }
