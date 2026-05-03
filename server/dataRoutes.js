@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Users = require('./models/users');
 const Projects = require('./models/projects');
-const { authenticateToken, generateToken, requireProjectMember } = require('./auth');
+const { authenticateToken, generateToken, requireProjectMember, requireAdmin } = require('./auth');
 
 // Users
 router.post('/getUser', async (req, res) => {
@@ -114,7 +114,7 @@ router.put('/createProject', authenticateToken, async (req, res) => {
   }
 });
 
-router.delete('/deleteProject', authenticateToken, requireProjectMember, async (req, res) => {
+router.delete('/deleteProject', authenticateToken, requireProjectMember, requireAdmin, async (req, res) => {
   try {
     const { id } = req.query;
     const result = await new Projects().deleteProject(id);

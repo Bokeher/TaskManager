@@ -80,8 +80,30 @@ async function requireProjectMember(req, res, next) {
   }
 }
 
+// Can only be used after requireProjectMember() 
+async function requireAdmin(req, res, next) {
+  try {
+    if (!req.project) {
+      return res.status(500).json({ error: 'Project context is missing.' });
+    }
+
+    const isAdmin = req.project.projectMembers.some(
+      (member) => member.userId === req.user._id.toString() && member.isAdmin
+    );
+
+    if (!isAdmin) {
+      return res.status(403).json({ error: 'Insufficient permissions.' });
+    }
+
+    next();
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+}
+
 module.exports = {
   authenticateToken,
   generateToken,
   requireProjectMember,
+  requireAdmin
 };
