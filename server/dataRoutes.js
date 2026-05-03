@@ -31,16 +31,6 @@ router.post('/getUserByLogin', authenticateToken, async (req, res) => {
   }
 });
 
-router.post('/getUserByLoginWithoutPassword', authenticateToken, async (req, res) => {
-  try {
-    const { login } = req.body; 
-    const data = await new Users().getUserByLoginWithoutPassword(login);
-    res.status(200).json(data);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
 router.post('/getUserById', authenticateToken, async (req, res) => {
   try {
     let { id } = req.body; 
