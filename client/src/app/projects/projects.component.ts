@@ -17,7 +17,6 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   user?: User;
   projectData: Project[] = [];
   projectNumber: number = 0;
-  selectedProjectId?: string;
 
   private destroy = new Subject<void>();
 
@@ -42,16 +41,18 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
     this.sessionService.getSelectedProjectObservable()
       .pipe(takeUntil(this.destroy))
-      .subscribe((project) => {
-        if(!project || !this.selectedProjectId) return;
+      .subscribe((selectedProject) => {
+        if(!selectedProject) return;
         
         // find project in project list
-        const currentProject = this.projectData.filter((project) => {
-          project._id === this.selectedProjectId
-        })
+        const currentProject = this.projectData.find((project) => 
+          project._id === selectedProject._id
+        )
 
         // correct its name
-        if(currentProject.length > 0) currentProject[0].name = project.name;
+        if (currentProject) {
+          currentProject.name = selectedProject.name;
+        }
       })
   }
 
@@ -93,8 +94,6 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   openProject(index: number) {
     this.sessionService.setSelectedProject(this.projectData[index]);
-
-    this.selectedProjectId = this.projectData[index]._id;
     
     this.router.navigate(["/project"]);
   }
