@@ -52,7 +52,14 @@
         />
       </div>
 
-      <button type="submit" id="registerButton" i18n="@@register">Register</button>
+      <button type="submit" id="registerButton" [disabled]="isLoading" i18n="@@register">Register</button>
+
+      <div class="loadingBox" *ngIf="isLoading">
+        <div class="spinner" aria-hidden="true"></div>
+        <p i18n="@@registerLoadingMessage">
+          Creating account... If the live demo was inactive, the server may need a few extra seconds to wake up.
+        </p>
+      </div>
 
       <a routerLink="/login" i18n="@@alreadyHaveAccount" (click)="clearToast()">
         Already have an account? Log in!

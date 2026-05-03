@@ -17,6 +17,7 @@ import { AuthResponse } from '../dataModels/authResponse';
 export class RegisterComponent implements OnInit, OnDestroy {
   user?: User;
   submitted: boolean = false;
+  isLoading: boolean = false;
 
   formData = {
     username: '',
@@ -77,12 +78,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
       )
     ) return;
   
+    this.isLoading = true;
     
     this.dataService.createUser(username, password, email).subscribe({
       next: (response: AuthResponse | null) => {
         if (response == null) {
           const message = $localize`:@@usernameTaken: Username taken`;
           this.toastr.error(message);
+          this.isLoading = false;
           return;
         }
         
@@ -92,6 +95,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         this.router.navigate(["/"]);
       },
       error: (error) => {
+        this.isLoading = false;
         console.error(error);
       }
     });

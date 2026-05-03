@@ -14,6 +14,7 @@ import { AuthResponse } from '../dataModels/authResponse';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   showError: boolean = false;
+  isLoading: boolean = false;
   user?: User;
   formData = {
     email: '',
@@ -48,12 +49,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   getUser(email: string, name: string, password: string) {
+    this.showError = false;
+    this.isLoading = true;
+
     this.dataService.getUser(email, name, password).subscribe({
       next: (response: AuthResponse | null) => {
         this.user = response?.user;
 
         if(!response || !this.user) {
           this.showError = true;
+          this.isLoading = false;
           return;
         }
 
@@ -62,6 +67,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.router.navigate(["/"]);
       },
       error: (error) => {
+        this.isLoading = false;
         console.error(error);
       }
     });

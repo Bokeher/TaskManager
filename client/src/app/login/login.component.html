@@ -26,7 +26,14 @@
         />
       </div>
 
-      <button type="submit" id="loginButton" i18n="@@login"> login </button>
+      <button type="submit" id="loginButton" [disabled]="isLoading" i18n="@@login"> login </button>
+
+      <div class="loadingBox" *ngIf="isLoading">
+        <div class="spinner" aria-hidden="true"></div>
+        <p i18n="@@loginLoadingMessage">
+          Logging in... If the live demo was inactive, the server may need a few extra seconds to wake up.
+        </p>
+      </div>
 
       <a routerLink="/register" i18n="@@dontHaveAccount">
         Don't have account? Create one!

@@ -6,10 +6,12 @@
 #dialog {
   border-radius: 0.4rem;
   width: 25rem;
-  height: 32rem;
+  min-height: 32rem;
   justify-content: center;
   display: flex;
-  margin-top: 20vh;
+  margin-top: 15vh;
+  padding-bottom: 1.5rem;
+  box-sizing: border-box;
   -webkit-box-shadow: 3px 3px 39px 0px rgba(78, 78, 78, 1);
   -moz-box-shadow: 3px 3px 39px 0px rgba(78, 78, 78, 1);
   box-shadow: 3px 3px 39px 0px rgba(78, 78, 78, 1);
@@ -64,6 +66,12 @@ input {
   background-color: #292929;
   cursor: pointer;
   transition: 0.5s;
+}
+
+#loginButton:disabled {
+  cursor: wait;
+  opacity: 0.7;
+  transform: none;
 }
 
 button:hover {
