@@ -5,15 +5,6 @@ const Projects = require('./models/projects');
 const { authenticateToken, generateToken, requireProjectMember } = require('./auth');
 
 // Users
-router.post('/getAllUserData', authenticateToken, async (req, res) => {
-  try {
-    const data = await new Users().getData();
-    res.status(200).json(data);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
 router.post('/getUser', async (req, res) => {
   try {
     const { login, password } = req.body; 
@@ -98,15 +89,6 @@ router.put('/updateUser', authenticateToken, async (req, res) => {
 });
 
 // Projects
-router.post('/getAllProjects', authenticateToken, async (req, res) => {
-  try {
-    const data = await new Projects().getAllProjectData();
-    res.status(200).json(data);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
 router.post('/getProject', authenticateToken, requireProjectMember, async (req, res) => {
   try {
     // project is attached by auth middleware

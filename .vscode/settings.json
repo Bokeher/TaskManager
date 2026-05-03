@@ -5,6 +5,7 @@
         "server/users",
         "server/projects",
         "server/auth",
+        "server/routes",
         "client/ui",
         "client/register",
         "client/validation",
