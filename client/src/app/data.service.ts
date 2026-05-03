@@ -95,10 +95,9 @@ export class DataService {
    * @param creatorId The ID of the project creator.
    * @returns An Observable that emits the created Project object.
    */
-  createProject(projectName: string, creatorId: string): Observable<Project> {
+  createProject(projectName: string): Observable<Project> {
     return this.http.put<Project>(`${this.apiUrl}createProject`, {
-      projectName,
-      creatorId,
+      projectName
     });
   }
 

@@ -91,7 +91,9 @@ router.post('/getProject', authenticateToken, requireProjectMember, async (req, 
 
 router.put('/createProject', authenticateToken, async (req, res) => {
   try {
-    const { projectName, creatorId } = req.body;
+    const { projectName } = req.body;
+
+    const creatorId = req.user._id.toString()
 
     if (req.user._id.toString() !== creatorId) {
       return res.status(403).json({ error: 'You can only create projects for yourself.' });

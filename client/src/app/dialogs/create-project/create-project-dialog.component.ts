@@ -64,7 +64,7 @@ export class CreateProjectDialogComponent extends Validate implements OnInit, On
     ) return;
 
     this.dataService
-      .createProject(this.formData.projectName, this.user._id)
+      .createProject(this.formData.projectName)
       .subscribe({
         next: (response: any) => {
           if (!this.user?._id || !this.user) return;
